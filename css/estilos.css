@@ -67,7 +67,7 @@ nav a:hover{
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);  
 }
 
-.section-main h2{
+main h2{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: x-large;
     color: red;
