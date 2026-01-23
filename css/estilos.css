@@ -56,6 +56,12 @@ nav a:hover{
     gap: 10px;
 }
 
+.section-main a{
+    text-decoration: none;
+    display: block;             /* como si se seleccionara toda la cjaa */
+    color: inherit;             /* mantener el estilo del texto y que no sea pisado por los anclajes */
+}
+
 .section-main article {
     background: whitesmoke;
     border: 1px solid #ddd;
