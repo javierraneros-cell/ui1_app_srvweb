@@ -99,6 +99,50 @@ nav a:hover{
     border-radius: 50%;
 }
 
+/* Estilos para el contenido de los listados de cursos */
+.listado-cursos {
+    display: grid;
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));  /* Solucion responsive para las columnas se redistribuyan en menos de 3 según sea necesario*/
+    gap: 20px;
+    padding: 20px;
+}
+
+.listado-cursos article{
+    background: whitesmoke;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.listado-cursos article:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);  
+}
+
+.listado-cursos article img {
+    width: auto;
+    max-width: 200px;
+    height: auto;
+    object-fit: cover;
+}
+
+.listado-cursos article h3 {
+    font-size: large;
+    color: red;
+    margin: 2;
+}
+
+.listado-cursos a {
+    text-decoration: none;   /* no pone subrayyado sobre el h3 o el texto */
+    display: block;          /* como si se seleccionara toda la cjaa */
+}
+
+.curso a:hover {
+    opacity: 0.9;            /* efecto suave al pasar el ratón */
+}
+
+
 /* footer */
 footer {
     background-color: crimson;
