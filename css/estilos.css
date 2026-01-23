@@ -101,7 +101,7 @@ main h2{
     content: "";
     width: 8px;
     height: 8px;
-    background: #ff6b6b; /* color suave y moderno */
+    background: #ff6b6b;
     border-radius: 50%;
 }
 
@@ -145,7 +145,7 @@ main h2{
 }
 
 .curso a:hover {
-    opacity: 0.9;            /* efecto suave al pasar el ratón */
+    opacity: 0.9;            /* efecto al pasar el ratón */
 }
 
 
