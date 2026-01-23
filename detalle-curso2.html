@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Detalle DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN </title>
+
+    <link href="css/estilos.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
     <meta name="author" content="Javier Raneros Cartujo" >
     <meta name="descripcion" content="Detalle curso en línea de Formación Global Online" >
     <meta name="keywords" content="cursos, formación, profesores, datos abiertos, virtualización" >
@@ -12,9 +16,12 @@
 <body>
     <!-- CABECERA que se repetira en el resto de paginas -->
     <header>
-        <h1>Formación Global Online </h1>
+        <!-- Banner en la cabecera -->
+        <div class="banner" >
+            <img src="imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner" >
+        </div>
         <!-- Menu -->
-         <nav>
+         <nav class="menu" >
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="listado-cursos.html" >Listado de cursos</a></li>
@@ -24,54 +31,56 @@
     </header>
 
     <!-- MAIN de la pagina detalle que iremos separando por Secciones -->
-    <main>
+    <main class="curso">
         <!-- Cabecera con la imagen -->
         <header>
-            <h2>Curso DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN </h2> 
-            <figure>
+            <figure class="detalle-imagen-curso">
                 <img src="imagenes/formacion2.jpg" alt="Descripción imagen DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN"> 
             </figure>
         </header>
 
-        <!-- Sección DESCRIPCION -->
-        <section >
-            <h3>DESCRIPCION GENERAL DEL CURSO</h3>
-            <p>Identificar y analizar escenarios de datos abiertos y reutilización de la información, evaluando contexto, normativa aplicable, beneficios y retos planteados.</p>
-        </section>
+        <!-- Contenedor para montar un GRID y dividir en 2 el detalle del curso -->
+        <div class="detalle-curso">
+            <h2>DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN </h2> 
+            <!-- Sección DESCRIPCION -->
+            <section >
+                <h3>DESCRIPCION GENERAL DEL CURSO</h3>
+                <p>Identificar y analizar escenarios de datos abiertos y reutilización de la información, evaluando contexto, normativa aplicable, beneficios y retos planteados.</p>
+            </section>
 
-        <!-- INFORMACIÓN DEL CURSO --> 
-         <section > 
-            <h3 >Información detallada del curso</h3> 
-                <ul> 
-                    <li><strong>Categoría: </strong>Cívicas y Sociales</li>
-                    <li><strong>Nivel: </strong>Intermedio</li> 
-                    <li><strong>Duración estimada: </strong>35h</li> 
-                    <li><strong>Profesor: </strong>Ángel Obregon Sierra</li> 
-                </ul>    
-        </section>
+            <!-- INFORMACIÓN DEL CURSO --> 
+            <section > 
+                <h3><span class="material-symbols-outlined">info</span> Información detallada del curso</h3> 
+                    <ul> 
+                        <li><strong>Categoría: </strong>Cívicas y Sociales</li>
+                        <li><strong>Nivel: </strong>Intermedio</li> 
+                        <li><strong>Duración estimada: </strong>35h</li> 
+                        <li><strong>Profesor: </strong>Ángel Obregon Sierra</li> 
+                    </ul>    
+            </section>
 
-        <!-- CONTENIDOS --> 
-         <section > 
-            <h3 >Contenidos del curso</h3> 
-                <ul> 
-                    <li>Conceptos básicos del ecosistema de datos abiertos</li> 
-                    <li>Principios generales de la reutilización de información</li> 
-                    <li>Beneficios de la apertura de los datos</li> 
-                    <li>Barreras y retos planteados</li> 
-                    <li>Ejemplos de éxito de iniciativas de datos abiertos</li> 
-                    <li>Marco general legislativo europeo</li>
-                    <li>Legislación a nivel estatal</li>
-                    <li>Plan de Gobierno Abierto de España 2025-2029</li> 
-                    <li>Normativas autonómicas y locales</li>
-                </ul>
-        </section>
+            <!-- CONTENIDOS --> 
+            <section > 
+                <h3 ><span class="material-symbols-outlined">list</span> Contenidos del curso:</h3>
+                    <ul> 
+                        <li>Conceptos básicos del ecosistema de datos abiertos</li> 
+                        <li>Principios generales de la reutilización de información</li> 
+                        <li>Beneficios de la apertura de los datos</li> 
+                        <li>Barreras y retos planteados</li> 
+                        <li>Ejemplos de éxito de iniciativas de datos abiertos</li> 
+                        <li>Marco general legislativo europeo</li>
+                        <li>Legislación a nivel estatal</li>
+                        <li>Plan de Gobierno Abierto de España 2025-2029</li> 
+                        <li>Normativas autonómicas y locales</li>
+                    </ul>
+            </section>
 
-        <!-- REQUISITOS --> 
-         <section > 
-            <h3 >Requisitos del curso:</h3> 
-                <p>No es necesario ningún requisito previo</p>
-        </section>
-
+            <!-- REQUISITOS --> 
+            <section > 
+                <h3 ><span class="material-symbols-outlined">conditions</span> Requisitos del curso:</h3> 
+                    <p>No es necesario ningún requisito previo</p>
+            </section>
+        </div>
     </main>
     <!-- FOOTER -->
     <footer id="pie" >

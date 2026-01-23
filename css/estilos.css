@@ -1,4 +1,14 @@
+/*
+    Hoja de estilos de Formación Online por este orden:
+    - Página principal
+    - Listado de cursos
+    - Detall de cursos
 
+    La estructura de body inicial vale para todas las páginas porque todas tienen tres filas:
+        - Header
+        - Main
+        - Footer
+*/
 body{
     display: grid;
     width: 100%;
@@ -146,6 +156,64 @@ main h2{
 
 .curso a:hover {
     opacity: 0.9;            /* efecto al pasar el ratón */
+}
+
+/* Curso individual y su detalle */
+.curso {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* izquierda imagen, derecha contenido */
+    gap: 30px;
+    align-items: start;
+    padding: 20px;
+}
+
+.detalle-imagen-curso img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+}
+
+.detalle-curso {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.detalle-curso h2{
+    margin-top: 0;
+    font-size: x-large;
+    color: red;
+}
+
+.detalle-curso section {
+    margin-bottom: 20px;
+}
+
+.detalle-curso p{
+    font-size: large;
+    text-wrap: unset;
+    text-align: justify;
+}
+
+.detalle-curso ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.detalle-curso li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+}
+
+.detalle-curso li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: #ff6b6b;
+    border-radius: 50%;
 }
 
 
