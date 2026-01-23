@@ -10,7 +10,7 @@ body{
 
 /* Header */
 header {
-    background-color: rgb(248, 244, 244);
+    background-color: whitesmoke;
     width: 100%;
 }
 
@@ -28,8 +28,8 @@ nav.menu ul {
     margin: 0;
     padding: 0;
     justify-content: center;
-    gap: 2rem;
-    background-color: grey;
+    gap: 1rem;
+    background-color: crimson;
     padding: 1rem;
 }
 
@@ -41,22 +41,74 @@ nav a {
 }
 
 nav a:hover{
-    color: red;
+    color: lightcoral;
 }
 
 /* main */
-main {
-    background: lightyellow;
-}
-
 .section-main { 
+    background-color: white;
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+    font-size: medium;
     display: grid; 
     grid-template-columns: 1fr 1fr; /* 2 columnas */ 
     grid-template-rows: auto auto; /* 2 filas */ 
-    padding: 20px; 
+    padding: 20px;
+    gap: 10px;
+}
+
+.section-main article {
+    background: whitesmoke;
+    border: 1px solid #ddd;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.section-main article:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);  
+}
+
+.section-main h2{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: x-large;
+    color: red;
+}
+
+.section-main p{
+    text-wrap: unset;
+    text-align: justify;
+}
+
+.section-main article ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.section-main article li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+}
+
+.section-main article li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: #ff6b6b; /* color suave y moderno */
+    border-radius: 50%;
 }
 
 /* footer */
 footer {
-    background: lightcoral;
-    }
+    background-color: crimson;
+    height: 20px;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: medium;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
