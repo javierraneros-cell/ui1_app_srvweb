@@ -82,6 +82,14 @@ main{
     gap: 10px;
 }
 
+/* Añadimos responsive, si es menos de 768 se pone el GRID en una columan */
+@media (max-width: 768px) {
+    .section-main {
+        grid-template-columns: 1fr; /* una sola columna */
+    }
+}
+
+
 .section-main a{
     text-decoration: none;
     display: block;             /* como si se seleccionara toda la cjaa */
@@ -136,6 +144,13 @@ main h2{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));  /* Solucion responsive para las columnas se redistribuyan en menos de 3 según sea necesario*/
     gap: 20px;
+}
+
+/* Ajuste responsive IF la imagen fuera demasido ancha */
+@media (max-width: 480px) {
+    .listado-cursos article img {
+        max-width: 100%;
+    }
 }
 
 .listado-cursos article{
@@ -244,6 +259,23 @@ table caption{
     background-color: rgba(216, 215, 224, 0.507);   /* Efecto over en la tabla pero sin afectar al th*/
     color: red;
 }
+
+/* Responsvie para la tabla */
+@media (max-width: 768px) {
+    .listado-profesores table {
+        width: 100%;        /* El requisito es que ocupe el 80% pero si se hace tan pequeño necesitamos todo el ancho */
+    }
+
+    .listado-profesores th,
+    .listado-profesores td {
+        font-size: small;
+        padding: 8px;
+    }
+    .listado-profesores th{
+        font-weight: bold;
+    }
+}
+
 
 /* footer */
 footer {
