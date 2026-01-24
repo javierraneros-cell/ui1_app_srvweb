@@ -1,8 +1,12 @@
 <!DOCTYPE html >
-<html lang="es" id="inicio" >
+<html lang="es" id="listado-profesores" >
 <head>
     <meta charset="UTF-8">
     <title>Listado PROFESORADO en Formación Global Online</title>
+
+    <link href="css/estilos.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
     <meta name="author" content="Javier Raneros Cartujo" >
     <meta name="descripcion" content="Listado profesorado Formación Global Online" >
     <meta name="keywords" content="cursos, formación, profesores, datos abiertos, virtualización" >
@@ -12,9 +16,14 @@
 <body>
     <!-- CABECERA que se repetira en el resto de paginas -->
     <header>
-        <h1>Formación Global Online</h1>
+        <!-- Banner en la cabecera -->  
+        <div class="banner" >
+                <a href="index.html">
+                <img src="imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner" >
+            </a>
+        </div>
         <!-- Menu -->
-         <nav>
+         <nav class="menu" >
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="listado-cursos.html" >Listado de cursos</a></li>
@@ -24,8 +33,8 @@
     </header>
 
     <!-- MAIN Lisatado profesores en modo tabla -->
-    <main>
-        <h2>Listado de Profesores que imparten cursos formativos en Formación Global Online</h2> 
+    <main class="listado-profesores">
+        <h2>Listado de profesores que imparten cursos formativos en Formación Global Online</h2> 
         <table>
             <caption>Listado de profesores junto con un resumen de su perfil</caption>
             <thead>
@@ -60,7 +69,31 @@
                     <td>10</td> 
                     <td>1</td> 
                     <td>Relaciones Laborales</td> 
+                </tr>
+                <!-- Fila1 --> 
+                 <tr> 
+                    <td>Antonio Pérez Carrasco</td> 
+                    <td>Cívicas y Sociales</td> 
+                    <td>15</td> 
+                    <td>2</td> 
+                    <td>-</td> 
                 </tr> 
+                <!-- Fila2 --> 
+                 <tr> 
+                    <td>Ángel Obregon Sierra</td> 
+                    <td>Cívicas y Sociales</td> 
+                    <td>20</td> 
+                    <td>3</td> 
+                    <td>Administración y Gestión de rmpresas </td> 
+                </tr> 
+                <!-- Fila3 --> 
+                 <tr> 
+                    <td>Javier Almeida Martínez</td> 
+                    <td>Digitales</td> 
+                    <td>10</td> 
+                    <td>1</td> 
+                    <td>Relaciones Laborales</td> 
+                </tr>
             </tbody>
         </table>
         

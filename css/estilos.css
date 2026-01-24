@@ -12,7 +12,7 @@
 body{
     display: grid;
     width: 100%;
-    max-width: 800px;
+    max-width: 1080px;
     margin: 0 auto;
     padding: 0;
     grid-template-rows: auto 1fr auto; /* header main footer*/
@@ -24,10 +24,14 @@ header {
     width: 100%;
 }
 
+.banner a {
+    text-decoration: none;
+}
+
 .banner img {
     width: 100%;
     height: 200px;
-    object-fit: contain;
+    object-fit: contain;    /* Para que la imagen que tiene fondo transparente se adapte al espacio cambiante. Siempre va a llenar el espacio del banner de ancho */
     display: block;
 }
 
@@ -55,6 +59,10 @@ nav a:hover{
 }
 
 /* main */
+main{
+    padding: 20px;
+} 
+
 .section-main { 
     background-color: white;
     font-family: Calibri, 'Trebuchet MS', sans-serif;
@@ -62,7 +70,6 @@ nav a:hover{
     display: grid; 
     grid-template-columns: 1fr 1fr; /* 2 columnas */ 
     grid-template-rows: auto auto; /* 2 filas */ 
-    padding: 20px;
     gap: 10px;
 }
 
@@ -121,7 +128,6 @@ main h2{
     font-family: Calibri, 'Trebuchet MS', sans-serif;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));  /* Solucion responsive para las columnas se redistribuyan en menos de 3 según sea necesario*/
     gap: 20px;
-    padding: 20px;
 }
 
 .listado-cursos article{
@@ -146,7 +152,7 @@ main h2{
 .listado-cursos article h3 {
     font-size: large;
     color: red;
-    margin: 2;
+    margin: 5px 0;
 }
 
 .listado-cursos a {
@@ -164,7 +170,6 @@ main h2{
     grid-template-columns: 1fr 2fr; /* izquierda imagen, derecha contenido */
     gap: 30px;
     align-items: start;
-    padding: 20px;
 }
 
 .detalle-imagen-curso img {
@@ -191,7 +196,6 @@ main h2{
 
 .detalle-curso p{
     font-size: large;
-    text-wrap: unset;
     text-align: justify;
 }
 
@@ -216,17 +220,63 @@ main h2{
     border-radius: 50%;
 }
 
+/* Página listado de profesores / TABLE */
+table caption{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: smaller;
+    font-weight: lighter;
+}
+
+
+.listado-profesores{
+    padding: 20px;
+}
+
+.listado-profesores table {
+    width: 80%;                     /* Ancho requerido  */
+    margin: 0 auto;                 /* Para que quede centrado con el ajuste de los margenes: superior-inferior izquierda-derecha */
+    border-collapse: collapse;      /* Para que se unifiquen los bordes */
+    background: whitesmoke;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.listado-profesores th,
+.listado-profesores td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dddddd; /* Solo el borde inferior */
+    text-align:  left;
+    font-size: medium;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.listado-profesores th {
+    font-weight: bold;
+    font-size: large;
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.listado-profesores tr:last-child td {
+    border-bottom: none;            /* la última fila no la ponemos borde */
+}
+
+.listado-profesores table tbody tr:hover {
+    background-color: rgba(216, 215, 224, 0.507);   /* Efecto over en la tabla pero sin afectar al th*/
+    color: red;
+}
+
+
 
 /* footer */
 footer {
     background-color: crimson;
     height: 20px;
-    align-content: center;
+    display: flex;
+    justify-content: center;
     align-items: center;
     text-align: center;
     color: white;
-    text-decoration: none;
     font-weight: bolder;
-    font-size: medium;
+    font-size: small;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
