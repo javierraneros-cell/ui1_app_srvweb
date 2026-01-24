@@ -6,3 +6,6 @@ Este proyecto se desarrollará de forma progresiva a lo largo de la asignatura. 
 Desarrollar el código HTML de un sitio web estático que represente una plataforma de cursos en línea, utilizando una estructura correcta, completa y semántica.
 
 En esta entrega no se debe utilizar CSS, JavaScript ni ningún otro tipo de diseño o programación adicional. El objetivo es evaluar la correcta estructuración del contenido, el uso de etiquetas HTML y el cumplimiento de las buenas prácticas vistas en la unidad didáctica.
+
+## UD2 Unidad didáctica 2. Estilos con CSS
+Añadido estilos CSS para maquetar el HTML actual pedido en la actividad y pasado el validador CSS https://jigsaw.w3.org/css-validator y de HTML https://validator.w3.org. También se comprueba que es responive
