@@ -15,7 +15,17 @@ body{
     max-width: 1080px;
     margin: 0 auto;
     padding: 0;
-    grid-template-rows: auto 1fr auto; /* header main footer*/
+    grid-template-rows: auto 1fr auto;                  /*  header main footer  */
+    font-family: Calibri, "Trebuchet MS", sans-serif;   /*  Fuente base para todo el proyecto, que coja esta sino existe otra */
+}
+
+h1, h2, h3 {
+    font-family: Calibri, "Trebuchet MS", sans-serif;
+    font-weight: bold;
+}
+
+p, td, li {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 /* Header */
@@ -65,7 +75,6 @@ main{
 
 .section-main { 
     background-color: white;
-    font-family: Calibri, 'Trebuchet MS', sans-serif;
     font-size: medium;
     display: grid; 
     grid-template-columns: 1fr 1fr; /* 2 columnas */ 
@@ -96,25 +105,20 @@ main h2{
     color: red;
 }
 
-.section-main p{
-    text-wrap: unset;
-    text-align: justify;
-}
-
-.section-main article ul {
+.lista-generica {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.section-main article li {
+.lista-generica li {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 6px 0;
 }
 
-.section-main article li::before {
+.lista-generica li::before {
     content: "";
     width: 8px;
     height: 8px;
@@ -122,10 +126,14 @@ main h2{
     border-radius: 50%;
 }
 
+.section-main p{
+    text-wrap: unset;
+    text-align: justify;
+}
+
 /* Estilos para el contenido de los listados de cursos */
 .listado-cursos {
     display: grid;
-    font-family: Calibri, 'Trebuchet MS', sans-serif;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));  /* Solucion responsive para las columnas se redistribuyan en menos de 3 según sea necesario*/
     gap: 20px;
 }
@@ -180,10 +188,6 @@ main h2{
     display: block;
 }
 
-.detalle-curso {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
 .detalle-curso h2{
     margin-top: 0;
     font-size: x-large;
@@ -199,30 +203,8 @@ main h2{
     text-align: justify;
 }
 
-.detalle-curso ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.detalle-curso li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 6px 0;
-}
-
-.detalle-curso li::before {
-    content: "";
-    width: 8px;
-    height: 8px;
-    background: #ff6b6b;
-    border-radius: 50%;
-}
-
 /* Página listado de profesores / TABLE */
 table caption{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: smaller;
     font-weight: lighter;
 }
@@ -247,13 +229,11 @@ table caption{
     border-bottom: 1px solid #dddddd; /* Solo el borde inferior */
     text-align:  left;
     font-size: medium;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .listado-profesores th {
     font-weight: bold;
     font-size: large;
-    font-family: Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .listado-profesores tr:last-child td {
@@ -264,8 +244,6 @@ table caption{
     background-color: rgba(216, 215, 224, 0.507);   /* Efecto over en la tabla pero sin afectar al th*/
     color: red;
 }
-
-
 
 /* footer */
 footer {
@@ -278,5 +256,4 @@ footer {
     color: white;
     font-weight: bolder;
     font-size: small;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
