@@ -242,9 +242,9 @@ table caption{
     font-weight: lighter;
 }
 
-
 .listado-profesores{
     padding: 20px;
+    overflow-x: auto;
 }
 
 .listado-profesores table {
@@ -280,13 +280,17 @@ table caption{
 
 /* Responsvie para la tabla */
 @media (max-width: 768px) {
+    .listado-profesores {
+        padding: 0px;
+    }
     .listado-profesores table {
         width: 100%;        /* El requisito es que ocupe el 80% pero si se hace tan pequeño necesitamos todo el ancho */
+        border-collapse: collapse;
     }
 
     .listado-profesores th,
     .listado-profesores td {
-        font-size: small;
+        font-size: x-small;
         padding: 8px;
     }
     .listado-profesores th{
