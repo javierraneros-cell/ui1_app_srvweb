@@ -203,6 +203,13 @@ main h2{
     display: block;
 }
 
+/* Responsive para el detalle del curso */
+@media (max-width: 768px) {
+    .curso {
+        grid-template-columns: 1fr; /* una sola columna */
+    }
+}
+
 .detalle-curso h2{
     margin-top: 0;
     font-size: x-large;
