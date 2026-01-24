@@ -1,8 +1,13 @@
 <!DOCTYPE html >
-<html lang="es" id="inicio" >
+<html lang="es" id="listado-cursos" >
 <head>
     <meta charset="UTF-8">
     <title>Listado Cursos de Formación Global Online</title>
+
+    <!-- Hojas de estilo -->
+    <link href="css/estilos.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
     <meta name="author" content="Javier Raneros Cartujo" >
     <meta name="descripcion" content="Listado de cursos plataforma de cursos en línea de Formación Global Online" >
     <meta name="keywords" content="cursos, formación, profesores, datos abiertos, virtualización" >
@@ -11,10 +16,15 @@
 <!-- Cuerpo de la página Incio / Portada -->
 <body>
     <!-- CABECERA que se repetira en el resto de paginas -->
-    <header>
-        <h1>Formación Global Online</h1>
+    <header>    
+        <!-- Banner en la cabecera -->  
+        <div class="banner" >
+                <a href="index.html">
+                <img src="imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner" >
+            </a>
+        </div>
         <!-- Menu -->
-         <nav>
+         <nav class="menu" >
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="listado-cursos.html" >Listado de cursos</a></li>
@@ -25,45 +35,69 @@
 
     <!-- MAIN -->
     <main>
-        <h2>Cursos formativos impartidos en Formación Global Online</h2> 
-        <ul> 
-            <li>
+        <h2><span class="material-symbols-outlined">list</span> Listado de cursos formativos impartidos en Formación Global Online</h2> 
+        <div class="listado-cursos"  >
+            <a href="detalle-curso1.html"  >
                 <article>
                     <h3>ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB </h3> 
-                    <img src="imagenes/formacion1.jpg" alt="Descripción imagen ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB"> 
-                    <ul> 
-                        <li><strong>Categoría:</strong> Cívicas y Sociales</li> 
-                        <li><strong>Nivel:</strong> Básico</li> 
-                        <li><strong>Duración estimada:</strong> 20h</li> 
-                        <li><a href="detalle-curso1.html"><strong>Ver detalle</strong></a></li> 
-                    </ul>
-                </article> 
-            </li> 
-            <li> 
+                    <img src="imagenes/formacion1.jpg" alt="Descripción imagen ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB" > 
+                </article>
+            </a>
+            <a href="detalle-curso2.html" >
                 <article> 
                     <h3>DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN</h3> 
                     <img src="imagenes/formacion2.jpg" alt="Descripción imagen DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN"> 
-                    <ul> 
-                        <li><strong>Categoría:</strong> Cívicas y Sociales</li> 
-                        <li><strong>Nivel:</strong> Intermedio</li> 
-                        <li><strong>Duración estimada:</strong> 35h</li>
-                        <li><a href="detalle-curso2.html"><strong>Ver detalle</strong></a></li>
-                    </ul>
                 </article> 
-            </li> 
-            <li> 
+            </a>
+            <a href="detalle-curso3.html" >
                 <article> 
                     <h3>VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS</h3> 
                     <img src="imagenes/formacion3.jpg" alt="Descripción imagen VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS"> 
-                    <ul> 
-                        <li><strong>Categoría:</strong> Digitales</li> 
-                        <li><strong>Nivel:</strong> Avanzado</li> 
-                        <li><strong>Duración estimada:</strong> 55h</li>
-                        <li><a href="detalle-curso3.html"><strong>Ver detalle</strong></a></li>
-                    </ul>
+                </article>
+            </a>
+            <a href="detalle-curso3.html" >
+                <article> 
+                    <h3>VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS</h3> 
+                    <img src="imagenes/formacion3.jpg" alt="Descripción imagen VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS"> 
+                </article>
+            </a> 
+            <a href="detalle-curso1.html" >
+                <article>
+                    <h3>ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB </h3> 
+                    <img src="imagenes/formacion1.jpg" alt="Descripción imagen ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB"> 
+                </article>
+            </a>
+            <a href="detalle-curso2.html" >
+                <article> 
+                    <h3>DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN</h3> 
+                    <img src="imagenes/formacion2.jpg" alt="Descripción imagen DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN"> 
                 </article> 
-            </li> 
-        </ul>
+            </a>
+            <a href="detalle-curso3.html" >
+                <article> 
+                    <h3>VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS</h3> 
+                    <img src="imagenes/formacion3.jpg" alt="Descripción imagen VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS"> 
+                </article>
+            </a>
+            <a href="detalle-curso3.html" >
+                <article> 
+                    <h3>VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS</h3> 
+                    <img src="imagenes/formacion3.jpg" alt="Descripción imagen VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS"> 
+                </article>
+            </a> 
+            <a href="detalle-curso1.html" >
+                <article>
+                    <h3>ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB </h3> 
+                    <img src="imagenes/formacion1.jpg" alt="Descripción imagen ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB"> 
+                </article>
+            </a>
+            <a href="detalle-curso2.html" >
+                <article> 
+                    <h3>DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN</h3> 
+                    <img src="imagenes/formacion2.jpg" alt="Descripción imagen DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN"> 
+                </article> 
+            </a>
+        </div>
     </main>
 
     <!-- FOOTER -->

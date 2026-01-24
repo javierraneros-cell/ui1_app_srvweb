@@ -1,8 +1,13 @@
 <!DOCTYPE html >
-<html lang="es" id="inicio" >
+<html lang="es" id="detalle-curso-3" >
 <head>
     <meta charset="UTF-8">
     <title>Detalle VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS </title>
+       
+    <!-- Hojas de estilo -->
+    <link href="css/estilos.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" >
+
     <meta name="author" content="Javier Raneros Cartujo" >
     <meta name="descripcion" content="Detalle curso en línea de Formación Global Online" >
     <meta name="keywords" content="cursos, formación, profesores, datos abiertos, virtualización" >
@@ -12,9 +17,14 @@
 <body>
     <!-- CABECERA que se repetira en el resto de paginas -->
     <header>
-        <h1>Formación Global Online </h1>
+        <!-- Banner en la cabecera -->  
+        <div class="banner" >
+                <a href="index.html">
+                <img src="imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner" >
+            </a>
+        </div>
         <!-- Menu -->
-         <nav>
+         <nav class="menu" >
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="listado-cursos.html" >Listado de cursos</a></li>
@@ -24,60 +34,62 @@
     </header>
 
     <!-- MAIN de la pagina detalle que iremos separando por Secciones -->
-    <main>
+    <main class="curso">
         <!-- Cabecera con la imagen -->
         <header>
-            <h2>Curso VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS</h2> 
-            <figure>
+            <figure class="detalle-imagen-curso">
                 <img src="imagenes/formacion3.jpg" alt="Descripción imagen VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS"> 
             </figure>
         </header>
 
-        <!-- Sección DESCRIPCION -->
-        <section >
-            <h3>DESCRIPCION GENERAL DEL CURSO</h3>
-            <p>En la experiencia de aprendizaje se proporcionarán los conocimientos necesarios sobre virtualización y contenedores y reconocer los fundamentos básicos de la virtualización y los conceptos en los que se basa.</p>
-        </section>
+        <!-- Contenedor para montar un GRID y dividir en 2 el detalle del curso -->
+        <div class="detalle-curso">
+            <h2>VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS</h2> 
+            <!-- Sección DESCRIPCION -->
+            <section >
+                <h3>DESCRIPCION GENERAL DEL CURSO</h3>
+                <p>En la experiencia de aprendizaje se proporcionarán los conocimientos necesarios sobre virtualización y contenedores y reconocer los fundamentos básicos de la virtualización y los conceptos en los que se basa.</p>
+            </section>
 
-        <!-- INFORMACIÓN DEL CURSO --> 
-         <section > 
-            <h3 >Información detallada del curso:</h3> 
-                <ul> 
-                    <li><strong>Categoría: </strong>Digitales</li>
-                    <li><strong>Nivel: </strong>Avanzado</li> 
-                    <li><strong>Duración estimada: </strong>55h</li> 
-                    <li><strong>Profesor: </strong>Javier Almeida Martínez</li> 
-                </ul>    
-        </section>
+            <!-- INFORMACIÓN DEL CURSO --> 
+            <section > 
+                <h3><span class="material-symbols-outlined">info</span> Información detallada del curso</h3> 
+                    <ul class="lista-generica"> 
+                        <li><strong>Categoría: </strong>Digitales</li>
+                        <li><strong>Nivel: </strong>Avanzado</li> 
+                        <li><strong>Duración estimada: </strong>55h</li> 
+                        <li><strong>Profesor: </strong>Javier Almeida Martínez</li> 
+                    </ul>    
+            </section>
 
-        <!-- CONTENIDOS --> 
-         <section > 
-            <h3 >Contenidos del curso:</h3> 
-                <ul> 
-                    <li>Introducción a la virtualización</li>
-                    <li>Familiarización con el hipervisor</li>
-                    <li>Creación de máquinas virtuales</li>
-                    <li>Instalación de sistemas operativos</li>
-                    <li>Tipos de archivo de un hipervisor</li>
-                    <li>Software adicional de hipervisor</li>
-                    <li>Estados de las máquinas virtuales</li>
-                    <li>Importación de máquinas virtuales</li>
-                    <li>Instantáneas</li>
-                    <li>Clonación</li>
-                    <li>Operaciones avanzadas con máquinas virtuales</li>
-                    <li>Conceptos básicos de redes en entornos virtuales</li>
-                    <li>Parámetros avanzados de configuración de redes</li>
-                    <li>Conversión de máquinas físicas y virtuales</li>
-                    <li>Consejos útiles en virtualización</li>
-                </ul>
-        </section>
+            <!-- CONTENIDOS --> 
+            <section > 
+                <h3 ><span class="material-symbols-outlined">list</span> Contenidos del curso:</h3> 
+                    <ul class="lista-generica"> 
+                        <li>Introducción a la virtualización</li>
+                        <li>Familiarización con el hipervisor</li>
+                        <li>Creación de máquinas virtuales</li>
+                        <li>Instalación de sistemas operativos</li>
+                        <li>Tipos de archivo de un hipervisor</li>
+                        <li>Software adicional de hipervisor</li>
+                        <li>Estados de las máquinas virtuales</li>
+                        <li>Importación de máquinas virtuales</li>
+                        <li>Instantáneas</li>
+                        <li>Clonación</li>
+                        <li>Operaciones avanzadas con máquinas virtuales</li>
+                        <li>Conceptos básicos de redes en entornos virtuales</li>
+                        <li>Parámetros avanzados de configuración de redes</li>
+                        <li>Conversión de máquinas físicas y virtuales</li>
+                        <li>Consejos útiles en virtualización</li>
+                    </ul>
+            </section>
 
-        <!-- REQUISITOS --> 
-         <section > 
-            <h3 >Requisitos del curso:</h3> 
-                <p>Conocimientos sobre copias de seguridad y conocimientos básicos de acceso y administración de plataformas Cloud</p>
-        </section>
-
+            <!-- REQUISITOS --> 
+            <section>
+                <h3 ><span class="material-symbols-outlined">conditions</span> Requisitos del curso:</h3> 
+                    <p>Conocimientos sobre copias de seguridad y conocimientos básicos de acceso y administración de plataformas Cloud</p>
+            </section>
+        </div>
     </main>
     <!-- FOOTER -->
     <footer id="pie" >

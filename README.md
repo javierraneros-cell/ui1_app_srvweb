@@ -7,5 +7,6 @@ Desarrollar el código HTML de un sitio web estático que represente una platafo
 
 En esta entrega no se debe utilizar CSS, JavaScript ni ningún otro tipo de diseño o programación adicional. El objetivo es evaluar la correcta estructuración del contenido, el uso de etiquetas HTML y el cumplimiento de las buenas prácticas vistas en la unidad didáctica.
 
-## Resultado
-Entrega de una primera release de este proyecto de una estructura de páginas puras de HTML5 enlazadas entre ellas a través del menú y enlaces internos, intentando tener una alta corrección semántica HTML5 sin usar CSS ni JS. Se han pasado todas las páginas por el validador https://validator.w3.org/
+## UD2 Unidad didáctica 2. Estilos con CSS
+Añadido estilos CSS para maquetar el HTML actual pedido en la actividad y pasado el validador CSS https://jigsaw.w3.org/css-validator y de HTML https://validator.w3.org. También se comprueba que es responive
+

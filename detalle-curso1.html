@@ -1,8 +1,13 @@
 <!DOCTYPE html >
-<html lang="es" id="inicio" >
+<html lang="es" id="detalle-curso-1" >
 <head>
     <meta charset="UTF-8">
     <title>Detalle ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB </title>
+    
+    <!-- Hojas de estilo -->
+    <link href="css/estilos.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" >
+
     <meta name="author" content="Javier Raneros Cartujo" >
     <meta name="descripcion" content="Detalle curso en línea de Formación Global Online" >
     <meta name="keywords" content="cursos, formación, profesores, datos abiertos, virtualización">
@@ -12,9 +17,14 @@
 <body>
     <!-- CABECERA que se repetira en el resto de paginas -->
     <header>
-        <h1>Formación Global Online </h1>
+        <!-- Banner en la cabecera -->  
+        <div class="banner" >
+                <a href="index.html">
+                <img src="imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner" >
+            </a>
+        </div>
         <!-- Menu -->
-         <nav>
+         <nav class="menu" >
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="listado-cursos.html" >Listado de cursos</a></li>
@@ -24,50 +34,52 @@
     </header>
 
     <!-- MAIN de la pagina detalle que iremos separando por Secciones -->
-    <main>
+    <main class="curso">
         <!-- Cabecera con la imagen -->
         <header>
-            <h2>Curso ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB </h2> 
-            <figure>
+            <figure class="detalle-imagen-curso">
                 <img src="imagenes/formacion1.jpg" alt="Descripción imagen ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB"> 
             </figure>
         </header>
 
-        <!-- Sección DESCRIPCION -->
-        <section >
-            <h3>DESCRIPCION GENERAL DEL CURSO</h3>
-            <p>Se conseguira identificar e interpretar la normativa aplicable a la accesibilidad de sitios web del sector público, según el RD 1112/2018, y en especial con respecto a la monitorización y reporte y evaluación de la accesibilidad.</p>
-        </section>
+        <!-- Contenedor para montar un GRID y dividir en 2 el detalle del curso -->
+        <div class="detalle-curso"> 
+            <h2>ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB </h2> 
+            <!-- Sección DESCRIPCION -->
+            <section >
+                <h3>DESCRIPCION GENERAL DEL CURSO</h3>
+                <p>Se conseguira identificar e interpretar la normativa aplicable a la accesibilidad de sitios web del sector público, según el RD 1112/2018, y en especial con respecto a la monitorización y reporte y evaluación de la accesibilidad.</p>
+            </section>
 
-        <!-- INFORMACIÓN DEL CURSO --> 
-         <section > 
-            <h3 >Información detallada del curso:</h3> 
-                <ul> 
-                    <li><strong>Categoría: </strong>Cívicas y Sociales</li>
-                    <li><strong>Nivel: </strong>Básico</li> 
-                    <li><strong>Duración estimada: </strong>20h</li> 
-                    <li><strong>Profesor: </strong>Antonio Pérez Carrasco</li> 
-                </ul>    
-        </section>
+            <!-- INFORMACIÓN DEL CURSO --> 
+            <section > 
+                <h3><span class="material-symbols-outlined">info</span> Información detallada del curso</h3> 
+                    <ul class="lista-generica"> 
+                        <li><strong>Categoría: </strong>Cívicas y Sociales</li>
+                        <li><strong>Nivel: </strong>Básico</li> 
+                        <li><strong>Duración estimada: </strong>20h</li> 
+                        <li><strong>Profesor: </strong>Antonio Pérez Carrasco</li> 
+                    </ul>    
+            </section>
 
-        <!-- CONTENIDOS --> 
-         <section > 
-            <h3 >Contenidos del curso:</h3> 
-                <ul> 
-                    <li>La accesibilidad de un sitio web</li> 
-                    <li>Tecnologías de apoyo</li> 
-                    <li>Legislación y normativa sobre accesibilidad de sitios web</li> 
-                    <li>Las Unidades Responsables de Accesibilidad (URA)</li> 
-                    <li>El Informe de Revisión de Accesibilidad (IRA) de un sitio web</li> 
-                </ul>
-        </section>
+            <!-- CONTENIDOS --> 
+            <section > 
+                <h3 ><span class="material-symbols-outlined">list</span> Contenidos del curso:</h3> 
+                    <ul class="lista-generica"> 
+                        <li>La accesibilidad de un sitio web</li> 
+                        <li>Tecnologías de apoyo</li> 
+                        <li>Legislación y normativa sobre accesibilidad de sitios web</li> 
+                        <li>Las Unidades Responsables de Accesibilidad (URA)</li> 
+                        <li>El Informe de Revisión de Accesibilidad (IRA) de un sitio web</li> 
+                    </ul>
+            </section>
 
-        <!-- REQUISITOS --> 
-         <section > 
-            <h3 >Requisitos del curso:</h3> 
-                <p>Haber cursado previamente el curso de DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN</p>
-        </section>
-
+            <!-- REQUISITOS --> 
+            <section > 
+                <h3 ><span class="material-symbols-outlined">conditions</span> Requisitos del curso:</h3> 
+                    <p>No es necesario ningún requisito previo</p>
+            </section>
+        </div>
     </main>
     <!-- FOOTER -->
     <footer id="pie" >

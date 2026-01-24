@@ -1,0 +1,297 @@
+/*
+    Hoja de estilos de Formación Online por este orden:
+    - Página principal
+    - Listado de cursos
+    - Detall de cursos
+
+    La estructura de body inicial vale para todas las páginas porque todas tienen tres filas:
+        - Header
+        - Main
+        - Footer
+*/
+body{
+    display: grid;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0;
+    grid-template-rows: auto 1fr auto;                  /*  header main footer  */
+    font-family: Calibri, "Trebuchet MS", sans-serif;   /*  Fuente base para todo el proyecto, que coja esta sino existe otra */
+}
+
+h1, h2, h3 {
+    font-family: Calibri, "Trebuchet MS", sans-serif;
+    font-weight: bold;
+}
+
+p, td, li {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Header */
+header {
+    background-color: whitesmoke;
+    width: 100%;
+}
+
+.banner a {
+    text-decoration: none;
+}
+
+.banner img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;    /* Para que la imagen que tiene fondo transparente se adapte al espacio cambiante. Siempre va a llenar el espacio del banner de ancho */
+    display: block;
+}
+
+/* Nav*/
+nav.menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    gap: 1rem;
+    background-color: crimson;
+    padding: 1rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+nav a:hover{
+    color: lightcoral;
+}
+
+/* main */
+main{
+    padding: 20px;
+} 
+
+.section-main { 
+    background-color: white;
+    font-size: medium;
+    display: grid; 
+    grid-template-columns: 1fr 1fr; /* 2 columnas */ 
+    grid-template-rows: auto auto; /* 2 filas */ 
+    gap: 10px;
+}
+
+/* Añadimos responsive, si es menos de 768 se pone el GRID en una columan */
+@media (max-width: 768px) {
+    .section-main {
+        grid-template-columns: 1fr; /* una sola columna */
+    }
+}
+
+.section-main a{
+    text-decoration: none;
+    display: block;             /* como si se seleccionara toda la cjaa */
+    color: inherit;             /* mantener el estilo del texto y que no sea pisado por los anclajes */
+}
+
+.section-main article {
+    background: whitesmoke;
+    border: 1px solid #ddd;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.section-main article:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);  
+}
+
+main h2{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: larger;
+    color: red;
+}
+
+.lista-generica {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-generica li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+}
+
+.lista-generica li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: #ff6b6b;
+    border-radius: 50%;
+}
+
+.section-main p{
+    text-wrap: unset;
+    text-align: justify;
+}
+
+/* Estilos para el contenido de los listados de cursos */
+.listado-cursos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));  /* Solucion responsive para las columnas se redistribuyan en menos de 3 según sea necesario*/
+    gap: 20px;
+}
+
+/* Ajuste responsive IF la imagen fuera demasido ancha */
+@media (max-width: 480px) {
+    .listado-cursos article img {
+        max-width: 100%;
+    }
+}
+
+.listado-cursos article{
+    background: whitesmoke;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.listado-cursos article:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);  
+}
+
+.listado-cursos article img {
+    width: auto;
+    max-width: 200px;
+    height: auto;
+    object-fit: cover;
+}
+
+.listado-cursos article h3 {
+    font-size: large;
+    color: red;
+    margin: 5px 0;
+}
+
+.listado-cursos a {
+    text-decoration: none;   /* no pone subrayyado sobre el h3 o el texto */
+    display: block;          /* como si se seleccionara toda la cjaa */
+}
+
+.curso a:hover {
+    opacity: 0.9;            /* efecto al pasar el ratón */
+}
+
+/* Curso individual y su detalle */
+.curso {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* izquierda imagen, derecha contenido */
+    gap: 30px;
+    align-items: start;
+}
+
+.detalle-imagen-curso img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Responsive para el detalle del curso */
+@media (max-width: 768px) {
+    .curso {
+        grid-template-columns: 1fr; /* una sola columna */
+    }
+}
+
+.detalle-curso h2{
+    margin-top: 0;
+    font-size: x-large;
+    color: red;
+}
+
+.detalle-curso section {
+    margin-bottom: 20px;
+}
+
+.detalle-curso p{
+    font-size: large;
+    text-align: justify;
+}
+
+/* Página listado de profesores / TABLE */
+table caption{
+    font-size: smaller;
+    font-weight: lighter;
+}
+
+
+.listado-profesores{
+    padding: 20px;
+}
+
+.listado-profesores table {
+    width: 80%;                     /* Ancho requerido  */
+    margin: 0 auto;                 /* Para que quede centrado con el ajuste de los margenes: superior-inferior izquierda-derecha */
+    border-collapse: collapse;      /* Para que se unifiquen los bordes */
+    background: whitesmoke;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.listado-profesores th,
+.listado-profesores td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dddddd; /* Solo el borde inferior */
+    text-align:  left;
+    font-size: medium;
+}
+
+.listado-profesores th {
+    font-weight: bold;
+    font-size: large;
+}
+
+.listado-profesores tr:last-child td {
+    border-bottom: none;            /* la última fila no la ponemos borde */
+}
+
+.listado-profesores table tbody tr:hover {
+    background-color: rgba(216, 215, 224, 0.507);   /* Efecto over en la tabla pero sin afectar al th*/
+    color: red;
+}
+
+/* Responsvie para la tabla */
+@media (max-width: 768px) {
+    .listado-profesores table {
+        width: 100%;        /* El requisito es que ocupe el 80% pero si se hace tan pequeño necesitamos todo el ancho */
+    }
+
+    .listado-profesores th,
+    .listado-profesores td {
+        font-size: small;
+        padding: 8px;
+    }
+    .listado-profesores th{
+        font-weight: bold;
+    }
+}
+
+
+/* footer */
+footer {
+    background-color: crimson;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+    font-size: small;
+}

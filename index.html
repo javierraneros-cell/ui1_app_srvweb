@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Formación Global Online</title>
+
+    <!-- Hojas de estilo -->
+    <link href="css/estilos.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" >
+
     <meta name="author" content="Javier Raneros Cartujo" >
     <meta name="descripcion" content="Página de inicio de proyecto plataforma de cursos en línea de Formación Global Online" >
     <meta name="keywords" content="cursos, formación, profesores, datos abiertos, virtualización" >
@@ -12,9 +17,12 @@
 <body>
     <!-- CABECERA que se repetira en el resto de paginas -->
     <header>
-        <h1>Formación Global Online</h1>
+        <!-- Banner en la cabecera -->
+        <div class="banner" >
+            <img src="imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner" >
+        </div>
         <!-- Menu -->
-         <nav>
+         <nav class="menu" >
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="listado-cursos.html" >Listado de cursos</a></li>
@@ -25,40 +33,57 @@
 
     <!-- MAIN de la pagina inicio que iremos separando por Secciones -->
     <main>
-        <section >
-            <h2>Cursos de formación en línea</h2>
-            <p>La empresa Formación Global Online es una plataforma web dedicada a la oferta de cursos de formación en línea en distintas áreas del conocimiento (tecnología, diseño, empresa, idiomas, etc.). 
-                Nuestro objetivo es que tomes competencias digitales, empresariales y de idiomas con nosotros</p>
-            <p>Este proyecto se desarrollará de forma progresiva a lo largo de la asignatura. En esta primera unidad didáctica se abordará exclusivamente la estructura HTML, que será mejorada en unidades posteriores mediante CSS, Bootstrap y JavaScript</p>
-        </section>
-
-        <!-- Seccion CATEGORIAS -->
-        <section>
-            <h2>Listado de Categorías</h2>
-            <p>Las principales categorías de cursos disponibles son:</p>
-            <ul>
-                <li>Cívicas y Sociales</li>
-                <li>Personales e interpersonales</li>
-                <li>Digitales</li>
-            </ul>
-        </section>
-        <!-- Sección ENTIDADES COLABORADORAS -->
-        <section>
-            <h2>Entidades Colabodoras</h2>
-            <p>Trabajamos con muchas entidades en el ámbito educactivo y profesional, algunas de ellas son:</p>
-            <ul>
-                <li>Universidad Isabel I</li>
-                <li>Ministerio de Educación y Ciencia</li>
-                <li>Amazon Web Services</li>
-                <li>Cisco</li>
-            </ul>
-        </section>
+        <!-- Seccion MAIN que dividira por css en 2x2 en cada uno de los 4 ARTICLES que se crean  -->
+        <div class="section-main">
+            <!-- Article -->
+            <a href="listado-cursos.html">
+                <article>
+                    <h2><span class="material-symbols-outlined">calendar_clock</span> Nuevos cursos</h2>
+                    <p>La empresa Formación Global Online es una plataforma web dedicada a la oferta de cursos de formación en línea en distintas áreas del conocimiento (tecnología, diseño, empresa, idiomas, etc.). Nuestro objetivo es que tomes competencias digitales, empresariales y de idiomas con nosotros</p>
+                    <p>Este proyecto se desarrollará de forma progresiva a lo largo de la asignatura. En esta primera unidad didáctica se abordará exclusivamente la estructura HTML, que será mejorada en unidades posteriores mediante CSS, Bootstrap y JavaScript </p>
+                </article>
+            </a>
+            <!-- Article -->
+            <article>
+                <h2><span class="material-symbols-outlined">category</span> Categorías destacadas</h2>
+                <p>Las principales categorías de cursos disponibles son:</p>
+                <ul class="lista-generica">
+                    <li>Cívicas y Sociales</li>
+                    <li>Personales e interpersonales</li>
+                    <li>Digitales</li>
+                </ul>
+            </article>
+            <!-- Article -->
+            <article>
+                <h2><span class="material-symbols-outlined">rewarded_ads</span> Ventajas de la plataforma</h2>
+                <p>Trabajamos con muchas entidades en el ámbito educactivo y profesional, algunas de ellas son:</p>
+                <ul class="lista-generica">
+                    <li>Universidad Isabel I</li>
+                    <li>Ministerio de Educación y Ciencia</li>
+                    <li>Amazon Web Services</li>
+                    <li>Cisco</li>
+                </ul>
+            </article>
+            <!-- Article -->
+            <article>
+                <h2><span class="material-symbols-outlined">breaking_news</span> Noticias de formación</h2>
+                <p>Trabajamos con muchas entidades en el ámbito educactivo y profesional, algunas de ellas son:</p>
+                <ul class="lista-generica">
+                    <li>Universidad Isabel I</li>
+                    <li>Ministerio de Educación y Ciencia</li>
+                    <li>Amazon Web Services</li>
+                    <li>Cisco</li>
+                </ul>
+            </article>
+        </div>
         <!-- ASIDE --> 
+        <!--
          <aside> 
             <div>
                 <p>Información complementaria...</p>
             </div>
         </aside>
+        -->
     </main>
     <!-- FOOTER -->
     <footer id="pie" >
