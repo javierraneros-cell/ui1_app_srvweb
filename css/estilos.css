@@ -2,13 +2,18 @@
     Hoja de estilos de Formación Online por este orden:
     - Página principal
     - Listado de cursos
-    - Detall de cursos
+    - Detalle de cursos
+    - Listado de Profesores
 
     La estructura de body inicial vale para todas las páginas porque todas tienen tres filas:
         - Header
         - Main
         - Footer
 */
+
+/***********************************
+            COMUNES
+************************************/
 body{
     display: grid;
     width: 100%;
@@ -28,7 +33,9 @@ p, td, li {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-/* Header */
+/***********************************
+                HEADER 
+************************************/
 header {
     background-color: whitesmoke;
     width: 100%;
@@ -68,7 +75,9 @@ nav a:hover{
     color: lightcoral;
 }
 
-/* main */
+/***********************************
+                MAIN
+************************************/
 main{
     padding: 20px;
 } 
@@ -298,8 +307,9 @@ table caption{
     }
 }
 
-
-/* footer */
+/***********************************
+            FOOTER
+************************************/
 footer {
     background-color: crimson;
     height: 20px;
