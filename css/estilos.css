@@ -144,7 +144,7 @@ main h2{
 
 .section-main p{
     text-wrap: unset;
-    text-align: justify;
+    /** text-align: justify;  Recomendacion de WAVE para mejorar la accesibilidad, pero no se ve bien en el diseño, así que lo dejamos sin justificar */
 }
 
 /* Estilos para el contenido de los listados de cursos */
