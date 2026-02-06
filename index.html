@@ -6,6 +6,10 @@
     <title>Formación Global Online</title>
 
     <!-- Hojas de estilo -->
+    <!-- Ponemos antes el css de BOOTSTRAP para que prevalezca el nuestro en caso de confilcto o herencia -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
     <link href="css/estilos.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" >
 
@@ -18,9 +22,13 @@
 <body>
     <!-- CABECERA que se repetira en el resto de paginas -->
     <header>
+        <!-- H1 Título de la página para validar WAVE -->
+        <h1 class="visually-hidden">Formación Global Online</h1>
         <!-- Banner en la cabecera -->
-        <div class="banner" >
-            <img src="imagenes/bannerFormacionGlobalOnlineMini.png" alt="Formación Global Online banner" >
+        <div >
+            <!-- La clase img-fluid de Bootstrap hace que la imagen sea responsive, es decir, que se adapte al tamaño del contenedor -->
+            <!-- Ya no usamos la clase banner en el DIV -->
+            <img class="img-fluid" src="imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner" >
         </div>
         <!-- Menu -->
          <nav class="menu" >

@@ -6,6 +6,10 @@
     <title>Listado PROFESORADO en Formación Global Online</title>
 
     <!-- Hojas de estilo -->
+    <!-- Ponemos antes el css de BOOTSTRAP para que prevalezca el nuestro en caso de confilcto o herencia -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
     <link href="css/estilos.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" >
 
@@ -37,10 +41,10 @@
     <!-- MAIN Lisatado profesores en modo tabla -->
     <main class="listado-profesores">
         <h2><span class="material-symbols-outlined">school</span> Listado de profesores que imparten cursos formativos en Formación Global Online</h2> 
-        <table>
+        <table >
             <caption>Listado de profesores junto con un resumen de su perfil</caption>
             <thead>
-                <tr> 
+                <tr class="table table-light"> 
                     <th>Nombre del profesor/a</th> 
                     <th>Área de especialización</th> 
                     <th>Años de experiencia</th> 
