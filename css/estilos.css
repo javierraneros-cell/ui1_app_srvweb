@@ -60,7 +60,7 @@ nav.menu ul {
     padding: 0;
     justify-content: center;
     gap: 1rem;
-    background-color: #B30000;
+    background-color: #a71b29;
     padding: 1rem;
 }
 
@@ -118,7 +118,7 @@ main{
 main h2{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: larger;
-    color: #B30000;
+    color: #a71b29;
 }
 
 .lista-generica {
@@ -194,7 +194,7 @@ main h2{
 
 .listado-cursos article h3 {
     font-size: large;
-    color: #B30000;
+    color: #a71b29;
     margin: 5px 0;
 }
 
@@ -233,7 +233,7 @@ main h2{
 .detalle-curso h2{
     margin-top: 0;
     font-size: x-large;
-    color: #B30000;
+    color: #a71b29;
 }
 
 .detalle-curso section {
@@ -283,7 +283,7 @@ table caption{
 
 .listado-profesores table tbody tr:hover {
     background-color: rgba(216, 215, 224, 0.507);   /* Efecto over en la tabla pero sin afectar al th*/
-    color: #B30000;
+    color: #a71b29;
 }
 
 /* Responsvie para la tabla */
@@ -310,7 +310,7 @@ table caption{
             FOOTER
 ************************************/
 footer {
-    background-color: #B30000;
+    background-color: #a71b29;
     height: 20px;
     display: flex;
     justify-content: center;
