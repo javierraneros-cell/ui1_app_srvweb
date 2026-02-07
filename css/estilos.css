@@ -283,7 +283,7 @@ table caption{
 
 .listado-profesores table tbody tr:hover {
     background-color: rgba(216, 215, 224, 0.507);   /* Efecto over en la tabla pero sin afectar al th*/
-    color: darkred;
+    color: #B30000;
 }
 
 /* Responsvie para la tabla */
