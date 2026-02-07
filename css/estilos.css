@@ -60,12 +60,12 @@ nav.menu ul {
     padding: 0;
     justify-content: center;
     gap: 1rem;
-    background-color: darkred;
+    background-color: #B30000;
     padding: 1rem;
 }
 
 nav a {
-    color: white;
+    color: whitesmoke;
     text-decoration: none;
     font-weight: bolder;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -118,7 +118,7 @@ main{
 main h2{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: larger;
-    color: darkred;
+    color: #B30000;
 }
 
 .lista-generica {
@@ -194,7 +194,7 @@ main h2{
 
 .listado-cursos article h3 {
     font-size: large;
-    color: darkred;
+    color: #B30000;
     margin: 5px 0;
 }
 
@@ -233,7 +233,7 @@ main h2{
 .detalle-curso h2{
     margin-top: 0;
     font-size: x-large;
-    color: darkred;
+    color: #B30000;
 }
 
 .detalle-curso section {
@@ -242,7 +242,6 @@ main h2{
 
 .detalle-curso p{
     font-size: large;
-    text-align: justify;
 }
 
 /* Página listado de profesores / TABLE */
@@ -311,13 +310,13 @@ table caption{
             FOOTER
 ************************************/
 footer {
-    background-color: darkred;
+    background-color: #B30000;
     height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white;
+    color: whitesmoke;
     font-weight: bolder;
     font-size: small;
 }
