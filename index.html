@@ -30,6 +30,41 @@
             <!-- Ya no usamos la clase banner en el DIV -->
             <img class="img-fluid" src="imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner" >
         </div>
+        <!-- Introducimos el carusel con la clase de Bootstrap -->
+        <div id="carruselIndex" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active"> 
+                    <img src="imagenes/formacion1.jpg" class="d-block w-100" alt="CURSO ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB">
+                    <div class="carousel-caption d-none d-md-block"> 
+                        <h1>CURSO ELABORACIÓN DE INFORMES ACCESIBILIDAD SITIOS WEB</h1>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="imagenes/formacion2.jpg" class="d-block w-100" alt="Curso de diseño">
+                        <div class="carousel-caption d-none d-md-block"> 
+                        <h1>CURSO DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN</h1>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="imagenes/formacion3.jpg" class="d-block w-100" alt="Curso de diseño">
+                        <div class="carousel-caption d-none d-md-block"> 
+                        <h1>CURSO VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS</h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón PREV --> 
+            <button class="carousel-control-prev" type="button" data-bs-target="#carruselIndex" data-bs-slide="prev"> 
+                <span class="material-symbols-outlined">skip_previous</span>
+                <span class="visually-hidden">Previo</span> 
+            </button> 
+            <!-- Botón NEXT --> 
+            <button class="carousel-control-next" type="button" data-bs-target="#carruselIndex" data-bs-slide="next">
+                <span class="material-symbols-outlined">skip_next</span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+
+        </div>
         <!-- Menu -->
          <nav class="menu" >
             <ul>
@@ -100,5 +135,9 @@
 		    <span>Formación Global Online © 2026</span>		
         </div>
     </footer>
+
+
+    <!-- Scripts de Bootstrap -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
