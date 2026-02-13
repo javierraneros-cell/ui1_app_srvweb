@@ -59,16 +59,20 @@ header {
 }
 
 .carousel-caption h1 {
-  font-size: 4rem;
-  color: #a71b29;
+  font-size: 3rem;
+  color: white;
   text-align: start;
 }
 
-#carruselIndex button {
-  color: #a71b29;
-  text-shadow: 0 0 8px rgba(0,0,0,0.4);
+@media (max-width: 480px) {
+    #carruselIndex .carousel-caption h1 {
+        font-size: 1rem;
+    }
 }
 
+#carruselIndex button {
+  color: white;
+}
 
 /* Nav*/
 nav.menu ul {
@@ -164,6 +168,39 @@ main h2{
     text-wrap: unset;
     /** text-align: justify;  Recomendacion de WAVE para mejorar la accesibilidad, pero no se ve bien en el diseño, así que lo dejamos sin justificar */
 }
+
+/* Para contenidos CARD de Bootstrap  */
+#section-main-card {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.card {
+    background: whitesmoke;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.card h2{
+    color: #a71b29;
+}
+
+.card p{
+    text-wrap: unset;
+}
+
+.btn-outline-primary {
+  color: #a71b29;
+  border-color: #a71b29;
+}
+
+.btn-outline-primary:hover {
+  background-color: #a71b29;
+  color: white;
+}
+
 
 /* Estilos para el contenido de los listados de cursos */
 .listado-cursos {
