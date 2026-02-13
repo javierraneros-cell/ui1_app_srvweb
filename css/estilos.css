@@ -214,65 +214,11 @@ main h2{
 }
 
 
-/* Estilos para el contenido de los listados de cursos */
+/* Estilos para el contenido de los listados de cursos que ahora se hace con Bootstrap*/
 .listado-cursos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);  /* Solucion responsive para las columnas se redistribuyan en menos de 3 según sea necesario*/
-    gap: 20px;
+    row-gap: 40px;
 }
 
-@media (max-width: 900px) {
-    .listado-cursos {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .listado-cursos {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Ajuste responsive IF la imagen fuera demasido ancha */
-@media (max-width: 480px) {
-    .listado-cursos article img {
-        max-width: 100%;
-    }
-}
-
-.listado-cursos article{
-    background: whitesmoke;
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-
-.listado-cursos article:hover {
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);  
-}
-
-.listado-cursos article img {
-    width: auto;
-    max-width: 200px;
-    height: auto;
-    object-fit: cover;
-}
-
-.listado-cursos article h3 {
-    font-size: large;
-    color: #a71b29;
-    margin: 5px 0;
-}
-
-.listado-cursos a {
-    text-decoration: none;   /* no pone subrayyado sobre el h3 o el texto */
-    display: block;          /* como si se seleccionara toda la cjaa */
-}
-
-.curso a:hover {
-    opacity: 0.9;            /* efecto al pasar el ratón */
-}
 
 /* Curso individual y su detalle */
 .curso {
@@ -282,6 +228,9 @@ main h2{
     align-items: start;
 }
 
+.curso a:hover {
+    opacity: 0.9;            /* efecto al pasar el ratón */
+}
 .detalle-imagen-curso img {
     width: 100%;
     max-width: 350px;
