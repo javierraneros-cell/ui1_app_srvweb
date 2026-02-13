@@ -60,14 +60,15 @@ header {
 
 .carousel-caption h1 {
   font-size: 3rem;
-  color: white;
   text-align: start;
 }
 
-@media (max-width: 480px) {
-    #carruselIndex .carousel-caption h1 {
-        font-size: 1rem;
-    }
+.carousel-item.blanco h1 {
+  color: white;
+}
+
+.carousel-item.rojo h1 {
+  color: #a71b29;
 }
 
 #carruselIndex button {
