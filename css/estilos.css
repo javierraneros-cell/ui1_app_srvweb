@@ -58,6 +58,17 @@ header {
   object-fit: cover;
 }
 
+/* Responsive para el carrusel, si es menos de 768px se reduce la altura y se adapta la imagen */
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 150px; 
+    }
+    .carousel-item img {
+        object-fit: cover;
+        height: 100%;
+    }
+}
+
 .carousel-caption h1 {
   font-size: 3rem;
   text-align: start;
