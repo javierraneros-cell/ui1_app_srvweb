@@ -5,20 +5,14 @@ function obtenerIdDesdeURL() {
 
 async function obtenerCursoPorId(id) {
     try {
-        window.alert("Cargando detalles del curso..." + id);
-
         const respuesta = await fetch("data/cursos.json");
         const cursos = await respuesta.json();
 
         const curso = cursos.find(curso => curso.id === id);
 
-        window.alert("Curso cargado: " + (curso ? curso.titulo : "No encontrado"));
-
         return curso || null;
-
     } catch (error) {
         console.error("Error cargando JSON:", error);
-        window.alert("ERROR cargando JSON: " + error);
         return null;
     }
 }
