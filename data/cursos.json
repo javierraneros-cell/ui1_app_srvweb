@@ -1,0 +1,70 @@
+[
+  {
+    "id": 1,
+    "titulo": "ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB",
+    "categoria": "Cívicas y Sociales",
+    "nivel": "Básico",
+    "imagen": "imagenes/formacion1.jpg",
+    "detalle": "detalle-curso1.html"
+  },
+  {
+    "id": 2,
+    "titulo": "DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN",
+    "categoria": "Cívicas y Sociales",
+    "nivel": "Intermedio",
+    "imagen": "imagenes/formacion2.jpg",
+    "detalle": "detalle-curso2.html"
+  },
+  {
+    "id": 3,
+    "titulo": "VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS",
+    "categoria": "Tecnología",
+    "nivel": "Avanzado",
+    "imagen": "imagenes/formacion3.jpg",
+    "detalle": "detalle-curso3.html"
+  },
+
+  { "id": 4, 
+    "titulo": "ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB",
+    "categoria": "Cívicas y Sociales", 
+    "nivel": "Básico",
+    "imagen": "imagenes/formacion1.jpg", 
+    "detalle": "detalle-curso1.html"
+  },
+  { "id": 5, 
+    "titulo": "DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN",
+    "categoria": "Cívicas y Sociales", 
+    "nivel": "Intermedio",
+    "imagen": "imagenes/formacion2.jpg", 
+    "detalle": "detalle-curso2.html"
+  },
+  { "id": 6, 
+    "titulo": "VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS",
+    "categoria": "Tecnología", 
+    "nivel": "Avanzado",
+    "imagen": "imagenes/formacion3.jpg", 
+    "detalle": "detalle-curso3.html"
+  },
+
+  { "id": 7, 
+    "titulo": "ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB",
+    "categoria": "Cívicas y Sociales", 
+    "nivel": "Básico",
+    "imagen": "imagenes/formacion1.jpg", 
+    "detalle": "detalle-curso1.html"
+  },
+  { "id": 8, 
+    "titulo": "DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN",
+    "categoria": "Cívicas y Sociales", 
+    "nivel": "Intermedio",
+    "imagen": "imagenes/formacion2.jpg", 
+    "detalle": "detalle-curso2.html"
+  },
+  { "id": 9, 
+    "titulo": "VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS",
+    "categoria": "Tecnología", 
+    "nivel": "Avanzado",
+    "imagen": "imagenes/formacion3.jpg", 
+    "detalle": "detalle-curso3.html"
+  }
+]
