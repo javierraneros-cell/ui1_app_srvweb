@@ -181,7 +181,7 @@ main h2{
     /** text-align: justify;  Recomendacion de WAVE para mejorar la accesibilidad, pero no se ve bien en el diseño, así que lo dejamos sin justificar */
 }
 
-/* Para contenidos CARD de Bootstrap  */
+/* Para contenidos CARD de Bootstrap en INDEX */
 #section-main-card {
     background-color: white;
     padding: 10px;
@@ -215,6 +215,21 @@ main h2{
 
 
 /* Estilos para el contenido de los listados de cursos que ahora se hace con Bootstrap*/
+#contenedor-filtro-cursos {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr; /* 3 columnas, la primera más ancha para el título, select y botón */
+    gap: 20px;
+}
+
+/* Para que se vea en móviles en una única columna */
+@media (max-width: 768px) {
+    #contenedor-filtro-cursos {
+        grid-template-columns: 1fr;
+    }
+}
+
+
 .listado-cursos {
     row-gap: 40px;
 }

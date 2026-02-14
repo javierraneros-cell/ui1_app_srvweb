@@ -43,9 +43,25 @@ function cargarCursos(tituloFiltro = "", categoriaFiltro = "") {
                         </div>
                     </div>
                 `;
-
                 contenedor.innerHTML += card;
             });
+            const resultadoContenedor = document.getElementById("contenedor-resultado-cursos");
+            resultadoContenedor.style.display = "block";
+            resultadoContenedor.innerHTML = ""; // Limpiamos mensaje previo
+            if (cursosFiltrados.length === 0) {  
+                resultadoContenedor.innerHTML = "<p class='text-center'>No se han encontrado cursos que coincidan con los filtros aplicados.</p>";
+            }else {
+                resultadoContenedor.innerHTML = "<p class='text-center'>Se han encontrado " + cursosFiltrados.length + " curso(s).</p>" + resultadoContenedor.innerHTML;
+            }
         })
         .catch(error => console.error("Error cargando cursos:", error));
 }
+
+function limpiarFiltros() {
+    document.getElementById("filtro-titulo").value = "";
+    document.getElementById("filtro-categoria").value = "";
+
+    //Ejecutamos de nuevo la recarga de cursos sin filtros
+    cargarCursos();
+}
+
