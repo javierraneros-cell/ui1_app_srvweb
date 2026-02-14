@@ -229,11 +229,9 @@ main h2{
     }
 }
 
-
 .listado-cursos {
     row-gap: 40px;
 }
-
 
 /* Curso individual y su detalle */
 .curso {
@@ -241,16 +239,18 @@ main h2{
     grid-template-columns: 1fr 2fr; /* izquierda imagen, derecha contenido */
     gap: 30px;
     align-items: start;
+
+    margin: 0 auto;      /* centra el grid */
+    padding: 20px;       /* separa del borde */
 }
 
 .curso a:hover {
     opacity: 0.9;            /* efecto al pasar el ratón */
 }
+
 .detalle-imagen-curso img {
     width: 100%;
-    max-width: 350px;
-    border-radius: 10px;
-    object-fit: cover;
+    height: auto;
     display: block;
 }
 
