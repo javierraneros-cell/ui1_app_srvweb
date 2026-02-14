@@ -1,0 +1,116 @@
+<!DOCTYPE html >
+<html lang="es" id="detalle-curso-1" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB </title>
+    
+    <!-- Hojas de estilo -->
+    <!-- Ponemos antes el css de BOOTSTRAP para que prevalezca el nuestro en caso de confilcto o herencia -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+
+    <link href="css/estilos.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" >
+
+    <meta name="author" content="Javier Raneros Cartujo" >
+    <meta name="descripcion" content="Detalle curso en línea de Formación Global Online" >
+    <meta name="keywords" content="cursos, formación, profesores, datos abiertos, virtualización">
+</head>
+
+<!-- Cuerpo de la página Incio / Portada -->
+<body>
+    <!-- CABECERA que se repetira en el resto de paginas -->
+    <header>
+        <!-- H1 Título de la página para validar WAVE -->
+        <h1 class="visually-hidden">Formación Global Online</h1>
+        <!-- Banner en la cabecera -->  
+        <div >
+            <!-- La clase img-fluid de Bootstrap hace que la imagen sea responsive, es decir, que se adapte al tamaño del contenedor -->
+            <!-- Ya no usamos la clase banner en el DIV -->
+             <a href="index.html">
+                <img class="img-fluid" src="imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner" >
+            </a>
+        </div>
+        <!-- Menu -->
+         <nav class="menu" >
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="listado-cursos.html" >Listado de cursos</a></li>
+                <li><a href="listado-profesores.html" >Listado de profesorado</a></li>
+            </ul>
+         </nav>
+    </header>
+
+    <!-- MAIN de la pagina detalle que iremos separando por Secciones -->
+    <main class="curso">
+
+        <!-- Columna izquierda: imagen -->
+        <header>
+            <figure class="detalle-imagen-curso">
+                <img id="imagen-curso" src="" alt="">
+            </figure>
+        </header>
+
+        <!-- Columna derecha -->
+        <div class="detalle-curso">
+
+            <h2 id="titulo-curso" class="mb-3"></h2>
+
+            <!-- DESCRIPCIÓN -->
+            <div class="descripcion-curso mb-5 card">
+                <div class="card-body">
+                    <h3 class="card-title">DESCRIPCIÓN GENERAL DEL CURSO</h3>
+                    <p id="descripcion-curso" class="card-text"></p>
+                </div>
+            </div>
+
+            <!-- INFORMACIÓN DEL CURSO -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3><span class="material-symbols-outlined">info</span> Información detallada del curso</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Categoría: </strong><span id="categoria-curso"></span></li>
+                        <li class="list-group-item"><strong>Nivel: </strong><span id="nivel-curso"></span></li>
+                        <li class="list-group-item"><strong>Duración estimada: </strong><span id="duracion-curso"></span></li>
+                        <li class="list-group-item"><strong>Profesor: </strong><span id="profesor-curso"></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CONTENIDOS -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3><span class="material-symbols-outlined">list</span> Contenidos del curso:</h3>
+                    <ul id="lista-contenidos" class="list-group list-group-flush"></ul>
+                </div>
+            </div>
+
+            <!-- REQUISITOS -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3><span class="material-symbols-outlined">conditions</span> Requisitos del curso:</h3>
+                    <ul id="lista-requisitos" class="list-group list-group-flush"></ul>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="pie" >
+	    <div id="site-info">
+		    <span>Formación Global Online © 2026</span>		
+        </div>
+    </footer>
+
+        <!-- Scripts de Bootstrap y JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script para cargar los cursos desde el JSON y ejecutamos la llamada -->
+    <script src="js/detalle-curso.js"></script>
+</body>
+</html>

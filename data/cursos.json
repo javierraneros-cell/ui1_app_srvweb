@@ -31,7 +31,7 @@
     "duracion": "20h",
     "profesor": "Ángel Obregon Sierra",
     "imagen": "imagenes/formacion2.jpg",
-    "detalle": "detalle-curso2.html",
+    "detalle": "detalle-curso.html",
     "contenidos": [
                   "Conceptos básicos del ecosistema de datos abiertos", 
                   "Principios generales de la reutilización de información", 

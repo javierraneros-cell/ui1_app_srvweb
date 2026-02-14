@@ -1,0 +1,59 @@
+function obtenerIdDesdeURL() {
+    const params = new URLSearchParams(window.location.search);
+    return parseInt(params.get("id"));
+}
+
+async function obtenerCursoPorId(id) {
+    try {
+        window.alert("Cargando detalles del curso..." + id);
+
+        const respuesta = await fetch("data/cursos.json");
+        const cursos = await respuesta.json();
+
+        const curso = cursos.find(curso => curso.id === id);
+
+        window.alert("Curso cargado: " + (curso ? curso.titulo : "No encontrado"));
+
+        return curso || null;
+
+    } catch (error) {
+        console.error("Error cargando JSON:", error);
+        window.alert("ERROR cargando JSON: " + error);
+        return null;
+    }
+}
+
+obtenerCursoPorId(obtenerIdDesdeURL()).then(curso => {
+
+    if (!curso) {
+        document.body.innerHTML = "<p>Curso no encontrado.</p>";
+        return;
+    }
+
+    // Imagen
+    document.getElementById("imagen-curso").src = curso.imagen;
+    document.getElementById("imagen-curso").alt = curso.titulo;
+
+    // Título y descripción
+    document.getElementById("titulo-curso").textContent = curso.titulo;
+    document.getElementById("descripcion-curso").textContent = curso.descripcion;
+
+    // Información del curso
+    document.getElementById("categoria-curso").textContent = curso.categoria;
+    document.getElementById("nivel-curso").textContent = curso.nivel;
+    document.getElementById("duracion-curso").textContent = curso.duracion;
+    document.getElementById("profesor-curso").textContent = curso.profesor;
+
+    // Contenidos
+    document.getElementById("lista-contenidos").innerHTML =
+        curso.contenidos
+            .map(item => `<li class="list-group-item">${item}</li>`)
+            .join("");
+
+    // Requisitos
+    document.getElementById("lista-requisitos").innerHTML =
+        curso.requisitos
+            .map(item => `<li class="list-group-item">${item}</li>`)
+            .join("");
+});
+
