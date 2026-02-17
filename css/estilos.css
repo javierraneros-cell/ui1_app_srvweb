@@ -275,6 +275,13 @@ main h2{
     font-size: large;
 }
 
+@media print {
+    .no-imprimir {
+        display: none !important;
+    }
+}
+
+
 /* Página listado de profesores / TABLE */
 .listado-profesores table {
     width: 80%;                     /* Ancho requerido  */
@@ -289,6 +296,16 @@ main h2{
 
 th[data-sort="true"] {
     cursor: pointer;
+}
+
+th.asc::after {
+    content: " ↑";
+    font-weight: bold;
+}
+
+th.desc::after {
+    content: " ↓";
+    font-weight: bold;
 }
 
 /***********************************

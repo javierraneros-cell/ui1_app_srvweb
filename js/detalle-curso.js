@@ -56,3 +56,7 @@ obtenerCursoPorId(obtenerIdDesdeURL()).then(curso => {
 
 });
 
+function imprimirCurso(){
+    window.print();
+}
+

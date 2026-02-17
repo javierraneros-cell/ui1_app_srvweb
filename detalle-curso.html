@@ -31,11 +31,11 @@
             <!-- La clase img-fluid de Bootstrap hace que la imagen sea responsive, es decir, que se adapte al tamaño del contenedor -->
             <!-- Ya no usamos la clase banner en el DIV -->
              <a href="index.html">
-                <img class="img-fluid" src="imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner" >
+                <img class="img-fluid no-imprimir" src="imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner" >
             </a>
         </div>
         <!-- Menu -->
-         <nav class="menu" >
+         <nav class="menu no-imprimir" >
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="listado-cursos.html" >Listado de cursos</a></li>
@@ -49,7 +49,7 @@
 
         <!-- Columna izquierda: imagen -->
         <header>
-            <figure class="detalle-imagen-curso">
+            <figure class="detalle-imagen-curso no-imprimir">
                 <img id="imagen-curso" src="" alt="">
             </figure>
         </header>
@@ -94,6 +94,11 @@
                     <h3><span class="material-symbols-outlined">conditions</span> Requisitos del curso:</h3>
                     <ul id="lista-requisitos" class="list-group list-group-flush"></ul>
                 </div>
+            </div>
+            
+            <!-- Botón IMPRIMIR -->
+            <div>
+                <a href="#" class="btn btn-outline-primary w-100 mt-auto no-imprimir" onclick="imprimirCurso()">Imprimir curso</a>
             </div>
 
         </div>
