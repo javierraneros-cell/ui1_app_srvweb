@@ -8,7 +8,7 @@
     "duracion": "20h",
     "profesor": "Antonio Pérez Carrasco",
     "imagen": "imagenes/formacion1.jpg",
-    "detalle": "detalle-curso1.html",
+    "detalle": "detalle-curso.html",
     "contenidos": [
                   "La accesibilidad de un sitio web", 
                   "Tecnologías de apoyo", 
@@ -54,7 +54,7 @@
     "duracion": "55h",
     "profesor": "Javier Almeida Martínez",
     "imagen": "imagenes/formacion3.jpg",
-    "detalle": "detalle-curso3.html",
+    "detalle": "detalle-curso.html",
     "contenidos": [
                   "Introducción a la virtualización",
                   "Familiarización con el hipervisor",
@@ -86,7 +86,7 @@
     "duracion": "20h",
     "profesor": "Antonio Pérez Carrasco",
     "imagen": "imagenes/formacion1.jpg",
-    "detalle": "detalle-curso1.html",
+    "detalle": "detalle-curso.html",
     "contenidos": [
                   "La accesibilidad de un sitio web", 
                   "Tecnologías de apoyo", 
@@ -108,7 +108,7 @@
     "duracion": "20h",
     "profesor": "Ángel Obregon Sierra",
     "imagen": "imagenes/formacion2.jpg",
-    "detalle": "detalle-curso2.html",
+    "detalle": "detalle-curso.html",
     "contenidos": [
                   "Conceptos básicos del ecosistema de datos abiertos", 
                   "Principios generales de la reutilización de información", 
@@ -130,7 +130,7 @@
     "duracion": "55h",
     "profesor": "Javier Almeida Martínez",
     "imagen": "imagenes/formacion3.jpg",
-    "detalle": "detalle-curso3.html",
+    "detalle": "detalle-curso.html",
     "contenidos": [
                   "Introducción a la virtualización",
                   "Familiarización con el hipervisor",
@@ -162,7 +162,7 @@
     "duracion": "20h",
     "profesor": "Antonio Pérez Carrasco",
     "imagen": "imagenes/formacion1.jpg",
-    "detalle": "detalle-curso1.html",
+    "detalle": "detalle-curso.html",
     "contenidos": [
                   "La accesibilidad de un sitio web", 
                   "Tecnologías de apoyo", 
@@ -184,7 +184,7 @@
     "duracion": "20h",
     "profesor": "Ángel Obregon Sierra",
     "imagen": "imagenes/formacion2.jpg",
-    "detalle": "detalle-curso2.html",
+    "detalle": "detalle-curso.html",
     "contenidos": [
                   "Conceptos básicos del ecosistema de datos abiertos", 
                   "Principios generales de la reutilización de información", 
@@ -206,7 +206,7 @@
     "duracion": "55h",
     "profesor": "Javier Almeida Martínez",
     "imagen": "imagenes/formacion3.jpg",
-    "detalle": "detalle-curso3.html",
+    "detalle": "detalle-curso.html",
     "contenidos": [
                   "Introducción a la virtualización",
                   "Familiarización con el hipervisor",

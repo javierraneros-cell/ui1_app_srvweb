@@ -45,9 +45,14 @@ obtenerCursoPorId(obtenerIdDesdeURL()).then(curso => {
             .join("");
 
     // Requisitos
-    document.getElementById("lista-requisitos").innerHTML =
+    if (curso.requisitos.length === 0) {
+        document.getElementById("lista-requisitos").innerHTML = "<li class='list-group-item'>No se requieren requisitos previos.</li>";
+    } else {
+        document.getElementById("lista-requisitos").innerHTML =
         curso.requisitos
             .map(item => `<li class="list-group-item">${item}</li>`)
             .join("");
+    }
+
 });
 

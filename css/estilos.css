@@ -276,65 +276,19 @@ main h2{
 }
 
 /* Página listado de profesores / TABLE */
-table caption{
-    font-size: smaller;
-    font-weight: lighter;
-}
-
-.listado-profesores{
-    padding: 20px;
-    overflow-x: auto;
-}
-
 .listado-profesores table {
     width: 80%;                     /* Ancho requerido  */
     margin: 0 auto;                 /* Para que quede centrado con el ajuste de los margenes: superior-inferior izquierda-derecha */
-    border-collapse: collapse;      /* Para que se unifiquen los bordes */
     background: whitesmoke;
-    border-radius: 10px;
-    overflow: hidden;
 }
 
-.listado-profesores th,
-.listado-profesores td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #dddddd; /* Solo el borde inferior */
-    text-align:  left;
-    font-size: medium;
-}
-
-.listado-profesores th {
-    font-weight: bold;
-    font-size: large;
-}
-
-.listado-profesores tr:last-child td {
-    border-bottom: none;            /* la última fila no la ponemos borde */
-}
-
-.listado-profesores table tbody tr:hover {
-    background-color: rgba(216, 215, 224, 0.507);   /* Efecto over en la tabla pero sin afectar al th*/
+.listado-profesores table tbody tr:hover td {
+    background-color: rgba(216, 215, 224, 0.507);  /* Efecto over en la tabla pero sin afectar al th*/
     color: #a71b29;
 }
 
-/* Responsvie para la tabla */
-@media (max-width: 768px) {
-    .listado-profesores {
-        padding: 0px;
-    }
-    .listado-profesores table {
-        width: 100%;        /* El requisito es que ocupe el 80% pero si se hace tan pequeño necesitamos todo el ancho */
-        border-collapse: collapse;
-    }
-
-    .listado-profesores th,
-    .listado-profesores td {
-        font-size: x-small;
-        padding: 8px;
-    }
-    .listado-profesores th{
-        font-weight: bold;
-    }
+th[data-sort="true"] {
+    cursor: pointer;
 }
 
 /***********************************

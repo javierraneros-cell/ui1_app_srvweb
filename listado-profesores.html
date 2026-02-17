@@ -18,6 +18,8 @@
     <meta name="keywords" content="cursos, formación, profesores, datos abiertos, virtualización" >
 </head>
 
+
+
 <!-- Cuerpo de la página Incio / Portada -->
 <body>
     <!-- CABECERA que se repetira en el resto de paginas -->
@@ -40,80 +42,83 @@
          </nav>
     </header>
 
-    <!-- MAIN Lisatado profesores en modo tabla -->
-    <main class="listado-profesores">
+    <!-- DIV Lisatado profesores en modo tabla -->
+    <main>
         <h2><span class="material-symbols-outlined">school</span> Listado de profesores que imparten cursos formativos en Formación Global Online</h2> 
-        <table >
-            <caption>Listado de profesores junto con un resumen de su perfil</caption>
-            <thead>
-                <tr class="table table-light"> 
-                    <th>Nombre del profesor/a</th> 
-                    <th>Área de especialización</th> 
-                    <th>Años de experiencia</th> 
-                    <th>Número de cursos que imparte en la plataforma</th> 
-                    <th>Requisitos adicionales</th> </tr>
-            </thead>
-            <tbody>
-                <!-- Fila1 --> 
-                 <tr> 
-                    <td>Antonio Pérez Carrasco</td> 
-                    <td>Cívicas y Sociales</td> 
-                    <td>15</td> 
-                    <td>2</td> 
-                    <td>-</td> 
-                </tr> 
-                <!-- Fila2 --> 
-                 <tr> 
-                    <td>Ángel Obregon Sierra</td> 
-                    <td>Cívicas y Sociales</td> 
-                    <td>20</td> 
-                    <td>3</td> 
-                    <td>Administración y Gestión de rmpresas </td> 
-                </tr> 
-                <!-- Fila3 --> 
-                 <tr> 
-                    <td>Javier Almeida Martínez</td> 
-                    <td>Digitales</td> 
-                    <td>10</td> 
-                    <td>1</td> 
-                    <td>Relaciones Laborales</td> 
-                </tr>
-                <!-- Fila1 --> 
-                 <tr> 
-                    <td>Antonio Pérez Carrasco</td> 
-                    <td>Cívicas y Sociales</td> 
-                    <td>15</td> 
-                    <td>2</td> 
-                    <td>-</td> 
-                </tr> 
-                <!-- Fila2 --> 
-                 <tr> 
-                    <td>Ángel Obregon Sierra</td> 
-                    <td>Cívicas y Sociales</td> 
-                    <td>20</td> 
-                    <td>3</td> 
-                    <td>Administración y Gestión de rmpresas </td> 
-                </tr> 
-                <!-- Fila3 --> 
-                 <tr> 
-                    <td>Javier Almeida Martínez</td> 
-                    <td>Digitales</td> 
-                    <td>10</td> 
-                    <td>1</td> 
-                    <td>Relaciones Laborales</td> 
-                </tr>
-                <!-- Fila1 --> 
-                 <tr> 
-                    <td>Antonio Pérez Carrasco</td> 
-                    <td>Cívicas y Sociales</td> 
-                    <td>15</td> 
-                    <td>2</td> 
-                    <td>-</td> 
-                </tr> 
-            </tbody>
-        </table>
-        
+        <div class="listado-profesores table-responsive" >  
+            <table id="tabla-profesores" class="table table-striped align-middle table-sm" >
+                <caption>Listado de profesores junto con un resumen de su perfil</caption>
+                <thead class="table-light">
+                    <tr > 
+                        <th data-sort="true">Nombre del profesor/a</th> 
+                        <th>Área de especialización</th> 
+                        <th data-sort="true">Años de experiencia</th> 
+                        <th data-sort="true">Número de cursos que imparte en la plataforma</th> 
+                        <th>Requisitos adicionales</th> </tr>
+                </thead>
+                <tbody>
+                    <!-- Fila1 --> 
+                    <tr> 
+                        <td>Antonio Pérez Carrasco</td> 
+                        <td>Cívicas y Sociales</td> 
+                        <td>15</td> 
+                        <td>2</td> 
+                        <td>-</td> 
+                    </tr> 
+                    <!-- Fila2 --> 
+                    <tr> 
+                        <td>Ángel Obregon Sierra</td> 
+                        <td>Cívicas y Sociales</td> 
+                        <td>20</td> 
+                        <td>3</td> 
+                        <td>Administración y Gestión de rmpresas </td> 
+                    </tr> 
+                    <!-- Fila3 --> 
+                    <tr> 
+                        <td>Javier Almeida Martínez</td> 
+                        <td>Digitales</td> 
+                        <td>10</td> 
+                        <td>1</td> 
+                        <td>Relaciones Laborales</td> 
+                    </tr>
+                    <!-- Fila1 --> 
+                    <tr> 
+                        <td>Antonio Pérez Carrasco</td> 
+                        <td>Cívicas y Sociales</td> 
+                        <td>15</td> 
+                        <td>2</td> 
+                        <td>-</td> 
+                    </tr> 
+                    <!-- Fila2 --> 
+                    <tr> 
+                        <td>Ángel Obregon Sierra</td> 
+                        <td>Cívicas y Sociales</td> 
+                        <td>20</td> 
+                        <td>3</td> 
+                        <td>Administración y Gestión de rmpresas </td> 
+                    </tr> 
+                    <!-- Fila3 --> 
+                    <tr> 
+                        <td>Javier Almeida Martínez</td> 
+                        <td>Digitales</td> 
+                        <td>10</td> 
+                        <td>1</td> 
+                        <td>Relaciones Laborales</td> 
+                    </tr>
+                    <!-- Fila1 --> 
+                    <tr> 
+                        <td>Antonio Pérez Carrasco</td> 
+                        <td>Cívicas y Sociales</td> 
+                        <td>15</td> 
+                        <td>2</td> 
+                        <td>-</td> 
+                    </tr> 
+                </tbody>
+            </table>
+        </div>
     </main>
+
+    <script src="js/listaProfesores.js" ></script>
 
     <!-- FOOTER -->
     <footer id="pie" >
