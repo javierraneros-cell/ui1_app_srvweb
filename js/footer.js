@@ -10,9 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //Actualización automática cada 1 segundo y muestra de la hora:
     setInterval(actualizarReloj, 1000);
-
-    // Primera ejecución inmediata
-   // actualizarReloj();
 });
 
 
