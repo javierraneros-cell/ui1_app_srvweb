@@ -91,6 +91,12 @@ color: white;
     text-align: center;
     background-color: #a71b29;
 }
+
+.navbar-toggler .material-symbols-outlined {
+    color: white;
+}
+
+
 .nav-link{
     color: white;
     font-weight: bolder;
@@ -317,12 +323,12 @@ th.desc::after {
 ************************************/
 footer {
     background-color: #a71b29;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     color: whitesmoke;
     font-weight: bolder;
     font-size: small;
+}
+
+footer a{
+    color: whitesmoke;
+    text-decoration: none;
 }
