@@ -118,12 +118,20 @@ color: white;
     color: white;
 }
 
+.nav-item button {
+    background-color: #a71b29;
+    color: white;
+}
+
+
+
 
 /***********************************
                 MAIN
 ************************************/
 main{
     padding: 20px;
+    font-size: 100%;
 } 
 
 .section-main { 
@@ -133,6 +141,7 @@ main{
     grid-template-columns: 1fr 1fr; /* 2 columnas */ 
     grid-template-rows: auto auto; /* 2 filas */ 
     gap: 10px;
+    font-size: 100%;
 }
 
 /* Añadimos responsive, si es menos de 768 se pone el GRID en una columan */

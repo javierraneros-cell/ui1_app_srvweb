@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     //Actualización automática cada 1 segundo y muestra de la hora:
-    setInterval(actualizarReloj, 1000);
+    setInterval(actualizarHora, 1000);
 });
 
 
-function actualizarReloj() {
+function actualizarHora() {
     const ahora = new Date();
     const horas   = String(ahora.getHours()).padStart(2, "0");
     const minutos = String(ahora.getMinutes()).padStart(2, "0");

@@ -1,5 +1,5 @@
 /**
- * Este funcion se encarga de leer los cursos del fichero JSON y crear dinamicamente el menu del listado de cursos
+ *  Funcion que lee los cursos del fichero JSON y crear dinamicamente el menu del listado de cursos
  */
 function cargarCursosEnMenu() {
     fetch("data/cursos.json")
@@ -29,8 +29,31 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(html => {
             document.getElementById("contenedor-menu").innerHTML = html;
             cargarCursosEnMenu();
-            //setTimeout(() => { cargarCursosEnMenu(); }, 0)
         });
 });
 
+
+function aumentarTexto() {
+    const contenido = getContenido();
+    let tActual = getTamanoMain(contenido);
+    tActual += 10; // +10%
+    contenido.style.fontSize = tActual + "%";
+}
+
+function disminuirTexto() {
+    const contenido = getContenido();
+    let tActual = getTamanoMain(contenido);
+    if (tActual > 50) {
+        tActual -= 10; // -10%
+    }
+    contenido.style.fontSize = tActual + "%";
+}
+
+function getContenido() {
+    return document.querySelector("main");
+}
+
+function getTamanoMain(contenido) {
+    return parseInt(contenido.style.fontSize) || 100;
+}
 
