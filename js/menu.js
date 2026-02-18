@@ -10,7 +10,7 @@ function cargarCursosEnMenu() {
             listadoCursos.forEach(curso => {
                 const li = document.createElement("li");
                 li.innerHTML = `
-                    <a class="dropdown-item" href="detalle-curso.html?id=${curso.id}">
+                    <a class="dropdown-item" href="${curso.detalle}?id=${curso.id}">
                         ${curso.titulo}
                     </a>
                 `;
