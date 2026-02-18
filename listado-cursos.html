@@ -25,22 +25,16 @@
     <header>
         <!-- H1 Título de la página para validar WAVE -->
         <h1 class="visually-hidden">Formación Global Online</h1>
-        <!-- Banner en la cabecera -->  
+        <!-- Banner en la cabecera -->
         <div >
             <!-- La clase img-fluid de Bootstrap hace que la imagen sea responsive, es decir, que se adapte al tamaño del contenedor -->
             <!-- Ya no usamos la clase banner en el DIV -->
-             <a href="index.html">
+            <a href="index.html">
                 <img class="img-fluid" src="imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner" >
             </a>
         </div>
-        <!-- Menu -->
-         <nav class="menu" >
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="listado-cursos.html" >Listado de cursos</a></li>
-                <li><a href="listado-profesores.html" >Listado de profesorado</a></li>
-            </ul>
-         </nav>
+        <!-- MENU -->
+        <div id="contenedor-menu"></div>
     </header>
 
     <!-- MAIN -->
@@ -76,6 +70,8 @@
     
     <!-- Script para cargar los cursos desde el JSON y ejecutamos la llamada -->
     <script src="js/listadoCursos.js"></script>
+    <script src="js/menu.js"></script>
+    
     <script> cargarCursos(); </script>
 </body>
 </html>

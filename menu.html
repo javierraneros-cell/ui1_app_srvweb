@@ -1,0 +1,33 @@
+<!-- Menu -->
+<nav class="navbar navbar-expand-lg rojo">
+    <div class="container">
+        <!-- Parte responsive del menu y que colapse el menu -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuIndex">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuIndex">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+
+                <!-- Aqui se añaden en el desplegable los cursos de forma dinamica -->
+                <li class="nav-item dropdown">
+                    <div class="btn-group">
+                        <a class="nav-link" href="listado-cursos.html">Listado de cursos</a>
+                        <button class="nav-link dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+                        <ul class="dropdown-menu" id="listaCursos"></ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="listado-profesores.html">Listado de profesorado</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Script JS del proyecto -->
+<script src="js/menu.js"></script>
