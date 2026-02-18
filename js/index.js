@@ -11,7 +11,7 @@ $(document).ready(function () {
         const corto = card.find(".card-corto"); 
         const largo = card.find(".card-largo");
 
-        // Alternar visibilidad, solo está visible uno de los dos
+        // Alternar visibilidad, solo está visible uno de los dos con TOGGLE:
         corto.toggle();
         largo.toggle();
 
@@ -23,3 +23,27 @@ $(document).ready(function () {
         }
     });
 });
+
+/**
+ * Este funcion se encarga de leer los cursos del fichero JSON y crear dinamicamente el menu del listado de cursos
+ */
+document.addEventListener("DOMContentLoaded", cargarCursosEnMenu);
+
+function cargarCursosEnMenu() {
+    fetch("data/cursos.json")
+        .then(response => response.json())
+        .then(listadoCursos => {
+            const lista = document.getElementById("listaCursos");
+
+            listadoCursos.forEach(curso => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <a class="dropdown-item" href="detalle-curso.html?id=${curso.id}">
+                        ${curso.titulo}
+                    </a>
+                `;
+                lista.appendChild(li);
+            });
+        })
+        .catch(err => console.error("Error cargando cursos:", err));
+}

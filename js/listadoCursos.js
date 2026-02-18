@@ -5,7 +5,7 @@ function cargarCursos(tituloFiltro = "", categoriaFiltro = "") {
 
             const contenedor = document.getElementById("contenedor-cursos");
 
-            //Antes de pintar, limpiamos el contenedor
+            //Antes de pintar lo vacimos
             contenedor.innerHTML = "";
 
             // Normalizamos filtros

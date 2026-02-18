@@ -60,54 +60,58 @@ header {
 
 /* Responsive para el carrusel, si es menos de 768px se reduce la altura y se adapta la imagen */
 @media (max-width: 768px) {
-    .carousel-item {
-        height: 150px; 
-    }
-    .carousel-item img {
-        object-fit: cover;
-        height: 100%;
-    }
+.carousel-item {
+    height: 150px; 
+}
+.carousel-item img {
+    object-fit: cover;
+    height: 100%;
+}
 }
 
 .carousel-caption h1 {
-  font-size: 3rem;
-  text-align: start;
+font-size: 3rem;
+text-align: start;
 }
 
 .carousel-item.blanco h1 {
-  color: white;
+color: white;
 }
 
 .carousel-item.rojo h1 {
-  color: #a71b29;
+color: #a71b29;
 }
 
 #carruselIndex button {
-  color: white;
+color: white;
 }
 
 /* Nav*/
-nav.menu ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    gap: 1rem;
+.navbar.rojo {
+    text-align: center;
     background-color: #a71b29;
-    padding: 1rem;
 }
-
-nav a {
+.nav-link{
     color: white;
-    text-decoration: none;
     font-weight: bolder;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-nav a:hover{
+.nav-link:hover{
     color: lightcoral;
 }
+
+.dropdown-item{
+    background-color: whitesmoke;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: normal;   
+}
+
+.dropdown-item:hover{
+    background-color: #a71b29;
+    color: white;
+}
+
 
 /***********************************
                 MAIN

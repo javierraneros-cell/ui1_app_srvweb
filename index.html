@@ -65,14 +65,37 @@
             </button>
 
         </div>
+
         <!-- Menu -->
-         <nav class="menu" >
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="listado-cursos.html" >Listado de cursos</a></li>
-                <li><a href="listado-profesores.html" >Listado de profesorado</a></li>
-            </ul>
-         </nav>
+        <nav class="navbar navbar-expand-lg rojo">
+            <div class="container">
+                <!-- Parte responsive del menu y que colapse el menu -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuIndex">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menuIndex">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+
+                        <!-- Aquí irá el desplegable dinámico -->
+                        <li class="nav-item dropdown d-flex align-items-center">
+                            <a class="nav-link" href="listado-cursos.html" >Listado de cursos</a>
+                            
+                            <a class="nav-link dropdown-toggle" href="#" id="menuCursos" role="button" data-bs-toggle="dropdown"></a>
+                            <ul class="dropdown-menu" id="listaCursos"></ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="listado-profesores.html">Listado de profesorado</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
     </header>
 
     <!-- MAIN de la pagina inicio que iremos separando por Secciones -->
