@@ -39,40 +39,57 @@
 
     <!-- MAIN -->
     <main id="contenedor-main">
-        <h2><span class="material-symbols-outlined">contact_mail</span> Formulario de Contacto</h2> 
+        <h2><span class="material-symbols-outlined">contact_mail</span> Formulario de Contacto</h2>
+        <div id="contenedor-respuesta-formulario" class="d-none" role="alert"></div>
         <div id="contenedor-formulario" class="mb-4" >
-            <!-- Usamos la clase row de Bootstrap para crear una fila y col-sm-2 y col-sm-10 para crear columnas de 2 y 10 respectivamente -->
-            <div class="row mb-3" >
-                <label for="nombre" class="col-sm-1 col-form-label " >Nombre </label>
-                <div class="col-sm-6" >
-                    <input type="text" id="nombre" class="form-control"  placeholder="Introduce tu nombre..." >
+            <!-- Usamos la clase row de Bootstrap para crear filas y col-sm-x para crear columnas segun necesitemos los anchos -->
+            <form id="formulario-contacto" onsubmit="return enviarFormulario()">
+                <div class="row mb-2" >
+                    <div class="form-floating col-sm-8" >
+                        <input type="text" id="nombre" class="form-control" placeholder="Introduce tu nombre..." required onblur="validaCampo('nombre', 0)" >
+                        <label for="nombre" >Nombre</label>
+                        <div class="invalid-feedback">
+                            Porfavor, introduce un nombre válido.
+                        </div>
+                    </div>
+                    
+                    <div class="form-floating col-sm-4" >
+                        <input type="email" id="correo" class="form-control" placeholder="Introduce tu correo..." required onblur="validaCorreo()" >
+                        <label for="correo" >Correo</label>
+                        <div class="invalid-feedback">
+                            Porfavor, introduce un correo válido tipo nombre@ejemplo.com
+                        </div>
+                    </div>
                 </div>
-                <label for="email" class="col-sm-1 col-form-label " >Email  </label>
-                <div class="col-sm-4" >
-                    <input type="email" id="email" class="form-control"  placeholder="Introduce tu email..." >
+                <div class="row mb-3" >
+                    <div class="form-floating col-sm-12">
+                        <select id="tematica" class="form-select" aria-label="Seleccione temática" required onblur="validaCampo('tematica', 0)">
+                            <option value="">Seleccione temática...</option>
+                            <option value="Tecnología">Tecnología</option>
+                            <option value="Cívicas y Sociales">Cívicas y Sociales</option>
+                        </select>
+                        <label for="tematica" >Tematica</label>
+                        <div class="invalid-feedback">
+                            Porfavor, selecciona una temática válida
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-12">
+                        <textarea id="mensaje" class="form-control mb-2 " rows="5" placeholder="Escribe tu mensaje aquí..." onblur="validaCampo('mensaje', 30)" oninput="cuentaCaracteresMensaje(30)" ></textarea>
+                        <div id="contenedor-conteo-mensaje" class="alert-warning" role="alert">
+                            <p>Número de caracteres en mensaje:     <span id="conteo-mensaje"></span></p>
+                        </div>
+                        <div class="invalid-feedback">
+                            Porfavor, introduce un mensaje de al menos 30 caracteres
+                        </div>
+                    </div>
                 </div>
 
-            </div>
-            <div class="row mb-3" >
-                <label for="tematica" class="col-sm-1 col-form-label " >Tema </label>
-                <div class="col-sm-11">
-                    <select id="tematica" class="form-select">
-                        <option value="">Selecciona temática</option>
-                        <option value="Tecnología">Tecnología</option>
-                        <option value="Cívicas y Sociales">Cívicas y Sociales</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label for="mensaje" class="col-sm-1 col-form-label" >Mensaje </label>
-                <div class=" col-sm-11">
-                    <textarea id="mensaje" class="form-control" rows="5" placeholder="Escribe tu mensaje aquí..."></textarea>
-                </div>
-            </div>
-            <!-- Enviar -->
-            <button id="boton-enviar" class="btn btn-outline-primary w-100 mt-3" onclick="enviarFormulario()" >Enviar</button>
+                <!-- Enviar -->
+                <button type="submit" class="btn btn-outline-primary w-100 mt-3" onclick="enviarFormulario()" >Enviar</button>
+            </form>
         </div>
-        <div id="contenedor-respuesta-formulario" class="alert alert-info d-none" role="alert"></div>
     </main>
 
     <!-- FOOTER -->

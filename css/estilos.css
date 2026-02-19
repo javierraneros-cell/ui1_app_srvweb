@@ -232,6 +232,12 @@ main h2{
   color: white;
 }
 
+.btn-outline-primary:focus,
+button:focus-visible {
+  background-color: #a71b29;
+  color: white;
+}
+
 
 /* Estilos para el contenido de los listados de cursos que ahora se hace con Bootstrap*/
 #contenedor-filtro-cursos {
