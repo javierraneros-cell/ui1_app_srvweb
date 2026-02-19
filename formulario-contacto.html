@@ -41,20 +41,36 @@
     <main id="contenedor-main">
         <h2><span class="material-symbols-outlined">contact_mail</span> Formulario de Contacto</h2> 
         <div id="contenedor-formulario" class="mb-4" >
-                <label for="nombre" class="form-label" >Nombre:</label>
-                <input type="text" id="nombre" class="form-control"  placeholder="Introduce tu nombre..." >
-                <label for="email" class="form-label" >Email:</label>
-                <input type="email" id="email" class="form-control"  placeholder="Introduce tu email..." >
-                <label for="tematica" class="form-label" >Tema:</label>
-                <select id="tematica" class="form-select">
-                    <option value="">Selecciona temática</option>
-                    <option value="Tecnología">Tecnología</option>
-                    <option value="Cívicas y Sociales">Cívicas y Sociales</option>
-                    <option value="Otros">Otros</option>
-                </select>
-                <label for="mensaje" class="form-label" >Mensaje:</label>
-                <textarea id="mensaje" class="form-control" rows="5" placeholder="Escribe tu mensaje aquí..."></textarea>
-                <button id="boton-enviar" class="btn btn-outline-primary w-100 mt-3" onclick="enviarFormulario()" >Enviar</button>
+            <!-- Usamos la clase row de Bootstrap para crear una fila y col-sm-2 y col-sm-10 para crear columnas de 2 y 10 respectivamente -->
+            <div class="row mb-3" >
+                <label for="nombre" class="col-sm-1 col-form-label " >Nombre </label>
+                <div class="col-sm-6" >
+                    <input type="text" id="nombre" class="form-control"  placeholder="Introduce tu nombre..." >
+                </div>
+                <label for="email" class="col-sm-1 col-form-label " >Email  </label>
+                <div class="col-sm-4" >
+                    <input type="email" id="email" class="form-control"  placeholder="Introduce tu email..." >
+                </div>
+
+            </div>
+            <div class="row mb-3" >
+                <label for="tematica" class="col-sm-1 col-form-label " >Tema </label>
+                <div class="col-sm-11">
+                    <select id="tematica" class="form-select">
+                        <option value="">Selecciona temática</option>
+                        <option value="Tecnología">Tecnología</option>
+                        <option value="Cívicas y Sociales">Cívicas y Sociales</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="mensaje" class="col-sm-1 col-form-label" >Mensaje </label>
+                <div class=" col-sm-11">
+                    <textarea id="mensaje" class="form-control" rows="5" placeholder="Escribe tu mensaje aquí..."></textarea>
+                </div>
+            </div>
+            <!-- Enviar -->
+            <button id="boton-enviar" class="btn btn-outline-primary w-100 mt-3" onclick="enviarFormulario()" >Enviar</button>
         </div>
         <div id="contenedor-respuesta-formulario" class="alert alert-info d-none" role="alert"></div>
     </main>
