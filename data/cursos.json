@@ -3,7 +3,7 @@
     "id": 1,
     "titulo": "ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB",
     "descripcion": "En este curso se proporcionará a los alumnos los conocimientos necesarios para elaborar un Informe de Revisión de Accesibilidad (IRA) de un sitio web, que es un documento que recoge los resultados de una evaluación de la accesibilidad de un sitio web y que se utiliza para identificar las barreras de accesibilidad existentes y proponer soluciones para mejorar la accesibilidad del sitio web.",
-    "categoria": "Cívicas y Sociales",
+    "categoria": "Sociales",
     "nivel": "Básico",
     "duracion": "20h",
     "profesor": "Antonio Pérez Carrasco",
@@ -26,7 +26,7 @@
     "id": 2,
     "titulo": "DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN",
     "descripcion":"Identificar y analizar escenarios de datos abiertos y reutilización de la información, evaluando contexto, normativa aplicable, beneficios y retos planteados.",
-    "categoria": "Cívicas y Sociales",
+    "categoria": "Cívicas",
     "nivel": "Intermedio",
     "duracion": "20h",
     "profesor": "Ángel Obregon Sierra",
@@ -77,156 +77,159 @@
                   ]
 
   },
-
-  { "id": 4, 
-    "titulo": "ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB",
-    "descripcion": "En este curso se proporcionará a los alumnos los conocimientos necesarios para elaborar un Informe de Revisión de Accesibilidad (IRA) de un sitio web, que es un documento que recoge los resultados de una evaluación de la accesibilidad de un sitio web y que se utiliza para identificar las barreras de accesibilidad existentes y proponer soluciones para mejorar la accesibilidad del sitio web.",
-    "categoria": "Cívicas y Sociales",
+  {
+    "id": 4,
+    "titulo": "CREACIÓN DE INFORMES DE ACCESIBILIDAD WEB",
+    "descripcion": "Este curso enseña a elaborar informes profesionales de accesibilidad web, analizando el estado real de un sitio y detectando barreras que afectan a la experiencia de usuarios con diversidad funcional. El alumno aprenderá a documentar hallazgos, justificar incumplimientos y proponer mejoras alineadas con la normativa vigente.",
+    "categoria": "Sociales",
     "nivel": "Básico",
     "duracion": "20h",
     "profesor": "Antonio Pérez Carrasco",
-    "imagen": "imagenes/formacion1.jpg",
+    "imagen": "imagenes/formacion4.jpg",
     "detalle": "detalle-curso.html",
     "contenidos": [
-                  "La accesibilidad de un sitio web", 
-                  "Tecnologías de apoyo", 
-                  "Legislación y normativa sobre accesibilidad de sitios web", 
-                  "Las Unidades Responsables de Accesibilidad (URA)", 
-                  "El Informe de Revisión de Accesibilidad (IRA) de un sitio web"
-                  ],
+      "La accesibilidad de un sitio web",
+      "Tecnologías de apoyo",
+      "Legislación y normativa sobre accesibilidad de sitios web",
+      "Las Unidades Responsables de Accesibilidad (URA)",
+      "El Informe de Revisión de Accesibilidad (IRA) de un sitio web"
+    ],
     "requisitos": [
-                  "Conocimientos básicos de informática e internet", 
-                  "Conocimientos básicos de diseño web y desarrollo web", 
-                  "Conocimientos básicos de usabilidad y experiencia de usuario"
-                  ]
+      "Conocimientos básicos de informática e internet",
+      "Conocimientos básicos de diseño web y desarrollo web",
+      "Conocimientos básicos de usabilidad y experiencia de usuario"
+    ]
   },
-  { "id": 5, 
-    "titulo": "DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN",
-    "descripcion":"Identificar y analizar escenarios de datos abiertos y reutilización de la información, evaluando contexto, normativa aplicable, beneficios y retos planteados.",
-    "categoria": "Cívicas y Sociales",
+  {
+    "id": 5,
+    "titulo": "INTRODUCCIÓN A LOS DATOS ABIERTOS Y SU REUTILIZACIÓN",
+    "descripcion": "Una formación orientada a comprender el ecosistema de los datos abiertos, su marco legal y las oportunidades que generan para administraciones, empresas y ciudadanía. El alumno aprenderá a identificar buenas prácticas, evaluar casos reales y reconocer los beneficios de liberar información pública.",
+    "categoria": "Cívicas",
     "nivel": "Intermedio",
     "duracion": "20h",
     "profesor": "Ángel Obregon Sierra",
-    "imagen": "imagenes/formacion2.jpg",
+    "imagen": "imagenes/formacion5.jpg",
     "detalle": "detalle-curso.html",
     "contenidos": [
-                  "Conceptos básicos del ecosistema de datos abiertos", 
-                  "Principios generales de la reutilización de información", 
-                  "Beneficios de la apertura de los datos", 
-                  "Barreras y retos planteados", 
-                  "Ejemplos de éxito de iniciativas de datos abiertos", 
-                  "Marco general legislativo europeo",
-                  "Legislación a nivel estatal",
-                  "Plan de Gobierno Abierto de España 2025-2029", 
-                  "Normativas autonómicas y locales"
-                  ],
+      "Conceptos básicos del ecosistema de datos abiertos",
+      "Principios generales de la reutilización de información",
+      "Beneficios de la apertura de los datos",
+      "Barreras y retos planteados",
+      "Ejemplos de éxito de iniciativas de datos abiertos",
+      "Marco general legislativo europeo",
+      "Legislación a nivel estatal",
+      "Plan de Gobierno Abierto de España 2025-2029",
+      "Normativas autonómicas y locales"
+    ],
     "requisitos": []
   },
-  { "id": 6, 
-    "titulo": "VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS",
-    "descripcion": "En la experiencia de aprendizaje se proporcionarán los conocimientos necesarios sobre virtualización y contenedores y reconocer los fundamentos básicos de la virtualización y los conceptos en los que se basa.",
+  {
+    "id": 6,
+    "titulo": "FUNDAMENTOS DE VIRTUALIZACIÓN Y CENTRO DE DATOS",
+    "descripcion": "Un recorrido completo por los conceptos esenciales de la virtualización moderna. El alumno aprenderá a trabajar con hipervisores, crear máquinas virtuales, gestionar redes virtuales y aplicar técnicas avanzadas para optimizar entornos virtualizados en centros de datos.",
     "categoria": "Tecnología",
     "nivel": "Avanzado",
     "duracion": "55h",
     "profesor": "Javier Almeida Martínez",
-    "imagen": "imagenes/formacion3.jpg",
+    "imagen": "imagenes/formacion6.jpg",
     "detalle": "detalle-curso.html",
     "contenidos": [
-                  "Introducción a la virtualización",
-                  "Familiarización con el hipervisor",
-                  "Creación de máquinas virtuales",
-                  "Instalación de sistemas operativos",
-                  "Tipos de archivo de un hipervisor",
-                  "Software adicional de hipervisor", 
-                  "Estados de las máquinas virtuales",
-                  "Importación de máquinas virtuales",
-                  "Instantáneas",
-                  "Clonación",
-                  "Operaciones avanzadas con máquinas virtuales",
-                  "Conceptos básicos de redes en entornos virtuales",
-                  "Parámetros avanzados de configuración de redes",
-                  "Conversión de máquinas físicas y virtuales",
-                  "Consejos útiles en virtualización"
-                ],
+      "Introducción a la virtualización",
+      "Familiarización con el hipervisor",
+      "Creación de máquinas virtuales",
+      "Instalación de sistemas operativos",
+      "Tipos de archivo de un hipervisor",
+      "Software adicional de hipervisor",
+      "Estados de las máquinas virtuales",
+      "Importación de máquinas virtuales",
+      "Instantáneas",
+      "Clonación",
+      "Operaciones avanzadas con máquinas virtuales",
+      "Conceptos básicos de redes en entornos virtuales",
+      "Parámetros avanzados de configuración de redes",
+      "Conversión de máquinas físicas y virtuales",
+      "Consejos útiles en virtualización"
+    ],
     "requisitos": [
-                  "Conocimientos sobre copias de seguridad y conocimientos básicos de acceso y administración de plataformas Cloud"
-                  ]
-
+      "Conocimientos sobre copias de seguridad y conocimientos básicos de acceso y administración de plataformas Cloud"
+    ]
   },
-
-  { "id": 7, 
-    "titulo": "ELABORACIÓN DE INFORMES DE REVISIÓN DE LA ACCESIBILIDAD DE SITIOS WEB",
-    "descripcion": "En este curso se proporcionará a los alumnos los conocimientos necesarios para elaborar un Informe de Revisión de Accesibilidad (IRA) de un sitio web, que es un documento que recoge los resultados de una evaluación de la accesibilidad de un sitio web y que se utiliza para identificar las barreras de accesibilidad existentes y proponer soluciones para mejorar la accesibilidad del sitio web.",
-    "categoria": "Cívicas y Sociales",
+  {
+    "id": 7,
+    "titulo": "EVALUACIÓN DE ACCESIBILIDAD WEB Y ELABORACIÓN DE INFORMES",
+    "descripcion": "Aprende a realizar evaluaciones de accesibilidad web siguiendo criterios técnicos y normativos. El curso guía al alumno en la identificación de barreras, el uso de herramientas de apoyo y la redacción de informes claros y útiles para equipos de desarrollo y responsables de accesibilidad.",
+    "categoria": "Sociales",
     "nivel": "Básico",
     "duracion": "20h",
     "profesor": "Antonio Pérez Carrasco",
-    "imagen": "imagenes/formacion1.jpg",
+    "imagen": "imagenes/formacion7.jpg",
     "detalle": "detalle-curso.html",
     "contenidos": [
-                  "La accesibilidad de un sitio web", 
-                  "Tecnologías de apoyo", 
-                  "Legislación y normativa sobre accesibilidad de sitios web", 
-                  "Las Unidades Responsables de Accesibilidad (URA)", 
-                  "El Informe de Revisión de Accesibilidad (IRA) de un sitio web"
-                  ],
+      "La accesibilidad de un sitio web",
+      "Tecnologías de apoyo",
+      "Legislación y normativa sobre accesibilidad de sitios web",
+      "Las Unidades Responsables de Accesibilidad (URA)",
+      "El Informe de Revisión de Accesibilidad (IRA) de un sitio web"
+    ],
     "requisitos": [
-                  "Conocimientos básicos de informática e internet", 
-                  "Conocimientos básicos de diseño web y desarrollo web", 
-                  "Conocimientos básicos de usabilidad y experiencia de usuario"
-                  ]
+      "Conocimientos básicos de informática e internet",
+      "Conocimientos básicos de diseño web y desarrollo web",
+      "Conocimientos básicos de usabilidad y experiencia de usuario"
+    ]
   },
-  { "id": 8, 
-    "titulo": "DATOS ABIERTOS Y REUTILIZACIÓN DE LA INFORMACIÓN",
-    "descripcion":"Identificar y analizar escenarios de datos abiertos y reutilización de la información, evaluando contexto, normativa aplicable, beneficios y retos planteados.",
-    "categoria": "Cívicas y Sociales",
+  {
+    "id": 8,
+    "titulo": "ECOSISTEMA DE DATOS ABIERTOS Y TRANSPARENCIA PUBLCIA",
+    "descripcion": "Este curso profundiza en el papel de los datos abiertos como herramienta de transparencia y participación. Se analizan marcos legales, casos de uso y estrategias para fomentar la reutilización de información pública en distintos niveles administrativos.",
+    "categoria": "Cívicas",
     "nivel": "Intermedio",
     "duracion": "20h",
     "profesor": "Ángel Obregon Sierra",
-    "imagen": "imagenes/formacion2.jpg",
+    "imagen": "imagenes/formacion8.jpg",
     "detalle": "detalle-curso.html",
     "contenidos": [
-                  "Conceptos básicos del ecosistema de datos abiertos", 
-                  "Principios generales de la reutilización de información", 
-                  "Beneficios de la apertura de los datos", 
-                  "Barreras y retos planteados", 
-                  "Ejemplos de éxito de iniciativas de datos abiertos", 
-                  "Marco general legislativo europeo",
-                  "Legislación a nivel estatal",
-                  "Plan de Gobierno Abierto de España 2025-2029", 
-                  "Normativas autonómicas y locales"
-                  ],
+      "Conceptos básicos del ecosistema de datos abiertos",
+      "Principios generales de la reutilización de información",
+      "Beneficios de la apertura de los datos",
+      "Barreras y retos planteados",
+      "Ejemplos de éxito de iniciativas de datos abiertos",
+      "Marco general legislativo europeo",
+      "Legislación a nivel estatal",
+      "Plan de Gobierno Abierto de España 2025-2029",
+      "Normativas autonómicas y locales"
+    ],
     "requisitos": []
   },
-  { "id": 9, 
-    "titulo": "VIRTUALIZACIÓN DE SISTEMAS Y CENTROS DE DATOS",
-    "descripcion": "En la experiencia de aprendizaje se proporcionarán los conocimientos necesarios sobre virtualización y contenedores y reconocer los fundamentos básicos de la virtualización y los conceptos en los que se basa.",
+  {
+    "id": 9,
+    "titulo": "ADMINISTACIÓN DE ENTORNOS VIRTUALIZADOS Y DATA CENTER",
+    "descripcion": "Una formación avanzada para dominar la gestión de infraestructuras virtualizadas. El alumno aprenderá a configurar hipervisores, optimizar máquinas virtuales, gestionar redes virtuales y aplicar técnicas profesionales para mantener entornos de centro de datos eficientes y seguros.",
     "categoria": "Tecnología",
     "nivel": "Avanzado",
     "duracion": "55h",
     "profesor": "Javier Almeida Martínez",
-    "imagen": "imagenes/formacion3.jpg",
+    "imagen": "imagenes/formacion9.jpg",
     "detalle": "detalle-curso.html",
     "contenidos": [
-                  "Introducción a la virtualización",
-                  "Familiarización con el hipervisor",
-                  "Creación de máquinas virtuales",
-                  "Instalación de sistemas operativos",
-                  "Tipos de archivo de un hipervisor",
-                  "Software adicional de hipervisor", 
-                  "Estados de las máquinas virtuales",
-                  "Importación de máquinas virtuales",
-                  "Instantáneas",
-                  "Clonación",
-                  "Operaciones avanzadas con máquinas virtuales",
-                  "Conceptos básicos de redes en entornos virtuales",
-                  "Parámetros avanzados de configuración de redes",
-                  "Conversión de máquinas físicas y virtuales",
-                  "Consejos útiles en virtualización"
-                ],
+      "Introducción a la virtualización",
+      "Familiarización con el hipervisor",
+      "Creación de máquinas virtuales",
+      "Instalación de sistemas operativos",
+      "Tipos de archivo de un hipervisor",
+      "Software adicional de hipervisor",
+      "Estados de las máquinas virtuales",
+      "Importación de máquinas virtuales",
+      "Instantáneas",
+      "Clonación",
+      "Operaciones avanzadas con máquinas virtuales",
+      "Conceptos básicos de redes en entornos virtuales",
+      "Parámetros avanzados de configuración de redes",
+      "Conversión de máquinas físicas y virtuales",
+      "Consejos útiles en virtualización"
+    ],
     "requisitos": [
-                  "Conocimientos sobre copias de seguridad y conocimientos básicos de acceso y administración de plataformas Cloud"
-                  ]
-
+      "Conocimientos sobre copias de seguridad y conocimientos básicos de acceso y administración de plataformas Cloud"
+    ]
   }
+
 ]
