@@ -42,6 +42,11 @@ function estableceValidez(campo, esValido ){
 
 function cuentaCaracteresMensaje(minimoCaracteres){
     const campoValor = document.getElementById("mensaje");
+
+    //Si lo estan pulsando, quitamos las validaciones de este campo para que se vuelvan a evaluar despues con el onblur:
+    document.querySelectorAll(".is-invalid").forEach(e1 =>{e1.classList.remove("is-invalid")});
+
+    //Seteamos con el valor de los caracteres introducidos:
     document.getElementById("conteo-mensaje").textContent = campoValor.value.trim().length;
 
     //Si va por debajo del minimo alertamos, si pasa lo eliminamos:
@@ -60,7 +65,7 @@ function enviarFormulario(){
 
     const contenedorResultado = document.getElementById("contenedor-respuesta-formulario");
     if (resultadoMensaje && resultadoNombre && resultadoCorreo && resultadoTematica){
-        contenedorResultado.textContent = "Formulario enviado correctamente con los siguinentes valores: " +  recuperaValores();
+        contenedorResultado.innerHTML = "Formulario enviado correctamente con los siguinentes valores: " +  recuperaValores();
         contenedorResultado.classList.add("alert-success");
         const formulario = document.getElementById("form-contacto");
         formulario.reset();
@@ -68,6 +73,8 @@ function enviarFormulario(){
         formulario.querySelectorAll(".is-valid, .is-invalid").forEach(el => {
             el.classList.remove("is-valid", "is-invalid");
         });
+        //Borramos el conteo de caracteres:
+        document.getElementById("conteo-mensaje").textContent = "";
     }else{
         contenedorResultado.textContent = "Formulario no enviado, revise los errores";
         contenedorResultado.classList.add("alert-danger");
@@ -78,17 +85,23 @@ function enviarFormulario(){
 }
 
 function resetAlertsFormulario(){
+    //Contenedor resultado limpio de texto y de clases:
     const contenedorResultado = document.getElementById("contenedor-respuesta-formulario");
     contenedorResultado.textContent = "";
     contenedorResultado.classList.remove("alert-success");
     contenedorResultado.classList.remove("alert-danger");
     contenedorResultado.classList.remove("alert");
-    contenedorResultado.classList.add("d-none"); 
+    contenedorResultado.classList.add("d-none");
 }
 
 //TODO: Falta por recuperar todos los valores y maquetarlos OK
 function recuperaValores(){
-    const resultadoMensaje = "Nombre: " + document.getElementById('nombre').value;
+    let resultadoMensaje = "<br><ul>";
+    resultadoMensaje = resultadoMensaje.concat("<li>Nombre:     ", document.getElementById('nombre').value, "</li>");
+    resultadoMensaje = resultadoMensaje.concat("<li>Correo:     ", document.getElementById('correo').value, "</li>");
+    resultadoMensaje = resultadoMensaje.concat("<li>Tematica:   ", document.getElementById('tematica').value, "</li>");
+    resultadoMensaje = resultadoMensaje.concat("<li>Mensaje:    ", document.getElementById('mensaje').value, "</li>");
+    resultadoMensaje = resultadoMensaje.concat("</ul>");
     return resultadoMensaje;
 }
 
