@@ -43,7 +43,7 @@
         <div id="contenedor-respuesta-formulario" class="d-none" role="alert"></div>
         <div id="contenedor-formulario" class="mb-4" >
             <!-- Usamos la clase row de Bootstrap para crear filas y col-sm-x para crear columnas segun necesitemos los anchos -->
-            <form id="formulario-contacto" onsubmit="return enviarFormulario()">
+            <form id="form-contacto" onsubmit="return enviarFormulario()">
                 <div class="row mb-2" >
                     <div class="form-floating col-sm-8" >
                         <input type="text" id="nombre" class="form-control" placeholder="Introduce tu nombre..." required onblur="validaCampo('nombre', 0)" >
@@ -87,7 +87,7 @@
                 </div>
 
                 <!-- Enviar -->
-                <button type="submit" class="btn btn-outline-primary w-100 mt-3" onclick="enviarFormulario()" >Enviar</button>
+                <button type="submit" class="btn btn-outline-primary w-100 mt-3" >Enviar</button>
             </form>
         </div>
     </main>
@@ -103,7 +103,6 @@
     <script src="js/formularioContacto.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/footer.js"></script>
-    
-    <script> cargarCursos(); </script>
+
 </body>
 </html>

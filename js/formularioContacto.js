@@ -37,7 +37,7 @@ function estableceValidez(campo, esValido ){
         campo.classList.add("is-invalid");
         campo.classList.remove("is-valid");    
     }
-    resetResultadoFormulario();
+    resetAlertsFormulario();
 }
 
 function cuentaCaracteresMensaje(minimoCaracteres){
@@ -60,21 +60,24 @@ function enviarFormulario(){
 
     const contenedorResultado = document.getElementById("contenedor-respuesta-formulario");
     if (resultadoMensaje && resultadoNombre && resultadoCorreo && resultadoTematica){
-        contenedorResultado.textContent = "Formulario enviado correctamente!!";
+        contenedorResultado.textContent = "Formulario enviado correctamente con los siguinentes valores: " +  recuperaValores();
         contenedorResultado.classList.add("alert-success");
-        contenedorResultado.classList.add("alert");
-        contenedorResultado.classList.remove("d-none");
-        return true;
+        const formulario = document.getElementById("form-contacto");
+        formulario.reset();
+        // Quitar clases de validación
+        formulario.querySelectorAll(".is-valid, .is-invalid").forEach(el => {
+            el.classList.remove("is-valid", "is-invalid");
+        });
     }else{
         contenedorResultado.textContent = "Formulario no enviado, revise los errores";
         contenedorResultado.classList.add("alert-danger");
-        contenedorResultado.classList.add("alert");
-        contenedorResultado.classList.remove("d-none");
-        return false;
     }
+    contenedorResultado.classList.add("alert");
+    contenedorResultado.classList.remove("d-none");
+    return false;
 }
 
-function resetResultadoFormulario(){
+function resetAlertsFormulario(){
     const contenedorResultado = document.getElementById("contenedor-respuesta-formulario");
     contenedorResultado.textContent = "";
     contenedorResultado.classList.remove("alert-success");
@@ -82,3 +85,10 @@ function resetResultadoFormulario(){
     contenedorResultado.classList.remove("alert");
     contenedorResultado.classList.add("d-none"); 
 }
+
+//TODO: Falta por recuperar todos los valores y maquetarlos OK
+function recuperaValores(){
+    const resultadoMensaje = "Nombre: " + document.getElementById('nombre').value;
+    return resultadoMensaje;
+}
+
