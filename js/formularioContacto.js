@@ -1,3 +1,34 @@
+var main = function () {
+
+    "use strict";
+
+    $("#nombre").on("blur", function () {
+        validaCampo('nombre', 0);
+    });
+
+    $("#correo").on("blur", function () {
+        validaCorreo();
+    });
+
+    $("#tematica").on("blur", function () {
+        validaCampo('tematica', 0);
+    });
+
+    $("#mensaje").on("blur", function () {
+        validaCampo('mensaje', 30);
+    });
+
+    $("#mensaje").on("input", function () {
+        cuentaCaracteresMensaje(30);
+    });
+
+    $("#form-contacto").on("submit", function() {
+        return enviarFormulario();
+    });
+
+}
+$(document).ready(main);
+
 function validaCampo(idCampo, minimoCaracteres) {
     const campoValor = document.getElementById(idCampo);
 

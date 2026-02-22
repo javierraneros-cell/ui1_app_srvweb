@@ -1,3 +1,15 @@
+var main = function () {
+
+    "use strict";
+
+    $("#btn-imprimir").on("click", function () {
+        imprimirCurso();
+    });
+
+}
+$(document).ready(main);
+
+
 function obtenerIdDesdeURL() {
     const params = new URLSearchParams(window.location.search);
     return parseInt(params.get("id"));

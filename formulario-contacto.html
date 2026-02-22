@@ -43,10 +43,10 @@
         <div id="contenedor-respuesta-formulario" class="d-none" role="alert"></div>
         <div id="contenedor-formulario" class="mb-4" >
             <!-- Usamos la clase row de Bootstrap para crear filas y col-sm-x para crear columnas segun necesitemos los anchos -->
-            <form id="form-contacto" onsubmit="return enviarFormulario()">
+            <form id="form-contacto" >
                 <div class="row mb-2" >
                     <div class="form-floating col-sm-8" >
-                        <input type="text" id="nombre" class="form-control" placeholder="Introduce tu nombre..."  onblur="validaCampo('nombre', 0)" >
+                        <input type="text" id="nombre" class="form-control" placeholder="Introduce tu nombre...">
                         <label for="nombre" >Nombre</label>
                         <div class="invalid-feedback">
                             Porfavor, introduce un nombre válido.
@@ -54,7 +54,7 @@
                     </div>
                     
                     <div class="form-floating col-sm-4" >
-                        <input type="email" id="correo" class="form-control" placeholder="Introduce tu correo..."  onblur="validaCorreo()" >
+                        <input type="email" id="correo" class="form-control" placeholder="Introduce tu correo...">
                         <label for="correo" >Correo</label>
                         <div class="invalid-feedback">
                             Porfavor, introduce un correo válido tipo nombre@ejemplo.com
@@ -63,7 +63,7 @@
                 </div>
                 <div class="row mb-3" >
                     <div class="form-floating col-sm-12">
-                        <select id="tematica" class="form-select" aria-label="Seleccione temática"  onblur="validaCampo('tematica', 0)">
+                        <select id="tematica" class="form-select" aria-label="Seleccione temática">
                             <option value="">Seleccione temática...</option>
                             <option value="Tecnología">Tecnología</option>
                             <option value="Cívicas y Sociales">Cívicas y Sociales</option>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-12">
-                        <textarea id="mensaje" class="form-control mb-2 " rows="5" placeholder="Escribe tu mensaje aquí..." onblur="validaCampo('mensaje', 30)" oninput="cuentaCaracteresMensaje(30)" ></textarea>
+                        <textarea id="mensaje" class="form-control mb-2 " rows="5" placeholder="Escribe tu mensaje aquí..."></textarea>
                         <div id="contenedor-conteo-mensaje" class="alert-warning" role="alert">
                             <p>Número de caracteres en mensaje:     <span id="conteo-mensaje"></span></p>
                         </div>
