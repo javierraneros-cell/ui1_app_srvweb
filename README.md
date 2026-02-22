@@ -10,8 +10,9 @@ En esta entrega no se debe utilizar CSS, JavaScript ni ningún otro tipo de dise
 ## UD2 Unidad didáctica 2. Estilos con CSS
 Añadido estilos CSS para maquetar el HTML actual pedido en la actividad y pasado el validador CSS https://jigsaw.w3.org/css-validator y de HTML https://validator.w3.org. También se comprueba que es responive
 
-## UD3 Unidad didáctica 4. JSS y Bootstrap 
+## UD4 Unidad didáctica 4. JSS y Bootstrap 
 
 Continuaremos con la web creada en las unidades anteriores para la plataforma Formación Global Online, pero ahora reorganizándola completamente con Bootstrap y añadiendo interactividad con JavaScript/jQuery.
+
 En esta entrega se evaluará especialmente el uso de Bootstrap (grid, componentes y responsive) y la programación en JavaScript/jQuery (DOM, eventos, validación, arrays y asincronía
 
