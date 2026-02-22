@@ -1,4 +1,27 @@
+var main = function () {
 
+    "use strict";
+
+    $("#cabecera-orden-nombre-0").on("click", function () {
+        ordenaPorColumna(this, 0);
+    });
+
+    $("#cabecera-orden-experiencia-2").on("click", function () {
+        ordenaPorColumna(this, 2);
+    });
+
+    $("#cabecera-orden-numcursos-3").on("click", function () {
+        ordenaPorColumna(this, 3);
+    });
+
+}
+$(document).ready(main);
+
+/**
+ * Funcion que pasando la cabecera y el numero de la columna de la tabla, ordena todas las filas
+ * @param {} th 
+ * @param {*} columna 
+ */
 function ordenaPorColumna(th, columna) {
 
     // Toggle asc / desc
