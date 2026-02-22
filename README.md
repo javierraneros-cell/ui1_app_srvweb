@@ -16,3 +16,13 @@ Continuaremos con la web creada en las unidades anteriores para la plataforma Fo
 
 En esta entrega se evaluará especialmente el uso de Bootstrap (grid, componentes y responsive) y la programación en JavaScript/jQuery (DOM, eventos, validación, arrays y asincronía
 
+Los cambios más importantes son:
+- Carousel Bootstrap en la parte superior en la pagina inicial
+- Añadidos a la página index bloques informativos tipo “blog” (noticias/actualizaciones de la plataforma) maquetados con Boostrap
+- El listado de cursos cargados a través de un fichero JSON y mostrados en formato CARDS con una busqueda como filtro
+- Tabla de listado de profesores con estilo bootstrap y ordenable
+- Menu bootstrap y generado dinamicamente
+- Footer con la hora de forma dinamica y paginas de adminsitrador, contenido legal y accesiblidad
+- Formulario de contacto
+
+Pasadas validaciones de https://validator.w3.org y https://jigsaw.w3.org/css-validator
