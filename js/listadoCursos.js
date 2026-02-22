@@ -1,3 +1,30 @@
+var main = function () {
+
+    "use strict";
+
+    $("#boton-limpiar-filtros").on("click", function () {
+        limpiarFiltros();
+    });
+
+    $("#filtro-titulo").on("input", function () {
+        cargarCursos(document.getElementById('filtro-titulo').value, 
+                     document.getElementById('filtro-categoria').value);
+    });
+
+     $("#filtro-categoria").on("change", function () {
+        cargarCursos(document.getElementById('filtro-titulo').value, 
+                     document.getElementById('filtro-categoria').value);
+    });
+
+    //La primera vez nada mas entrar y estar ready que recupere los cursos:
+    $(window).on("load", function () {
+        cargarCursos(   document.getElementById('filtro-titulo').value, 
+                        document.getElementById('filtro-categoria').value);
+    });
+    
+}
+$(document).ready(main);
+
 function cargarCursos(tituloFiltro = "", categoriaFiltro = "") {
     fetch("data/cursos.json")
         .then(response => response.json())

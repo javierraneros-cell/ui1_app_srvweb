@@ -41,14 +41,14 @@
     <main id="contenedor-main">
         <h2><span class="material-symbols-outlined">list</span> Listado de cursos formativos impartidos en Formación Global Online</h2> 
         <div id="contenedor-filtro-cursos">
-                <input type="text" id="filtro-titulo" class="form-control" oninput="cargarCursos(this.value, document.getElementById('filtro-categoria').value)" placeholder="Buscar curso..." >
-                <select id="filtro-categoria" class="form-select" onchange="cargarCursos(document.getElementById('filtro-titulo').value, this.value)" >
+                <input type="text" id="filtro-titulo" class="form-control" placeholder="Buscar curso...">
+                <select id="filtro-categoria" class="form-select">
                     <option value="">Todas las categorías</option>
                     <option value="Tecnología">Tecnología</option>
                     <option value="Sociales">Sociales</option>
                     <option value="Cívicas">Cívicas</option>
                 </select>
-                <button id="boton-limpiar-filtros" class="btn btn-outline-primary" onclick="limpiarFiltros()" >Limpiar filtros</button>    
+                <button id="boton-limpiar-filtros" class="btn btn-outline-primary">Limpiar filtros</button>    
         </div>
         <div id="contenedor-cursos" class="listado-cursos row g-4"  >
             <!-- Aqui la funcion JavaScript cargarCursos() pintara todos los cursos -->
@@ -69,7 +69,6 @@
     <script src="js/listadoCursos.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/footer.js"></script>
-    
-    <script> cargarCursos(); </script>
+
 </body>
 </html>
