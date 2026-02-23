@@ -14,16 +14,21 @@ var main = function () {
      $("#filtro-categoria").on("change", function () {
         cargarCursos(document.getElementById('filtro-titulo').value, 
                      document.getElementById('filtro-categoria').value);
-    });
-
-    //La primera vez nada mas entrar y estar ready que recupere los cursos:
-    $(window).on("load", function () {
-        cargarCursos(   document.getElementById('filtro-titulo').value, 
-                        document.getElementById('filtro-categoria').value);
-    });
-    
+    });    
 }
 $(document).ready(main);
+
+
+window.addEventListener("load", () => {
+        cargarCursos(   document.getElementById('filtro-titulo').value, 
+                        document.getElementById('filtro-categoria').value);
+});
+
+document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) cargarCursos(  document.getElementById('filtro-titulo').value, 
+                                        document.getElementById('filtro-categoria').value);
+});
+
 
 function cargarCursos(tituloFiltro = "", categoriaFiltro = "") {
     fetch("data/cursos.json")
