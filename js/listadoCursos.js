@@ -20,12 +20,12 @@ $(document).ready(main);
 
 
 window.addEventListener("load", () => {
-        cargarCursos(   document.getElementById('filtro-titulo').value, 
-                        document.getElementById('filtro-categoria').value);
+        cargarCursos(document.getElementById('filtro-titulo').value, 
+                    document.getElementById('filtro-categoria').value);
 });
 
 document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) cargarCursos(  document.getElementById('filtro-titulo').value, 
+    if (!document.hidden) cargarCursos( document.getElementById('filtro-titulo').value, 
                                         document.getElementById('filtro-categoria').value);
 });
 
