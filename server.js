@@ -1,0 +1,31 @@
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+
+//Para servir el contenido estatico
+const path = require("path");
+
+//Para la lectura de el fichero .env para la conexion de la base de datos y sus credenciales
+require("dotenv").config();
+
+var app = express();
+app.use(cors());
+app.use(express.json());
+app.use(express.static(path.join(__dirname)));  //Se añade el estatico
+
+// Conexión a MongoDB (Docker la inyectará)
+mongoose.connect(process.env.MONGO_URL || "mongodb://localhost:27017/ui1db")
+  .then(() => console.log("MongoDB conectado"))
+  .catch(err => console.error("Error MongoDB:", err));
+
+// Ruta de prueba
+app.get("/api/hello", (req, res) => {
+  res.json({ message: "API funcionando correctamente" });
+});
+
+// Rutas externas
+const exampleRoutes = require("./src/routes/example.routes");
+app.use("/api/example", exampleRoutes);
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => console.log(`El Servidor se ejecuta en el puerto ${PORT}`));
