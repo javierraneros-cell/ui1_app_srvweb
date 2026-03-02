@@ -2,7 +2,21 @@
 const cursos = require("../../data/cursos.json");
 
 exports.getListadoCursos = (req, res) => {
-  res.status(200).json(cursos);
+    const { titulo = "", categoria = "" } = req.query;
+
+    //Traemos el codigo que teniamos antes en el cliente para filtrar json:
+    const tituloBuscar = titulo.toLowerCase().trim();
+    const categoriaBuscar = categoria.trim();
+
+    const cursosFiltrados = cursos.filter(curso => {
+        const coincideTitulo = curso.titulo.toLowerCase().includes(tituloBuscar);
+
+        const coincideCategoria = categoriaBuscar === ""  ? true : curso.categoria === categoriaBuscar;
+
+        return coincideTitulo && coincideCategoria;
+    });
+
+    res.status(200).json(cursosFiltrados);
 };
 
 exports.getCurso = (req, res) =>{
