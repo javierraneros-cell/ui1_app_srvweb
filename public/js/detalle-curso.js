@@ -16,24 +16,23 @@ function obtenerIdDesdeURL() {
 }
 
 async function obtenerCursoPorId(id) {
-    try {
-        const respuesta = await fetch("data/cursos.json");
-        const cursos = await respuesta.json();
-
-        const curso = cursos.find(curso => curso.id === id);
-
-        return curso || null;
-    } catch (error) {
-        console.error("Error cargando JSON:", error);
+    const respuesta = await fetch(`/api/cursos/${id}`);
+    if (!respuesta.ok){        
+        const error = await respuesta.json(); 
+        console.error("Error:", error.mensaje);
         return null;
     }
+    const curso = await respuesta.json();
 }
 
 obtenerCursoPorId(obtenerIdDesdeURL()).then(curso => {
 
     if (!curso) {
-        document.body.innerHTML = "<p>Curso no encontrado.</p>";
-        return;
+        const contenedorResultado = document.getElementById("contenedor-respuesta-detalle-curso");
+        contenedorResultado.textContent = "Curso no encontrado";
+        contenedorResultado.classList.add("alert-danger");
+        contenedorResultado.classList.add("alert");
+        contenedorResultado.classList.remove("d-none");
     }
 
     // Imagen

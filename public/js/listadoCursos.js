@@ -31,7 +31,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 function cargarCursos(tituloFiltro = "", categoriaFiltro = "") {
-    fetch("data/cursos.json")
+    fetch("/api/cursos")
         .then(response => response.json())
         .then(listadoCursos => {
 
