@@ -36,5 +36,16 @@ exports.getCurso = (req, res) =>{
     console.error("Error cargando JSON:", error);
     res.status(400).json({ mensaje: "Error consultando detalle curso " + error });
   }
-  
 }
+
+//Categoris DISTINCT
+exports.getCategorias = (req, res) => {
+    const categorias = [...new Set(cursos.map(curso => curso.categoria))];
+    res.status(200).json(categorias);
+};
+
+//Niveles DISTINCT
+exports.getNiveles = (req, res) => {
+    const niveles = [...new Set(cursos.map(curso => curso.nivel))];
+    res.status(200).json(niveles);
+};

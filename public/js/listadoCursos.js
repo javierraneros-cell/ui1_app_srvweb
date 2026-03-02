@@ -22,15 +22,17 @@ var main = function () {
         cargarCursos(document.getElementById('filtro-titulo').value, 
                      document.getElementById('filtro-categoria').value,
                      document.getElementById('filtro-nivel').value);
-    }); 
+    });
 }
 $(document).ready(main);
 
 
 window.addEventListener("load", () => {
-        cargarCursos(document.getElementById('filtro-titulo').value, 
-                     document.getElementById('filtro-categoria').value,
-                     document.getElementById('filtro-nivel').value);
+    //Hacemos 2 cargas en el load, los filtros nivel y categorias y los cursos:
+    cargarFiltros();
+    cargarCursos(document.getElementById('filtro-titulo').value, 
+                    document.getElementById('filtro-categoria').value,
+                    document.getElementById('filtro-nivel').value);
 });
 
 document.addEventListener("visibilitychange", () => {
@@ -81,6 +83,22 @@ function cargarCursos(tituloFiltro = "", categoriaFiltro = "", nivelFiltro = "")
             }
         })
         .catch(error => console.error("Error cargando cursos:", error));
+}
+
+async function cargarFiltros() {
+    const categorias = await fetch("/api/cursos/categorias").then(r => r.json());
+    const niveles = await fetch("/api/cursos/niveles").then(r => r.json());
+
+    const selectCategoria = document.getElementById("filtro-categoria");
+    const selectNivel = document.getElementById("filtro-nivel");
+
+    categorias.forEach(cat => {
+        selectCategoria.innerHTML += `<option value="${cat}">${cat}</option>`;
+    });
+
+    niveles.forEach(niv => {
+        selectNivel.innerHTML += `<option value="${niv}">${niv}</option>`;
+    });
 }
 
 function limpiarFiltros() {
