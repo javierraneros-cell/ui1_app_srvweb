@@ -16,6 +16,7 @@ function obtenerIdDesdeURL() {
 }
 
 async function obtenerCursoPorId(id) {
+    //TODO: hacer de forma centralizada el control de errores
     const respuesta = await fetch(`/api/cursos/${id}`);
     if (!respuesta.ok){        
         const error = await respuesta.json(); 
@@ -23,10 +24,10 @@ async function obtenerCursoPorId(id) {
         return null;
     }
     const curso = await respuesta.json();
+    return curso;
 }
 
 obtenerCursoPorId(obtenerIdDesdeURL()).then(curso => {
-
     if (!curso) {
         const contenedorResultado = document.getElementById("contenedor-respuesta-detalle-curso");
         contenedorResultado.textContent = "Curso no encontrado";

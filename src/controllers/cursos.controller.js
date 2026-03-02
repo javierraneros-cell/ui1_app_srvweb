@@ -1,4 +1,4 @@
-//Cuando este el modelo de datos quitamos el json
+//TODO: Cuando este el modelo de datos quitamos el json
 const cursos = require("../../data/cursos.json");
 
 exports.getListadoCursos = (req, res) => {
