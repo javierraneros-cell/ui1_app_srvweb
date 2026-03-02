@@ -2,7 +2,7 @@
  *  Funcion que lee los cursos del fichero JSON y crear dinamicamente el menu del listado de cursos
  */
 function cargarCursosEnMenu() {
-    fetch("data/cursos.json")
+    fetch("api/cursos")
         .then(response => response.json())
         .then(listadoCursos => {
             const lista = document.getElementById("listaCursos");
