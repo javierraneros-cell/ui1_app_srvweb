@@ -1,5 +1,6 @@
 //TODO: Cuando este el modelo de datos quitamos el json
-const cursos = require("../../data/cursos.json");
+//const cursos = require("../../data/cursos.json");
+const Curso = require("../models/Curso");
 
 exports.getListadoCursos = (req, res) => {
     const { titulo = "", categoria = "", nivel = "" } = req.query;
@@ -9,6 +10,8 @@ exports.getListadoCursos = (req, res) => {
     const categoriaBuscar = categoria.trim();
     const nivelBuscar = nivel.trim();
 
+    //Recuperamos los cursos de mongodb:
+    const cursos = Curso.find();
     const cursosFiltrados = cursos.filter(curso => {
         const coincideTitulo = curso.titulo.toLowerCase().includes(tituloBuscar);
 
@@ -25,7 +28,9 @@ exports.getListadoCursos = (req, res) => {
 exports.getCurso = (req, res) =>{
   try {
     const id = req.params.id;
-    const curso = cursos.find(curso => curso.id == id);
+
+    //Recuperamos los cursos de MongoDb:
+    const curso = await Curso.findById(id);
 
     if(!curso){
       return res.status(404).json({ mensaje: "Curso no encontrado" });
