@@ -1,0 +1,20 @@
+{
+  "name": "ui1_app_srvweb",
+  "version": "1.0.0",
+  "description": "Plataforma de cursos - backend Node.js + Express + MongoDB",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

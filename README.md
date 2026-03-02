@@ -26,3 +26,41 @@ Los cambios más importantes son:
 - Formulario de contacto
 
 Pasadas validaciones de https://validator.w3.org y https://jigsaw.w3.org/css-validator
+
+## UD6 Bloque 1. Persistencia de datos (MongoDB + Mongoose)
+
+Se ha añadido una base de backend con Node.js + Express + Mongoose para cubrir la persistencia del proyecto.
+
+Colecciones implementadas:
+- `cursos`: `titulo`, `categoria`, `nivel`, `duracion`, `descripcion`, `imagen`, `profesorId`, `temario`, `createdAt`, `updatedAt`.
+- `profesores`: `nombre`, `email`, `especialidad`, `foto`.
+- `usuarios`: `nombre`, `email`, `passwordHash`, `rol`.
+- `comentarios`: `usuarioId`, `cursoId`, `comentario`, `puntuacion`, `fecha`.
+
+Estructura añadida:
+- `src/config/database.js` conexión de MongoDB.
+- `src/models/` con los 4 modelos Mongoose.
+- `src/server.js` y `src/app.js` para arranque básico.
+- `scripts/seed.js` para poblar cursos y profesores desde `data/cursos.json`.
+
+### Puesta en marcha
+
+1. Copiar variables de entorno:
+```bash
+cp .env.example .env
+```
+
+2. Instalar dependencias:
+```bash
+npm install
+```
+
+3. Lanzar backend:
+```bash
+npm run dev
+```
+
+4. Poblar base de datos:
+```bash
+npm run seed
+```
