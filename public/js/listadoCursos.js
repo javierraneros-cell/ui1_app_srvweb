@@ -8,30 +8,40 @@ var main = function () {
 
     $("#filtro-titulo").on("input", function () {
         cargarCursos(document.getElementById('filtro-titulo').value, 
-                     document.getElementById('filtro-categoria').value);
+                     document.getElementById('filtro-categoria').value,
+                     document.getElementById('filtro-nivel').value);
     });
 
      $("#filtro-categoria").on("change", function () {
         cargarCursos(document.getElementById('filtro-titulo').value, 
-                     document.getElementById('filtro-categoria').value);
-    });    
+                     document.getElementById('filtro-categoria').value,
+                     document.getElementById('filtro-nivel').value);
+    });
+
+     $("#filtro-nivel").on("change", function () {
+        cargarCursos(document.getElementById('filtro-titulo').value, 
+                     document.getElementById('filtro-categoria').value,
+                     document.getElementById('filtro-nivel').value);
+    }); 
 }
 $(document).ready(main);
 
 
 window.addEventListener("load", () => {
         cargarCursos(document.getElementById('filtro-titulo').value, 
-                    document.getElementById('filtro-categoria').value);
+                     document.getElementById('filtro-categoria').value,
+                     document.getElementById('filtro-nivel').value);
 });
 
 document.addEventListener("visibilitychange", () => {
     if (!document.hidden) cargarCursos( document.getElementById('filtro-titulo').value, 
-                                        document.getElementById('filtro-categoria').value);
+                                        document.getElementById('filtro-categoria').value,
+                                        document.getElementById('filtro-nivel').value);
 });
 
 
-function cargarCursos(tituloFiltro = "", categoriaFiltro = "") {
-    fetch(`/api/cursos?titulo=${tituloFiltro}&categoria=${categoriaFiltro}`)
+function cargarCursos(tituloFiltro = "", categoriaFiltro = "", nivelFiltro = "") {
+    fetch(`/api/cursos?titulo=${tituloFiltro}&categoria=${categoriaFiltro}&nivel=${nivelFiltro}`)
         .then(response => response.json())
         .then(listadoCursos => {
 
@@ -76,6 +86,7 @@ function cargarCursos(tituloFiltro = "", categoriaFiltro = "") {
 function limpiarFiltros() {
     document.getElementById("filtro-titulo").value = "";
     document.getElementById("filtro-categoria").value = "";
+    document.getElementById("filtro-nivel").value = "";
 
     //Ejecutamos de nuevo la recarga de cursos sin filtros
     cargarCursos();

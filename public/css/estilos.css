@@ -243,7 +243,7 @@ button:focus-visible {
 #contenedor-filtro-cursos {
     padding: 20px;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr; /* 3 columnas, la primera más ancha para el título, select y botón */
+    grid-template-columns: 2fr 1fr 1fr 1fr; /* 3 columnas, la primera más ancha para el título, select y botón */
     gap: 20px;
 }
 
