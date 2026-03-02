@@ -2,8 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-
-
 //Para la lectura de el fichero .env para la conexion de la base de datos y sus credenciales
 require("dotenv").config();
 
@@ -20,16 +18,9 @@ mongoose.connect(process.env.MONGO_URL || "mongodb://localhost:27017/ui1db")
   .then(() => console.log("MongoDB conectado"))
   .catch(err => console.error("Error MongoDB:", err));
 
-// Ruta de prueba
-app.get("/api/hello", (req, res) => {
-  res.json({ message: "API funcionando correctamente" });
-});
-
-// Rutas externas
-const exampleRoutes = require("./src/routes/example.routes");
-app.use("/api/example", exampleRoutes);
+//Rutas cursos, profesores, usuarios y comentarios
+const cursosRoutes = require("./src/routes/cursos.routes");
+app.use("/api/cursos", cursosRoutes);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`El Servidor se ejecuta en el puerto ${PORT}`));
-
-
