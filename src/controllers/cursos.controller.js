@@ -2,7 +2,7 @@
 //const cursos = require("../../data/cursos.json");
 const Curso = require("../models/Curso");
 
-exports.getListadoCursos = (req, res) => {
+exports.getListadoCursos = async (req, res) => {
     const { titulo = "", categoria = "", nivel = "" } = req.query;
 
     //Traemos el codigo que teniamos antes en el cliente para filtrar json:
@@ -11,7 +11,7 @@ exports.getListadoCursos = (req, res) => {
     const nivelBuscar = nivel.trim();
 
     //Recuperamos los cursos de mongodb:
-    const cursos = Curso.find();
+    const cursos = await Curso.find();
     const cursosFiltrados = cursos.filter(curso => {
         const coincideTitulo = curso.titulo.toLowerCase().includes(tituloBuscar);
 
@@ -25,7 +25,7 @@ exports.getListadoCursos = (req, res) => {
     res.status(200).json(cursosFiltrados);
 };
 
-exports.getCurso = (req, res) =>{
+exports.getCurso = async (req, res) =>{
   try {
     const id = req.params.id;
 

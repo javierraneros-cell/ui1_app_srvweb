@@ -12,7 +12,7 @@ $(document).ready(main);
 
 function obtenerIdDesdeURL() {
     const params = new URLSearchParams(window.location.search);
-    return parseInt(params.get("id"));
+    return params.get("id");
 }
 
 async function obtenerCursoPorId(id) {
