@@ -64,3 +64,65 @@ npm run dev
 ```bash
 npm run seed
 ```
+
+## UD6 Bloque 2. Backend (Node.js + Express) y API REST
+
+Se ha continuado la rama `ud6_node_mongodb` con una estructura MVC y API REST funcional:
+
+- `src/controllers/`:
+  - `cursos.controller.js`: listado con filtros, detalle con profesor y comentarios, categorías y niveles.
+  - `profesores.controller.js`: listado y detalle de profesorado con número de cursos.
+- `src/routes/`:
+  - `cursos.routes.js`
+  - `profesores.routes.js`
+- `src/middlewares/`:
+  - `asyncHandler.js` para errores en controladores async.
+  - `errorHandler.js` para manejo centralizado de errores y 404.
+
+### Endpoints disponibles
+
+- `GET /health`
+- `GET /api/cursos`
+- `GET /api/cursos/:id`
+- `GET /api/cursos/categorias`
+- `GET /api/cursos/niveles`
+- `GET /api/profesores`
+- `GET /api/profesores/:id`
+
+También se adaptó el frontend para consumir backend real en:
+- `public/listado-profesores.html` + `public/js/listaProfesores.js`
+- `public/detalle-curso.html` + `public/js/detalle-curso.js`
+
+## UD6 Bloque 3. Autenticación, cookies y sesiones
+
+Se añadió autenticación basada en sesión con cookie HTTP:
+
+- Dependencias: `express-session` y `bcryptjs`.
+- Cookie de sesión: `sid` (`httpOnly`, `sameSite=lax`).
+- Control de acceso por rol con middleware:
+  - `requireAuth`
+  - `requireRole(['admin'])`
+
+### Endpoints de autenticación
+
+- `POST /api/auth/registro`
+- `POST /api/auth/login`
+- `POST /api/auth/logout`
+- `GET /api/auth/me`
+
+`/api/auth/registro` crea usuarios con rol `alumno` por defecto. Solo un admin autenticado puede crear otro usuario con rol `admin`.
+
+### Endpoints protegidos por rol admin
+
+- `POST /api/cursos`
+- `PUT /api/cursos/:id`
+- `DELETE /api/cursos/:id`
+
+### Usuarios de prueba cargados por seed
+
+Tras ejecutar `npm run seed`:
+
+- `admin@globalonline.edu` / `Admin123!` (rol `admin`)
+- `lucia.torres@alumnos.globalonline.edu` / `Alumno123!` (rol `alumno`)
+- `miguel.santos@alumnos.globalonline.edu` / `Alumno123!` (rol `alumno`)
+- `elena.martin@alumnos.globalonline.edu` / `Alumno123!` (rol `alumno`)

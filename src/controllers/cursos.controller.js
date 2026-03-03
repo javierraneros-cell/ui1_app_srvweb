@@ -1,66 +1,165 @@
-//TODO: Cuando este el modelo de datos quitamos el json
-//const cursos = require("../../data/cursos.json");
-const Curso = require("../models/Curso");
+const Curso = require('../models/Curso');
+const Comentario = require('../models/Comentario');
 
 exports.getListadoCursos = async (req, res) => {
-    const { titulo = "", categoria = "", nivel = "" } = req.query;
+  const { titulo = '', categoria = '', nivel = '' } = req.query;
 
-    //Traemos el codigo que teniamos antes en el cliente para filtrar json:
-    const tituloBuscar = titulo.toLowerCase().trim();
-    const categoriaBuscar = categoria.trim();
-    const nivelBuscar = nivel.trim();
+  const filtro = {};
 
-    //Recuperamos los cursos de mongodb:
-    const cursos = await Curso.find();
-    const cursosFiltrados = cursos.filter(curso => {
-        const coincideTitulo = curso.titulo.toLowerCase().includes(tituloBuscar);
+  if (titulo.trim()) {
+    filtro.titulo = { $regex: titulo.trim(), $options: 'i' };
+  }
 
-        const coincideCategoria = categoriaBuscar === ""  ? true : curso.categoria === categoriaBuscar;
+  if (categoria.trim()) {
+    filtro.categoria = categoria.trim();
+  }
 
-        const coincideNivel = nivelBuscar === "" ? true : curso.nivel === nivelBuscar;
+  if (nivel.trim()) {
+    filtro.nivel = nivel.trim();
+  }
 
-        return coincideTitulo && coincideCategoria && coincideNivel;
-    });
+  const cursos = await Curso.find(filtro)
+    .sort({ createdAt: -1 })
+    .populate('profesorId', 'nombre email especialidad');
 
-    res.status(200).json(cursosFiltrados);
+  const payload = cursos.map((curso) => ({
+    _id: curso._id,
+    titulo: curso.titulo,
+    categoria: curso.categoria,
+    nivel: curso.nivel,
+    duracion: curso.duracion,
+    descripcion: curso.descripcion,
+    imagen: curso.imagen,
+    profesor: curso.profesorId?.nombre || '',
+    profesorId: curso.profesorId?._id || null,
+    temario: curso.temario || [],
+    contenidos: curso.temario || []
+  }));
+
+  res.status(200).json(payload);
 };
 
-exports.getCurso = async (req, res) =>{
-  try {
-    const id = req.params.id;
+exports.getCurso = async (req, res) => {
+  const { id } = req.params;
 
-    //Recuperamos los cursos de MongoDb:
-    const curso = await Curso.findById(id);
+  const curso = await Curso.findById(id).populate('profesorId', 'nombre email especialidad foto');
 
-    if(!curso){
-      return res.status(404).json({ mensaje: "Curso no encontrado" });
-    }
-    res.status(200).json(curso);
-    
-  } catch (error) {
-    console.error("Error cargando JSON:", error);
-    res.status(400).json({ mensaje: "Error consultando detalle curso " + error });
+  if (!curso) {
+    return res.status(404).json({ mensaje: 'Curso no encontrado' });
   }
-}
 
-//Categoris DISTINCT
-exports.getCategorias = async (req, res) => {
-  try{
-    const cursos = await Curso.find({}, { categoria: 1 }); // solo traemos el campo categoria
-    const categorias = [...new Set(cursos.map(curso => curso.categoria))];
-    res.status(200).json(categorias);
-  } catch (error) {
-    res.status(500).json({ mensaje: "Error obteniendo categorias", error });
-  }
+  const comentarios = await Comentario.find({ cursoId: id })
+    .sort({ fecha: -1 })
+    .populate('usuarioId', 'nombre email');
+
+  return res.status(200).json({
+    _id: curso._id,
+    titulo: curso.titulo,
+    categoria: curso.categoria,
+    nivel: curso.nivel,
+    duracion: curso.duracion,
+    descripcion: curso.descripcion,
+    imagen: curso.imagen,
+    profesor: curso.profesorId?.nombre || '',
+    profesorDetalle: curso.profesorId
+      ? {
+          _id: curso.profesorId._id,
+          nombre: curso.profesorId.nombre,
+          email: curso.profesorId.email,
+          especialidad: curso.profesorId.especialidad,
+          foto: curso.profesorId.foto
+        }
+      : null,
+    contenidos: curso.temario || [],
+    temario: curso.temario || [],
+    requisitos: [],
+    comentarios: comentarios.map((c) => ({
+      _id: c._id,
+      comentario: c.comentario,
+      puntuacion: c.puntuacion,
+      fecha: c.fecha,
+      usuario: c.usuarioId
+        ? {
+            _id: c.usuarioId._id,
+            nombre: c.usuarioId.nombre,
+            email: c.usuarioId.email
+          }
+        : null
+    }))
+  });
 };
 
-//Niveles DISTINCT
-exports.getNiveles = async (req, res) => {
-  try {
-    const cursos = await Curso.find({}, { nivel: 1 }); // solo traemos el campo nivel
-    const niveles = [...new Set(cursos.map(curso => curso.nivel))];
-    res.status(200).json(niveles);
-  } catch (error) {
-    res.status(500).json({ mensaje: "Error obteniendo niveles", error });
+exports.getCategorias = async (_req, res) => {
+  const categorias = await Curso.distinct('categoria');
+  res.status(200).json(categorias);
+};
+
+exports.getNiveles = async (_req, res) => {
+  const niveles = await Curso.distinct('nivel');
+  res.status(200).json(niveles);
+};
+
+exports.crearCurso = async (req, res) => {
+  const { titulo, categoria, nivel, duracion, descripcion, imagen, profesorId, temario } = req.body;
+
+  if (!titulo || !categoria || !nivel || !duracion || !descripcion || !imagen || !profesorId) {
+    return res.status(400).json({ mensaje: 'Faltan campos obligatorios del curso' });
   }
+
+  const curso = await Curso.create({
+    titulo: String(titulo).trim(),
+    categoria: String(categoria).trim(),
+    nivel: String(nivel).trim(),
+    duracion: String(duracion).trim(),
+    descripcion: String(descripcion).trim(),
+    imagen: String(imagen).trim(),
+    profesorId,
+    temario: Array.isArray(temario) ? temario : []
+  });
+
+  return res.status(201).json({
+    mensaje: 'Curso creado correctamente',
+    curso
+  });
+};
+
+exports.actualizarCurso = async (req, res) => {
+  const { id } = req.params;
+  const { titulo, categoria, nivel, duracion, descripcion, imagen, profesorId, temario } = req.body;
+
+  const cursoActualizado = await Curso.findByIdAndUpdate(
+    id,
+    {
+      ...(titulo !== undefined ? { titulo: String(titulo).trim() } : {}),
+      ...(categoria !== undefined ? { categoria: String(categoria).trim() } : {}),
+      ...(nivel !== undefined ? { nivel: String(nivel).trim() } : {}),
+      ...(duracion !== undefined ? { duracion: String(duracion).trim() } : {}),
+      ...(descripcion !== undefined ? { descripcion: String(descripcion).trim() } : {}),
+      ...(imagen !== undefined ? { imagen: String(imagen).trim() } : {}),
+      ...(profesorId !== undefined ? { profesorId } : {}),
+      ...(temario !== undefined ? { temario: Array.isArray(temario) ? temario : [] } : {})
+    },
+    { new: true, runValidators: true }
+  );
+
+  if (!cursoActualizado) {
+    return res.status(404).json({ mensaje: 'Curso no encontrado' });
+  }
+
+  return res.status(200).json({
+    mensaje: 'Curso actualizado correctamente',
+    curso: cursoActualizado
+  });
+};
+
+exports.borrarCurso = async (req, res) => {
+  const { id } = req.params;
+
+  const cursoEliminado = await Curso.findByIdAndDelete(id);
+
+  if (!cursoEliminado) {
+    return res.status(404).json({ mensaje: 'Curso no encontrado' });
+  }
+
+  return res.status(200).json({ mensaje: 'Curso eliminado correctamente' });
 };

@@ -3,6 +3,7 @@ require('dotenv').config();
 const fs = require('fs/promises');
 const path = require('path');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const connectDB = require('../src/config/database');
 const Curso = require('../src/models/Curso');
@@ -76,29 +77,36 @@ async function seed() {
   const cursosInsertados = await Curso.insertMany(cursosParaInsertar);
 
   // Usuarios de apoyo para desarrollo (admin + alumnos de prueba)
+  const [adminHash, alumno1Hash, alumno2Hash, alumno3Hash] = await Promise.all([
+    bcrypt.hash('Admin123!', 10),
+    bcrypt.hash('Alumno123!', 10),
+    bcrypt.hash('Alumno123!', 10),
+    bcrypt.hash('Alumno123!', 10)
+  ]);
+
   const usuarios = await Usuario.insertMany([
     {
       nombre: 'Administrador Global Online',
       email: 'admin@globalonline.edu',
-      passwordHash: '$2b$10$dev.seed.admin.hash',
+      passwordHash: adminHash,
       rol: 'admin'
     },
     {
       nombre: 'Lucia Torres',
       email: 'lucia.torres@alumnos.globalonline.edu',
-      passwordHash: '$2b$10$dev.seed.alumno1.hash',
+      passwordHash: alumno1Hash,
       rol: 'alumno'
     },
     {
       nombre: 'Miguel Santos',
       email: 'miguel.santos@alumnos.globalonline.edu',
-      passwordHash: '$2b$10$dev.seed.alumno2.hash',
+      passwordHash: alumno2Hash,
       rol: 'alumno'
     },
     {
       nombre: 'Elena Martin',
       email: 'elena.martin@alumnos.globalonline.edu',
-      passwordHash: '$2b$10$dev.seed.alumno3.hash',
+      passwordHash: alumno3Hash,
       rol: 'alumno'
     }
   ]);
