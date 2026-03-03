@@ -1,74 +1,88 @@
 var main = function () {
+  'use strict';
 
-    "use strict";
+  $('#btn-imprimir').on('click', function () {
+    imprimirCurso();
+  });
+};
 
-    $("#btn-imprimir").on("click", function () {
-        imprimirCurso();
-    });
-
-}
 $(document).ready(main);
 
-
 function obtenerIdDesdeURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("id");
+  const params = new URLSearchParams(window.location.search);
+  return params.get('id');
 }
 
 async function obtenerCursoPorId(id) {
-    //TODO: hacer de forma centralizada el control de errores
-    const respuesta = await fetch(`/api/cursos/${id}`);
-    if (!respuesta.ok){        
-        const error = await respuesta.json(); 
-        console.error("Error:", error.mensaje);
-        return null;
-    }
-    const curso = await respuesta.json();
-    return curso;
+  const respuesta = await fetch(`/api/cursos/${id}`);
+
+  if (!respuesta.ok) {
+    const error = await respuesta.json();
+    console.error('Error:', error.mensaje);
+    return null;
+  }
+
+  return respuesta.json();
 }
 
-obtenerCursoPorId(obtenerIdDesdeURL()).then(curso => {
-    if (!curso) {
-        const contenedorResultado = document.getElementById("contenedor-respuesta-detalle-curso");
-        contenedorResultado.textContent = "Curso no encontrado";
-        contenedorResultado.classList.add("alert-danger");
-        contenedorResultado.classList.add("alert");
-        contenedorResultado.classList.remove("d-none");
-    }
+function renderComentarios(comentarios) {
+  const listaComentarios = document.getElementById('lista-comentarios');
 
-    // Imagen
-    document.getElementById("imagen-curso").src = curso.imagen;
-    document.getElementById("imagen-curso").alt = curso.titulo;
+  if (!comentarios || comentarios.length === 0) {
+    listaComentarios.innerHTML = "<li class='list-group-item'>Todavia no hay comentarios para este curso.</li>";
+    return;
+  }
 
-    // Título y descripción
-    document.getElementById("titulo-curso").textContent = curso.titulo;
-    document.getElementById("descripcion-curso").textContent = curso.descripcion;
+  listaComentarios.innerHTML = comentarios
+    .map((item) => {
+      const autor = item.usuario?.nombre || 'Usuario';
+      const fecha = new Date(item.fecha).toLocaleDateString('es-ES');
+      return `<li class="list-group-item"><strong>${autor}</strong> (${item.puntuacion}/5) - ${fecha}<br>${item.comentario}</li>`;
+    })
+    .join('');
+}
 
-    // Información del curso
-    document.getElementById("categoria-curso").textContent = curso.categoria;
-    document.getElementById("nivel-curso").textContent = curso.nivel;
-    document.getElementById("duracion-curso").textContent = curso.duracion;
-    document.getElementById("profesor-curso").textContent = curso.profesor;
+obtenerCursoPorId(obtenerIdDesdeURL()).then((curso) => {
+  if (!curso) {
+    const contenedorResultado = document.getElementById('contenedor-respuesta-detalle-curso');
+    contenedorResultado.textContent = 'Curso no encontrado';
+    contenedorResultado.classList.add('alert-danger');
+    contenedorResultado.classList.add('alert');
+    contenedorResultado.classList.remove('d-none');
+    return;
+  }
 
-    // Contenidos
-    document.getElementById("lista-contenidos").innerHTML =
-        curso.contenidos
-            .map(item => `<li class="list-group-item">${item}</li>`)
-            .join("");
+  document.getElementById('imagen-curso').src = curso.imagen;
+  document.getElementById('imagen-curso').alt = curso.titulo;
 
-    // Requisitos
-    if (curso.requisitos.length === 0) {
-        document.getElementById("lista-requisitos").innerHTML = "<li class='list-group-item'>No se requieren requisitos previos.</li>";
-    } else {
-        document.getElementById("lista-requisitos").innerHTML =
-        curso.requisitos
-            .map(item => `<li class="list-group-item">${item}</li>`)
-            .join("");
-    }
+  document.getElementById('titulo-curso').textContent = curso.titulo;
+  document.getElementById('descripcion-curso').textContent = curso.descripcion;
 
+  document.getElementById('categoria-curso').textContent = curso.categoria;
+  document.getElementById('nivel-curso').textContent = curso.nivel;
+  document.getElementById('duracion-curso').textContent = curso.duracion;
+  document.getElementById('profesor-curso').textContent = curso.profesor;
+
+  const contenidos = curso.contenidos || curso.temario || [];
+
+  document.getElementById('lista-contenidos').innerHTML = contenidos
+    .map((item) => `<li class="list-group-item">${item}</li>`)
+    .join('');
+
+  const requisitos = curso.requisitos || [];
+
+  if (requisitos.length === 0) {
+    document.getElementById('lista-requisitos').innerHTML =
+      "<li class='list-group-item'>No se requieren requisitos previos.</li>";
+  } else {
+    document.getElementById('lista-requisitos').innerHTML = requisitos
+      .map((item) => `<li class="list-group-item">${item}</li>`)
+      .join('');
+  }
+
+  renderComentarios(curso.comentarios || []);
 });
 
-function imprimirCurso(){
-    window.print();
+function imprimirCurso() {
+  window.print();
 }
-

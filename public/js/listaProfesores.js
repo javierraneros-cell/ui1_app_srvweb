@@ -1,87 +1,101 @@
 var main = function () {
+  'use strict';
 
-    "use strict";
+  $('#cabecera-orden-nombre-0').on('click', function () {
+    ordenaPorColumna(this, 0);
+  });
 
-    $("#cabecera-orden-nombre-0").on("click", function () {
-        ordenaPorColumna(this, 0);
-    });
+  $('#cabecera-orden-especialidad-1').on('click', function () {
+    ordenaPorColumna(this, 1);
+  });
 
-    $("#cabecera-orden-experiencia-2").on("click", function () {
-        ordenaPorColumna(this, 2);
-    });
+  $('#cabecera-orden-numcursos-3').on('click', function () {
+    ordenaPorColumna(this, 3);
+  });
+};
 
-    $("#cabecera-orden-numcursos-3").on("click", function () {
-        ordenaPorColumna(this, 3);
-    });
-
-}
 $(document).ready(main);
 
-/**
- * Funcion que pasando la cabecera y el numero de la columna de la tabla, ordena todas las filas
- * @param {} th 
- * @param {*} columna 
- */
+window.addEventListener('load', () => {
+  cargarProfesores();
+});
+
+async function cargarProfesores() {
+  const respuesta = await fetch('/api/profesores');
+
+  if (!respuesta.ok) {
+    mostrarError('No se pudo cargar el listado de profesorado.');
+    return;
+  }
+
+  const profesores = await respuesta.json();
+  const tbody = document.querySelector('#tabla-profesores tbody');
+
+  tbody.innerHTML = profesores
+    .map(
+      (profesor) => `
+      <tr>
+        <td>${profesor.nombre}</td>
+        <td>${profesor.especialidad}</td>
+        <td>${profesor.email}</td>
+        <td>${profesor.numCursos}</td>
+      </tr>`
+    )
+    .join('');
+}
+
+function mostrarError(mensaje) {
+  const respuesta = document.getElementById('respuesta-profesores');
+  respuesta.textContent = mensaje;
+  respuesta.classList.add('alert', 'alert-danger');
+  respuesta.classList.remove('d-none');
+}
+
 function ordenaPorColumna(th, columna) {
+  th.dataset.order = th.dataset.order === 'asc' ? 'desc' : 'asc';
+  const orden = th.dataset.order;
 
-    // Toggle asc / desc
-    th.dataset.order = th.dataset.order === "asc" ? "desc" : "asc";
-    const orden = th.dataset.order;
+  const tabla = document.getElementById('tabla-profesores');
+  const tbody = tabla.querySelector('tbody');
+  const filas = tbody.rows;
 
-    //Obtener todas las ROWS de la tabla
-    const tabla = document.getElementById("tabla-profesores");
-    const tbody = tabla.querySelector("tbody");
-    const filas = tbody.rows;
+  const filasOrdenadas = ordenarFilas(filas, orden, columna);
 
-    //Ordenar
-    const filasOrdenadas = ordenarFilas(filas, orden, columna);
+  for (let i = 0; i < filasOrdenadas.length; i += 1) {
+    const fila = filasOrdenadas[i];
+    tbody.appendChild(fila);
+  }
 
-    // Insertar filas ordenadas
-    for(i=0; i < filasOrdenadas.length; i++){
-        let fila = filasOrdenadas[i];
-        tbody.appendChild(fila);
-    }
-
-    // Actualizar flechas visuales
-    pintaCabeceraOrden(th, orden);
+  pintaCabeceraOrden(th, orden);
 }
 
 function ordenarFilas(filasDesordendas, order, columna) {
-    //Convertimos en array para poder ejecutar SORT:
-    const arrayFilas = [];
-    for (const fila of filasDesordendas) {
-        arrayFilas.push(fila);
+  const arrayFilas = [];
+  for (const fila of filasDesordendas) {
+    arrayFilas.push(fila);
+  }
+
+  arrayFilas.sort((elementoA, elementoB) => {
+    const valorA = elementoA.children[columna].innerText.trim();
+    const valorB = elementoB.children[columna].innerText.trim();
+
+    const numA = parseFloat(valorA.replace(',', '.'));
+    const numB = parseFloat(valorB.replace(',', '.'));
+
+    if (!Number.isNaN(numA) && !Number.isNaN(numB)) {
+      return order === 'asc' ? numA - numB : numB - numA;
     }
 
-    //Devuelve negativo si el primer elemento es menor que el segundo, 0 si son iguales o positivo si es mayor:
-    arrayFilas.sort((elementoA, elementoB) => {
-        const valorA = elementoA.children[columna].innerText.trim();
-        const valorB = elementoB.children[columna].innerText.trim();
+    return order === 'asc' ? valorA.localeCompare(valorB) : valorB.localeCompare(valorA);
+  });
 
-        const numA = parseFloat(valorA.replace(",", "."));
-        const numB = parseFloat(valorB.replace(",", "."));
-
-        // Si ambos son números
-        if (!isNaN(numA) && !isNaN(numB)) {
-            return order === "asc" ? numA - numB : numB - numA;
-        }
-
-        // Si son textos
-        return order === "asc"
-            ? valorA.localeCompare(valorB)
-            : valorB.localeCompare(valorA);
-    });
-
-    return arrayFilas;
+  return arrayFilas;
 }
 
 function pintaCabeceraOrden(th, orden) {
-    // Quitar flechas de todos los th
-    document.querySelectorAll("th[data-sort='true']").forEach(col => {
-        col.classList.remove("asc", "desc");
-    });
+  document.querySelectorAll("th[data-sort='true']").forEach((col) => {
+    col.classList.remove('asc', 'desc');
+  });
 
-    // Añadir cabecera orden a la columna actual
-    th.classList.add(orden);
+  th.classList.add(orden);
 }
-
