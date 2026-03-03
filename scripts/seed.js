@@ -71,7 +71,8 @@ async function seed() {
     descripcion: curso.descripcion,
     imagen: curso.imagen,
     profesorId: profesoresPorNombre.get(curso.profesor)._id,
-    temario: curso.contenidos || []
+    temario: curso.contenidos || [],
+    requisitos: curso.requisitos || []
   }));
 
   const cursosInsertados = await Curso.insertMany(cursosParaInsertar);

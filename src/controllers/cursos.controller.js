@@ -34,7 +34,8 @@ exports.getListadoCursos = async (req, res) => {
     profesor: curso.profesorId?.nombre || '',
     profesorId: curso.profesorId?._id || null,
     temario: curso.temario || [],
-    contenidos: curso.temario || []
+    contenidos: curso.temario || [],
+    requisitos: curso.requisitos || []
   }));
 
   res.status(200).json(payload);
@@ -73,7 +74,7 @@ exports.getCurso = async (req, res) => {
       : null,
     contenidos: curso.temario || [],
     temario: curso.temario || [],
-    requisitos: [],
+    requisitos: curso.requisitos || [],
     comentarios: comentarios.map((c) => ({
       _id: c._id,
       comentario: c.comentario,
@@ -101,7 +102,7 @@ exports.getNiveles = async (_req, res) => {
 };
 
 exports.crearCurso = async (req, res) => {
-  const { titulo, categoria, nivel, duracion, descripcion, imagen, profesorId, temario } = req.body;
+  const { titulo, categoria, nivel, duracion, descripcion, imagen, profesorId, temario, requisitos } = req.body;
 
   if (!titulo || !categoria || !nivel || !duracion || !descripcion || !imagen || !profesorId) {
     return res.status(400).json({ mensaje: 'Faltan campos obligatorios del curso' });
@@ -115,7 +116,8 @@ exports.crearCurso = async (req, res) => {
     descripcion: String(descripcion).trim(),
     imagen: String(imagen).trim(),
     profesorId,
-    temario: Array.isArray(temario) ? temario : []
+    temario: Array.isArray(temario) ? temario : [],
+    requisitos: Array.isArray(requisitos) ? requisitos : []
   });
 
   return res.status(201).json({
@@ -126,7 +128,7 @@ exports.crearCurso = async (req, res) => {
 
 exports.actualizarCurso = async (req, res) => {
   const { id } = req.params;
-  const { titulo, categoria, nivel, duracion, descripcion, imagen, profesorId, temario } = req.body;
+  const { titulo, categoria, nivel, duracion, descripcion, imagen, profesorId, temario, requisitos } = req.body;
 
   const cursoActualizado = await Curso.findByIdAndUpdate(
     id,
@@ -138,7 +140,8 @@ exports.actualizarCurso = async (req, res) => {
       ...(descripcion !== undefined ? { descripcion: String(descripcion).trim() } : {}),
       ...(imagen !== undefined ? { imagen: String(imagen).trim() } : {}),
       ...(profesorId !== undefined ? { profesorId } : {}),
-      ...(temario !== undefined ? { temario: Array.isArray(temario) ? temario : [] } : {})
+      ...(temario !== undefined ? { temario: Array.isArray(temario) ? temario : [] } : {}),
+      ...(requisitos !== undefined ? { requisitos: Array.isArray(requisitos) ? requisitos : [] } : {})
     },
     { new: true, runValidators: true }
   );

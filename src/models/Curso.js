@@ -40,6 +40,10 @@ const cursoSchema = new mongoose.Schema(
     temario: {
       type: [String],
       default: []
+    },
+    requisitos: {
+      type: [String],
+      default: []
     }
   },
   {
