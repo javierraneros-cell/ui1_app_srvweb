@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
+const path = require('path');
 
 const cursosRoutes = require('./routes/cursos.routes');
 const profesoresRoutes = require('./routes/profesores.routes');
@@ -30,6 +31,7 @@ app.use(
     }
   })
 );
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.get('/health', (_req, res) => {
   res.status(200).json({ ok: true });

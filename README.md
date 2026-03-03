@@ -118,6 +118,12 @@ Se añadió autenticación basada en sesión con cookie HTTP:
 - `PUT /api/cursos/:id`
 - `DELETE /api/cursos/:id`
 
+### Panel admin (frontend)
+
+- URL: `http://localhost:3000/admin.html`
+- Permite login de admin y CRUD de cursos (crear, editar, eliminar).
+- Consume API REST usando sesion/cookie.
+
 ### Comentarios por curso (usuario autenticado)
 
 - `POST /api/cursos/:id/comentarios`
