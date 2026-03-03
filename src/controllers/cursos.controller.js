@@ -44,13 +44,23 @@ exports.getCurso = async (req, res) =>{
 }
 
 //Categoris DISTINCT
-exports.getCategorias = (req, res) => {
+exports.getCategorias = async (req, res) => {
+  try{
+    const cursos = await Curso.find({}, { categoria: 1 }); // solo traemos el campo categoria
     const categorias = [...new Set(cursos.map(curso => curso.categoria))];
     res.status(200).json(categorias);
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error obteniendo categorias", error });
+  }
 };
 
 //Niveles DISTINCT
-exports.getNiveles = (req, res) => {
+exports.getNiveles = async (req, res) => {
+  try {
+    const cursos = await Curso.find({}, { nivel: 1 }); // solo traemos el campo nivel
     const niveles = [...new Set(cursos.map(curso => curso.nivel))];
     res.status(200).json(niveles);
+  } catch (error) {
+    res.status(500).json({ mensaje: "Error obteniendo niveles", error });
+  }
 };
