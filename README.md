@@ -118,6 +118,13 @@ Se añadió autenticación basada en sesión con cookie HTTP:
 - `PUT /api/cursos/:id`
 - `DELETE /api/cursos/:id`
 
+### Comentarios por curso (usuario autenticado)
+
+- `POST /api/cursos/:id/comentarios`
+  - Requiere sesion iniciada.
+  - Valida puntuacion entre `1` y `5`.
+  - Sanitiza texto para evitar HTML directo en comentarios.
+
 ### Usuarios de prueba cargados por seed
 
 Tras ejecutar `npm run seed`:

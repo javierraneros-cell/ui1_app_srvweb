@@ -1,5 +1,6 @@
 const Curso = require('../models/Curso');
 const Comentario = require('../models/Comentario');
+const { sanitizePlainText } = require('../utils/sanitize');
 
 exports.getListadoCursos = async (req, res) => {
   const { titulo = '', categoria = '', nivel = '' } = req.query;
@@ -162,4 +163,55 @@ exports.borrarCurso = async (req, res) => {
   }
 
   return res.status(200).json({ mensaje: 'Curso eliminado correctamente' });
+};
+
+exports.crearComentarioCurso = async (req, res) => {
+  const { id } = req.params;
+  const { comentario, puntuacion } = req.body;
+
+  const textoSanitizado = sanitizePlainText(comentario);
+  const puntuacionNumerica = Number(puntuacion);
+
+  if (!textoSanitizado) {
+    return res.status(400).json({ mensaje: 'El comentario no puede estar vacio' });
+  }
+
+  if (textoSanitizado.length > 1000) {
+    return res.status(400).json({ mensaje: 'El comentario supera el maximo de 1000 caracteres' });
+  }
+
+  if (!Number.isInteger(puntuacionNumerica) || puntuacionNumerica < 1 || puntuacionNumerica > 5) {
+    return res.status(400).json({ mensaje: 'La puntuacion debe estar entre 1 y 5' });
+  }
+
+  const curso = await Curso.findById(id);
+  if (!curso) {
+    return res.status(404).json({ mensaje: 'Curso no encontrado' });
+  }
+
+  const comentarioCreado = await Comentario.create({
+    usuarioId: req.session.usuario.id,
+    cursoId: curso._id,
+    comentario: textoSanitizado,
+    puntuacion: puntuacionNumerica
+  });
+
+  const comentarioPopulado = await Comentario.findById(comentarioCreado._id).populate('usuarioId', 'nombre email');
+
+  return res.status(201).json({
+    mensaje: 'Comentario publicado correctamente',
+    comentario: {
+      _id: comentarioPopulado._id,
+      comentario: comentarioPopulado.comentario,
+      puntuacion: comentarioPopulado.puntuacion,
+      fecha: comentarioPopulado.fecha,
+      usuario: comentarioPopulado.usuarioId
+        ? {
+            _id: comentarioPopulado.usuarioId._id,
+            nombre: comentarioPopulado.usuarioId.nombre,
+            email: comentarioPopulado.usuarioId.email
+          }
+        : null
+    }
+  });
 };
