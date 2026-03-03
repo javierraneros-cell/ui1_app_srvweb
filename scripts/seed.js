@@ -73,7 +73,69 @@ async function seed() {
     temario: curso.contenidos || []
   }));
 
-  await Curso.insertMany(cursosParaInsertar);
+  const cursosInsertados = await Curso.insertMany(cursosParaInsertar);
+
+  // Usuarios de apoyo para desarrollo (admin + alumnos de prueba)
+  const usuarios = await Usuario.insertMany([
+    {
+      nombre: 'Administrador Global Online',
+      email: 'admin@globalonline.edu',
+      passwordHash: '$2b$10$dev.seed.admin.hash',
+      rol: 'admin'
+    },
+    {
+      nombre: 'Lucia Torres',
+      email: 'lucia.torres@alumnos.globalonline.edu',
+      passwordHash: '$2b$10$dev.seed.alumno1.hash',
+      rol: 'alumno'
+    },
+    {
+      nombre: 'Miguel Santos',
+      email: 'miguel.santos@alumnos.globalonline.edu',
+      passwordHash: '$2b$10$dev.seed.alumno2.hash',
+      rol: 'alumno'
+    },
+    {
+      nombre: 'Elena Martin',
+      email: 'elena.martin@alumnos.globalonline.edu',
+      passwordHash: '$2b$10$dev.seed.alumno3.hash',
+      rol: 'alumno'
+    }
+  ]);
+
+  // Comentarios de ejemplo por curso para facilitar desarrollo del detalle/valoraciones
+  const comentariosBase = [
+    'Curso muy claro y bien estructurado.',
+    'Buen contenido practico y aplicable al trabajo diario.',
+    'Me gusto la progresion de temas y los ejemplos.',
+    'Recomendado para quien quiera una base solida.',
+    'Explicaciones directas y faciles de seguir.'
+  ];
+
+  const alumnos = usuarios.filter((u) => u.rol === 'alumno');
+  const comentariosParaInsertar = [];
+
+  cursosInsertados.forEach((curso, indexCurso) => {
+    const comentario1 = {
+      usuarioId: alumnos[indexCurso % alumnos.length]._id,
+      cursoId: curso._id,
+      comentario: comentariosBase[indexCurso % comentariosBase.length],
+      puntuacion: (indexCurso % 3) + 3,
+      fecha: new Date(Date.now() - indexCurso * 86400000)
+    };
+
+    const comentario2 = {
+      usuarioId: alumnos[(indexCurso + 1) % alumnos.length]._id,
+      cursoId: curso._id,
+      comentario: comentariosBase[(indexCurso + 2) % comentariosBase.length],
+      puntuacion: ((indexCurso + 1) % 3) + 3,
+      fecha: new Date(Date.now() - (indexCurso + 1) * 86400000)
+    };
+
+    comentariosParaInsertar.push(comentario1, comentario2);
+  });
+
+  await Comentario.insertMany(comentariosParaInsertar);
 
   console.log('Seed completado');
   console.log(`Profesores: ${await Profesor.countDocuments()}`);
