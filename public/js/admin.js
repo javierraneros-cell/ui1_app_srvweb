@@ -27,6 +27,7 @@ function limpiarFormularioCurso() {
   document.getElementById('curso-imagen').value = '';
   document.getElementById('curso-descripcion').value = '';
   document.getElementById('curso-temario').value = '';
+  document.getElementById('curso-requisitos').value = '';
   if (profesores.length > 0) {
     document.getElementById('curso-profesor').value = profesores[0]._id;
   }
@@ -81,6 +82,7 @@ function cargarCursoEnFormulario(cursoId) {
   document.getElementById('curso-imagen').value = curso.imagen;
   document.getElementById('curso-descripcion').value = curso.descripcion;
   document.getElementById('curso-temario').value = (curso.temario || []).join('\n');
+  document.getElementById('curso-requisitos').value = (curso.requisitos || []).join('\n');
 
   const profesor = profesores.find((p) => p.nombre === curso.profesor);
   if (profesor) {
@@ -183,6 +185,11 @@ function construirPayloadCurso() {
     .value.split('\n')
     .map((linea) => linea.trim())
     .filter(Boolean);
+  const requisitos = document
+    .getElementById('curso-requisitos')
+    .value.split('\n')
+    .map((linea) => linea.trim())
+    .filter(Boolean);
 
   return {
     titulo: document.getElementById('curso-titulo').value.trim(),
@@ -192,7 +199,8 @@ function construirPayloadCurso() {
     imagen: document.getElementById('curso-imagen').value.trim(),
     descripcion: document.getElementById('curso-descripcion').value.trim(),
     profesorId: document.getElementById('curso-profesor').value,
-    temario
+    temario,
+    requisitos
   };
 }
 
