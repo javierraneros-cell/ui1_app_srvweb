@@ -92,14 +92,30 @@ function renderFormularioComentario(autenticado) {
   document.getElementById('form-comentario').addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const comentario = document.getElementById('comentario-texto').value;
+    const comentario = document.getElementById('comentario-texto').value.trim();
     const puntuacion = document.getElementById('comentario-puntuacion').value;
+    const puntuacionNumerica = Number(puntuacion);
+
+    if (!comentario) {
+      mostrarRespuestaComentario('El comentario no puede estar vacio', 'error');
+      return;
+    }
+
+    if (comentario.length > 1000) {
+      mostrarRespuestaComentario('El comentario supera el maximo de 1000 caracteres', 'error');
+      return;
+    }
+
+    if (!Number.isInteger(puntuacionNumerica) || puntuacionNumerica < 1 || puntuacionNumerica > 5) {
+      mostrarRespuestaComentario('La puntuacion debe estar entre 1 y 5', 'error');
+      return;
+    }
 
     const respuesta = await fetch(`/api/cursos/${cursoActualId}/comentarios`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
-      body: JSON.stringify({ comentario, puntuacion: Number(puntuacion) })
+      body: JSON.stringify({ comentario, puntuacion: puntuacionNumerica })
     });
 
     const payload = await respuesta.json();

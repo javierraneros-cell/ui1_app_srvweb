@@ -7,11 +7,13 @@ const cursosRoutes = require('./routes/cursos.routes');
 const profesoresRoutes = require('./routes/profesores.routes');
 const authRoutes = require('./routes/auth.routes');
 const usuariosRoutes = require('./routes/usuarios.routes');
+const requestLogger = require('./middlewares/requestLogger');
 const { notFoundHandler, errorHandler } = require('./middlewares/errorHandler');
 
 const app = express();
 
 app.use(express.json());
+app.use(requestLogger);
 app.use(
   cors({
     origin: true,

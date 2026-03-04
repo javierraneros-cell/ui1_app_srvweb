@@ -10,6 +10,52 @@ function setFeedback(mensaje, ok) {
   box.textContent = mensaje;
 }
 
+function esEmailValido(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
+}
+
+function validarPayloadCurso(payload) {
+  const obligatorios = ['titulo', 'categoria', 'nivel', 'duracion', 'imagen', 'descripcion', 'profesorId'];
+  for (const campo of obligatorios) {
+    if (!String(payload[campo] || '').trim()) {
+      return `El campo ${campo} es obligatorio.`;
+    }
+  }
+  return null;
+}
+
+function validarPayloadProfesor(payload) {
+  const obligatorios = ['nombre', 'email', 'especialidad', 'foto'];
+  for (const campo of obligatorios) {
+    if (!String(payload[campo] || '').trim()) {
+      return `El campo ${campo} es obligatorio.`;
+    }
+  }
+  if (!esEmailValido(payload.email)) {
+    return 'El email del profesor no es valido.';
+  }
+  return null;
+}
+
+function validarPayloadUsuario(payload, esCreacion) {
+  const obligatorios = ['nombre', 'email', 'rol'];
+  for (const campo of obligatorios) {
+    if (!String(payload[campo] || '').trim()) {
+      return `El campo ${campo} es obligatorio.`;
+    }
+  }
+  if (!esEmailValido(payload.email)) {
+    return 'El email del usuario no es valido.';
+  }
+  if (payload.password && payload.password.length < 6) {
+    return 'La password debe tener al menos 6 caracteres.';
+  }
+  if (esCreacion && !payload.password) {
+    return 'La password es obligatoria para crear un usuario.';
+  }
+  return null;
+}
+
 function toggleAdminUI(isAdmin) {
   document.getElementById('form-login-admin').style.display = adminSesion ? 'none' : 'flex';
   document.getElementById('bloque-curso-admin').style.display = isAdmin ? 'block' : 'none';
@@ -255,6 +301,14 @@ async function loginAdmin(event) {
   event.preventDefault();
   const email = document.getElementById('admin-email').value;
   const password = document.getElementById('admin-password').value;
+  if (!esEmailValido(email)) {
+    setFeedback('Introduce un email valido.', false);
+    return;
+  }
+  if (String(password || '').length < 6) {
+    setFeedback('La password debe tener al menos 6 caracteres.', false);
+    return;
+  }
 
   const res = await fetch('/api/auth/login', {
     method: 'POST',
@@ -351,6 +405,11 @@ async function guardarCurso(event) {
 
   const cursoId = document.getElementById('curso-id').value;
   const payload = construirPayloadCurso();
+  const errorValidacion = validarPayloadCurso(payload);
+  if (errorValidacion) {
+    setFeedback(errorValidacion, false);
+    return;
+  }
 
   const url = cursoId ? `/api/cursos/${cursoId}` : '/api/cursos';
   const method = cursoId ? 'PUT' : 'POST';
@@ -401,6 +460,11 @@ async function guardarProfesor(event) {
 
   const profesorId = document.getElementById('profesor-id').value;
   const payload = construirPayloadProfesor();
+  const errorValidacion = validarPayloadProfesor(payload);
+  if (errorValidacion) {
+    setFeedback(errorValidacion, false);
+    return;
+  }
 
   const url = profesorId ? `/api/profesores/${profesorId}` : '/api/profesores';
   const method = profesorId ? 'PUT' : 'POST';
@@ -452,9 +516,10 @@ async function guardarUsuario(event) {
 
   const usuarioId = document.getElementById('usuario-id').value;
   const payload = construirPayloadUsuario();
-
-  if (!usuarioId && !payload.password) {
-    setFeedback('La password es obligatoria para crear un usuario.', false);
+  const esCreacion = !usuarioId;
+  const errorValidacion = validarPayloadUsuario(payload, esCreacion);
+  if (errorValidacion) {
+    setFeedback(errorValidacion, false);
     return;
   }
 
