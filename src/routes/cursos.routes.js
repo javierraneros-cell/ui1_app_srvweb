@@ -8,6 +8,7 @@ const router = express.Router();
 router.get('/categorias', asyncHandler(cursoController.getCategorias));
 router.get('/niveles', asyncHandler(cursoController.getNiveles));
 router.get('/', asyncHandler(cursoController.getListadoCursos));
+router.get('/:id/comentarios', asyncHandler(cursoController.getComentariosCurso));
 router.get('/:id', asyncHandler(cursoController.getCurso));
 router.post('/:id/comentarios', requireAuth, asyncHandler(cursoController.crearComentarioCurso));
 router.post('/', requireRole(['admin']), asyncHandler(cursoController.crearCurso));

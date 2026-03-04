@@ -36,6 +36,18 @@ async function obtenerCursoPorId(id) {
   return respuesta.json();
 }
 
+async function obtenerComentariosCurso(id) {
+  const respuesta = await fetch(`/api/cursos/${id}/comentarios`);
+
+  if (!respuesta.ok) {
+    const error = await respuesta.json();
+    console.error('Error comentarios:', error.mensaje);
+    return [];
+  }
+
+  return respuesta.json();
+}
+
 async function usuarioAutenticado() {
   const respuesta = await fetch('/api/auth/me', { credentials: 'include' });
   return respuesta.ok;
@@ -101,8 +113,8 @@ function renderFormularioComentario(autenticado) {
     document.getElementById('comentario-texto').value = '';
     document.getElementById('comentario-puntuacion').value = '';
 
-    const cursoRefrescado = await obtenerCursoPorId(cursoActualId);
-    renderComentarios(cursoRefrescado.comentarios || []);
+    const comentariosRefrescados = await obtenerComentariosCurso(cursoActualId);
+    renderComentarios(comentariosRefrescados || []);
   });
 }
 
@@ -164,7 +176,8 @@ async function cargarDetalleCurso() {
       .join('');
   }
 
-  renderComentarios(curso.comentarios || []);
+  const comentarios = await obtenerComentariosCurso(cursoActualId);
+  renderComentarios(comentarios || []);
   renderFormularioComentario(await usuarioAutenticado());
 }
 

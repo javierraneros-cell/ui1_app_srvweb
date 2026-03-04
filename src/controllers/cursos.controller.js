@@ -1,6 +1,23 @@
+const mongoose = require('mongoose');
 const Curso = require('../models/Curso');
 const Comentario = require('../models/Comentario');
 const { sanitizePlainText } = require('../utils/sanitize');
+
+function mapComentario(comentarioDoc) {
+  return {
+    _id: comentarioDoc._id,
+    comentario: comentarioDoc.comentario,
+    puntuacion: comentarioDoc.puntuacion,
+    fecha: comentarioDoc.fecha,
+    usuario: comentarioDoc.usuarioId
+      ? {
+          _id: comentarioDoc.usuarioId._id,
+          nombre: comentarioDoc.usuarioId.nombre,
+          email: comentarioDoc.usuarioId.email
+        }
+      : null
+  };
+}
 
 exports.getListadoCursos = async (req, res) => {
   const { titulo = '', categoria = '', nivel = '' } = req.query;
@@ -75,20 +92,27 @@ exports.getCurso = async (req, res) => {
     contenidos: curso.temario || [],
     temario: curso.temario || [],
     requisitos: curso.requisitos || [],
-    comentarios: comentarios.map((c) => ({
-      _id: c._id,
-      comentario: c.comentario,
-      puntuacion: c.puntuacion,
-      fecha: c.fecha,
-      usuario: c.usuarioId
-        ? {
-            _id: c.usuarioId._id,
-            nombre: c.usuarioId.nombre,
-            email: c.usuarioId.email
-          }
-        : null
-    }))
+    comentarios: comentarios.map(mapComentario)
   });
+};
+
+exports.getComentariosCurso = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ mensaje: 'Identificador no valido' });
+  }
+
+  const curso = await Curso.findById(id).select('_id');
+  if (!curso) {
+    return res.status(404).json({ mensaje: 'Curso no encontrado' });
+  }
+
+  const comentarios = await Comentario.find({ cursoId: id })
+    .sort({ fecha: -1 })
+    .populate('usuarioId', 'nombre email');
+
+  return res.status(200).json(comentarios.map(mapComentario));
 };
 
 exports.getCategorias = async (_req, res) => {
@@ -172,6 +196,10 @@ exports.crearComentarioCurso = async (req, res) => {
   const { id } = req.params;
   const { comentario, puntuacion } = req.body;
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ mensaje: 'Identificador no valido' });
+  }
+
   const textoSanitizado = sanitizePlainText(comentario);
   const puntuacionNumerica = Number(puntuacion);
 
@@ -203,18 +231,6 @@ exports.crearComentarioCurso = async (req, res) => {
 
   return res.status(201).json({
     mensaje: 'Comentario publicado correctamente',
-    comentario: {
-      _id: comentarioPopulado._id,
-      comentario: comentarioPopulado.comentario,
-      puntuacion: comentarioPopulado.puntuacion,
-      fecha: comentarioPopulado.fecha,
-      usuario: comentarioPopulado.usuarioId
-        ? {
-            _id: comentarioPopulado.usuarioId._id,
-            nombre: comentarioPopulado.usuarioId.nombre,
-            email: comentarioPopulado.usuarioId.email
-          }
-        : null
-    }
+    comentario: mapComentario(comentarioPopulado)
   });
 };
