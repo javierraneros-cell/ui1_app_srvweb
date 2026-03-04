@@ -10,12 +10,20 @@ function setFeedback(mensaje, ok) {
 }
 
 function toggleAdminUI(isAdmin) {
+  document.getElementById('form-login-admin').style.display = adminSesion ? 'none' : 'flex';
   document.getElementById('bloque-curso-admin').style.display = isAdmin ? 'block' : 'none';
   document.getElementById('bloque-listado-admin').style.display = isAdmin ? 'block' : 'none';
-  document.getElementById('btn-logout-admin').style.display = isAdmin ? 'inline-block' : 'none';
+  document.getElementById('bloque-profesor-admin').style.display = isAdmin ? 'block' : 'none';
+  document.getElementById('bloque-listado-profesores-admin').style.display = isAdmin ? 'block' : 'none';
+  document.getElementById('btn-logout-admin').style.display = adminSesion ? 'inline-block' : 'none';
 
   const info = document.getElementById('admin-user-info');
-  info.textContent = isAdmin ? `Sesion iniciada como ${adminSesion.nombre} (${adminSesion.email})` : '';
+  if (!adminSesion) {
+    info.textContent = '';
+    return;
+  }
+
+  info.textContent = `Sesion iniciada como ${adminSesion.nombre} (${adminSesion.email}) - rol: ${adminSesion.rol}`;
 }
 
 function limpiarFormularioCurso() {
@@ -31,6 +39,14 @@ function limpiarFormularioCurso() {
   if (profesores.length > 0) {
     document.getElementById('curso-profesor').value = profesores[0]._id;
   }
+}
+
+function limpiarFormularioProfesor() {
+  document.getElementById('profesor-id').value = '';
+  document.getElementById('profesor-nombre').value = '';
+  document.getElementById('profesor-email').value = '';
+  document.getElementById('profesor-especialidad').value = '';
+  document.getElementById('profesor-foto').value = '';
 }
 
 function cargarSelectProfesores() {
@@ -68,6 +84,34 @@ function renderCursosAdmin() {
   });
 }
 
+function renderProfesoresAdmin() {
+  const tbody = document.querySelector('#tabla-profesores-admin tbody');
+
+  tbody.innerHTML = profesores
+    .map((profesor) => {
+      const cursosAsignados = profesor.numCursos || 0;
+      return `<tr>
+        <td>${profesor.nombre}</td>
+        <td>${profesor.email}</td>
+        <td>${profesor.especialidad}</td>
+        <td>${cursosAsignados}</td>
+        <td class="d-flex gap-2">
+          <button class="btn btn-sm btn-outline-primary" data-action="edit-profesor" data-id="${profesor._id}">Editar</button>
+          <button class="btn btn-sm btn-outline-danger" data-action="delete-profesor" data-id="${profesor._id}" ${cursosAsignados > 0 ? 'disabled title="Tiene cursos asignados"' : ''}>Eliminar</button>
+        </td>
+      </tr>`;
+    })
+    .join('');
+
+  tbody.querySelectorAll('button[data-action="edit-profesor"]').forEach((btn) => {
+    btn.addEventListener('click', () => cargarProfesorEnFormulario(btn.dataset.id));
+  });
+
+  tbody.querySelectorAll('button[data-action="delete-profesor"]').forEach((btn) => {
+    btn.addEventListener('click', () => eliminarProfesor(btn.dataset.id));
+  });
+}
+
 function cargarCursoEnFormulario(cursoId) {
   const curso = cursos.find((c) => c._id === cursoId);
   if (!curso) {
@@ -92,6 +136,21 @@ function cargarCursoEnFormulario(cursoId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+function cargarProfesorEnFormulario(profesorId) {
+  const profesor = profesores.find((p) => p._id === profesorId);
+  if (!profesor) {
+    return;
+  }
+
+  document.getElementById('profesor-id').value = profesor._id;
+  document.getElementById('profesor-nombre').value = profesor.nombre;
+  document.getElementById('profesor-email').value = profesor.email;
+  document.getElementById('profesor-especialidad').value = profesor.especialidad;
+  document.getElementById('profesor-foto').value = profesor.foto;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 async function cargarDatosAdmin() {
   const [resCursos, resProfesores] = await Promise.all([
     fetch('/api/cursos', { credentials: 'include' }),
@@ -108,7 +167,9 @@ async function cargarDatosAdmin() {
 
   cargarSelectProfesores();
   limpiarFormularioCurso();
+  limpiarFormularioProfesor();
   renderCursosAdmin();
+  renderProfesoresAdmin();
 }
 
 async function comprobarSesion() {
@@ -121,15 +182,15 @@ async function comprobarSesion() {
   }
 
   const data = await res.json();
-  if (data.usuario.rol !== 'admin') {
-    adminSesion = null;
-    toggleAdminUI(false);
-    setFeedback('Tu sesion no tiene rol admin.', false);
+  adminSesion = data.usuario;
+  const esAdmin = adminSesion.rol === 'admin';
+  toggleAdminUI(esAdmin);
+
+  if (!esAdmin) {
+    setFeedback('Tu sesion esta iniciada, pero no tienes permisos de administracion.', false);
     return;
   }
 
-  adminSesion = data.usuario;
-  toggleAdminUI(true);
   await cargarDatosAdmin();
 }
 
@@ -152,12 +213,7 @@ async function loginAdmin(event) {
     return;
   }
 
-  if (payload.usuario.rol !== 'admin') {
-    setFeedback('La cuenta existe, pero no tiene permisos de administrador.', false);
-    return;
-  }
-
-  setFeedback('Sesion admin iniciada correctamente.', true);
+  setFeedback('Sesion iniciada correctamente.', true);
   await comprobarSesion();
 }
 
@@ -174,8 +230,11 @@ async function logoutAdmin() {
 
   adminSesion = null;
   cursos = [];
+  profesores = [];
   toggleAdminUI(false);
+  document.getElementById('form-login-admin').reset();
   document.querySelector('#tabla-cursos-admin tbody').innerHTML = '';
+  document.querySelector('#tabla-profesores-admin tbody').innerHTML = '';
   setFeedback('Sesion cerrada.', true);
 }
 
@@ -201,6 +260,15 @@ function construirPayloadCurso() {
     profesorId: document.getElementById('curso-profesor').value,
     temario,
     requisitos
+  };
+}
+
+function construirPayloadProfesor() {
+  return {
+    nombre: document.getElementById('profesor-nombre').value.trim(),
+    email: document.getElementById('profesor-email').value.trim(),
+    especialidad: document.getElementById('profesor-especialidad').value.trim(),
+    foto: document.getElementById('profesor-foto').value.trim()
   };
 }
 
@@ -254,11 +322,64 @@ async function eliminarCurso(cursoId) {
   await cargarDatosAdmin();
 }
 
+async function guardarProfesor(event) {
+  event.preventDefault();
+
+  const profesorId = document.getElementById('profesor-id').value;
+  const payload = construirPayloadProfesor();
+
+  const url = profesorId ? `/api/profesores/${profesorId}` : '/api/profesores';
+  const method = profesorId ? 'PUT' : 'POST';
+
+  const res = await fetch(url, {
+    method,
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify(payload)
+  });
+
+  const body = await res.json();
+
+  if (!res.ok) {
+    setFeedback(body.mensaje || 'No se pudo guardar el profesor.', false);
+    return;
+  }
+
+  setFeedback(body.mensaje || 'Profesor guardado correctamente.', true);
+  limpiarFormularioProfesor();
+  await cargarDatosAdmin();
+}
+
+async function eliminarProfesor(profesorId) {
+  const confirmado = window.confirm('¿Seguro que quieres eliminar este profesor?');
+  if (!confirmado) {
+    return;
+  }
+
+  const res = await fetch(`/api/profesores/${profesorId}`, {
+    method: 'DELETE',
+    credentials: 'include'
+  });
+
+  const body = await res.json();
+
+  if (!res.ok) {
+    setFeedback(body.mensaje || 'No se pudo eliminar el profesor.', false);
+    return;
+  }
+
+  setFeedback(body.mensaje || 'Profesor eliminado.', true);
+  limpiarFormularioProfesor();
+  await cargarDatosAdmin();
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('form-login-admin').addEventListener('submit', loginAdmin);
   document.getElementById('btn-logout-admin').addEventListener('click', logoutAdmin);
   document.getElementById('form-curso-admin').addEventListener('submit', guardarCurso);
   document.getElementById('btn-limpiar-form').addEventListener('click', limpiarFormularioCurso);
+  document.getElementById('form-profesor-admin').addEventListener('submit', guardarProfesor);
+  document.getElementById('btn-limpiar-profesor').addEventListener('click', limpiarFormularioProfesor);
 
   toggleAdminUI(false);
   await comprobarSesion();
