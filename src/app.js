@@ -6,6 +6,7 @@ const path = require('path');
 const cursosRoutes = require('./routes/cursos.routes');
 const profesoresRoutes = require('./routes/profesores.routes');
 const authRoutes = require('./routes/auth.routes');
+const usuariosRoutes = require('./routes/usuarios.routes');
 const { notFoundHandler, errorHandler } = require('./middlewares/errorHandler');
 
 const app = express();
@@ -40,6 +41,7 @@ app.get('/health', (_req, res) => {
 app.use('/api/cursos', cursosRoutes);
 app.use('/api/profesores', profesoresRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/usuarios', usuariosRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

@@ -1,6 +1,7 @@
 let adminSesion = null;
 let profesores = [];
 let cursos = [];
+let usuarios = [];
 
 function setFeedback(mensaje, ok) {
   const box = document.getElementById('admin-feedback');
@@ -15,6 +16,8 @@ function toggleAdminUI(isAdmin) {
   document.getElementById('bloque-listado-admin').style.display = isAdmin ? 'block' : 'none';
   document.getElementById('bloque-profesor-admin').style.display = isAdmin ? 'block' : 'none';
   document.getElementById('bloque-listado-profesores-admin').style.display = isAdmin ? 'block' : 'none';
+  document.getElementById('bloque-usuario-admin').style.display = isAdmin ? 'block' : 'none';
+  document.getElementById('bloque-listado-usuarios-admin').style.display = isAdmin ? 'block' : 'none';
   document.getElementById('btn-logout-admin').style.display = adminSesion ? 'inline-block' : 'none';
 
   const info = document.getElementById('admin-user-info');
@@ -47,6 +50,14 @@ function limpiarFormularioProfesor() {
   document.getElementById('profesor-email').value = '';
   document.getElementById('profesor-especialidad').value = '';
   document.getElementById('profesor-foto').value = '';
+}
+
+function limpiarFormularioUsuario() {
+  document.getElementById('usuario-id').value = '';
+  document.getElementById('usuario-nombre').value = '';
+  document.getElementById('usuario-email').value = '';
+  document.getElementById('usuario-rol').value = 'alumno';
+  document.getElementById('usuario-password').value = '';
 }
 
 function cargarSelectProfesores() {
@@ -112,6 +123,33 @@ function renderProfesoresAdmin() {
   });
 }
 
+function renderUsuariosAdmin() {
+  const tbody = document.querySelector('#tabla-usuarios-admin tbody');
+
+  tbody.innerHTML = usuarios
+    .map((usuario) => {
+      const esMiSesion = adminSesion && adminSesion._id === usuario._id;
+      return `<tr>
+        <td>${usuario.nombre}</td>
+        <td>${usuario.email}</td>
+        <td>${usuario.rol}</td>
+        <td class="d-flex gap-2">
+          <button class="btn btn-sm btn-outline-primary" data-action="edit-usuario" data-id="${usuario._id}">Editar</button>
+          <button class="btn btn-sm btn-outline-danger" data-action="delete-usuario" data-id="${usuario._id}" ${esMiSesion ? 'disabled title="No puedes eliminar tu propia sesion"' : ''}>Eliminar</button>
+        </td>
+      </tr>`;
+    })
+    .join('');
+
+  tbody.querySelectorAll('button[data-action="edit-usuario"]').forEach((btn) => {
+    btn.addEventListener('click', () => cargarUsuarioEnFormulario(btn.dataset.id));
+  });
+
+  tbody.querySelectorAll('button[data-action="delete-usuario"]').forEach((btn) => {
+    btn.addEventListener('click', () => eliminarUsuario(btn.dataset.id));
+  });
+}
+
 function cargarCursoEnFormulario(cursoId) {
   const curso = cursos.find((c) => c._id === cursoId);
   if (!curso) {
@@ -151,25 +189,44 @@ function cargarProfesorEnFormulario(profesorId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+function cargarUsuarioEnFormulario(usuarioId) {
+  const usuario = usuarios.find((u) => u._id === usuarioId);
+  if (!usuario) {
+    return;
+  }
+
+  document.getElementById('usuario-id').value = usuario._id;
+  document.getElementById('usuario-nombre').value = usuario.nombre;
+  document.getElementById('usuario-email').value = usuario.email;
+  document.getElementById('usuario-rol').value = usuario.rol;
+  document.getElementById('usuario-password').value = '';
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 async function cargarDatosAdmin() {
-  const [resCursos, resProfesores] = await Promise.all([
+  const [resCursos, resProfesores, resUsuarios] = await Promise.all([
     fetch('/api/cursos', { credentials: 'include' }),
-    fetch('/api/profesores', { credentials: 'include' })
+    fetch('/api/profesores', { credentials: 'include' }),
+    fetch('/api/usuarios', { credentials: 'include' })
   ]);
 
-  if (!resCursos.ok || !resProfesores.ok) {
-    setFeedback('No se pudieron cargar cursos/profesores', false);
+  if (!resCursos.ok || !resProfesores.ok || !resUsuarios.ok) {
+    setFeedback('No se pudieron cargar cursos/profesores/usuarios', false);
     return;
   }
 
   cursos = await resCursos.json();
   profesores = await resProfesores.json();
+  usuarios = await resUsuarios.json();
 
   cargarSelectProfesores();
   limpiarFormularioCurso();
   limpiarFormularioProfesor();
+  limpiarFormularioUsuario();
   renderCursosAdmin();
   renderProfesoresAdmin();
+  renderUsuariosAdmin();
 }
 
 async function comprobarSesion() {
@@ -231,10 +288,12 @@ async function logoutAdmin() {
   adminSesion = null;
   cursos = [];
   profesores = [];
+  usuarios = [];
   toggleAdminUI(false);
   document.getElementById('form-login-admin').reset();
   document.querySelector('#tabla-cursos-admin tbody').innerHTML = '';
   document.querySelector('#tabla-profesores-admin tbody').innerHTML = '';
+  document.querySelector('#tabla-usuarios-admin tbody').innerHTML = '';
   setFeedback('Sesion cerrada.', true);
 }
 
@@ -270,6 +329,21 @@ function construirPayloadProfesor() {
     especialidad: document.getElementById('profesor-especialidad').value.trim(),
     foto: document.getElementById('profesor-foto').value.trim()
   };
+}
+
+function construirPayloadUsuario() {
+  const payload = {
+    nombre: document.getElementById('usuario-nombre').value.trim(),
+    email: document.getElementById('usuario-email').value.trim(),
+    rol: document.getElementById('usuario-rol').value
+  };
+
+  const password = document.getElementById('usuario-password').value.trim();
+  if (password) {
+    payload.password = password;
+  }
+
+  return payload;
 }
 
 async function guardarCurso(event) {
@@ -373,6 +447,62 @@ async function eliminarProfesor(profesorId) {
   await cargarDatosAdmin();
 }
 
+async function guardarUsuario(event) {
+  event.preventDefault();
+
+  const usuarioId = document.getElementById('usuario-id').value;
+  const payload = construirPayloadUsuario();
+
+  if (!usuarioId && !payload.password) {
+    setFeedback('La password es obligatoria para crear un usuario.', false);
+    return;
+  }
+
+  const url = usuarioId ? `/api/usuarios/${usuarioId}` : '/api/usuarios';
+  const method = usuarioId ? 'PUT' : 'POST';
+
+  const res = await fetch(url, {
+    method,
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify(payload)
+  });
+
+  const body = await res.json();
+
+  if (!res.ok) {
+    setFeedback(body.mensaje || 'No se pudo guardar el usuario.', false);
+    return;
+  }
+
+  setFeedback(body.mensaje || 'Usuario guardado correctamente.', true);
+  limpiarFormularioUsuario();
+  await cargarDatosAdmin();
+}
+
+async function eliminarUsuario(usuarioId) {
+  const confirmado = window.confirm('¿Seguro que quieres eliminar este usuario?');
+  if (!confirmado) {
+    return;
+  }
+
+  const res = await fetch(`/api/usuarios/${usuarioId}`, {
+    method: 'DELETE',
+    credentials: 'include'
+  });
+
+  const body = await res.json();
+
+  if (!res.ok) {
+    setFeedback(body.mensaje || 'No se pudo eliminar el usuario.', false);
+    return;
+  }
+
+  setFeedback(body.mensaje || 'Usuario eliminado.', true);
+  limpiarFormularioUsuario();
+  await cargarDatosAdmin();
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('form-login-admin').addEventListener('submit', loginAdmin);
   document.getElementById('btn-logout-admin').addEventListener('click', logoutAdmin);
@@ -380,6 +510,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('btn-limpiar-form').addEventListener('click', limpiarFormularioCurso);
   document.getElementById('form-profesor-admin').addEventListener('submit', guardarProfesor);
   document.getElementById('btn-limpiar-profesor').addEventListener('click', limpiarFormularioProfesor);
+  document.getElementById('form-usuario-admin').addEventListener('submit', guardarUsuario);
+  document.getElementById('btn-limpiar-usuario').addEventListener('click', limpiarFormularioUsuario);
 
   toggleAdminUI(false);
   await comprobarSesion();
