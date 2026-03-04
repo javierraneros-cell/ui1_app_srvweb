@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const path = require('path');
 
 const cursosRoutes = require('./routes/cursos.routes');
@@ -11,6 +12,11 @@ const requestLogger = require('./middlewares/requestLogger');
 const { notFoundHandler, errorHandler } = require('./middlewares/errorHandler');
 
 const app = express();
+const isProduction = process.env.NODE_ENV === 'production';
+
+if (isProduction) {
+  app.set('trust proxy', 1);
+}
 
 app.use(express.json());
 app.use(requestLogger);
@@ -24,12 +30,17 @@ app.use(
   session({
     name: 'sid',
     secret: process.env.SESSION_SECRET || 'dev-session-secret-change-me',
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI,
+      collectionName: 'sesiones',
+      ttl: 60 * 60 * 8
+    }),
     resave: false,
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
       sameSite: 'lax',
-      secure: false,
+      secure: isProduction,
       maxAge: 1000 * 60 * 60 * 8
     }
   })

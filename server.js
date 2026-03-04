@@ -22,4 +22,9 @@ async function bootstrap() {
     process.exit(1);
   }
 }
-bootstrap();
+
+if (require.main === module) {
+  bootstrap();
+}
+
+module.exports = app;
