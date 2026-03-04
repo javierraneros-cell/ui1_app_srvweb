@@ -1,141 +1,194 @@
-# Contexto
-La empresa Formación Global Online desea desarrollar una plataforma web dedicada a la oferta de cursos de formación en línea en distintas áreas del conocimiento (tecnología, diseño, empresa, idiomas, etc.). El objetivo del proyecto es crear un prototipo inicial del sitio web que sirva como base para futuras ampliaciones, en las que se incorporarán diseño visual avanzado, interactividad y funcionalidades dinámicas.
-Este proyecto se desarrollará de forma progresiva a lo largo de la asignatura. En esta primera unidad didáctica se abordará exclusivamente la estructura HTML, que será mejorada en unidades posteriores mediante CSS, Bootstrap y JavaScript.
+# Caso Práctico – Unidad Didáctica 6 (Global Online: plataforma de cursos)
 
-## Objetivo de la actividad
-Desarrollar el código HTML de un sitio web estático que represente una plataforma de cursos en línea, utilizando una estructura correcta, completa y semántica.
+Ampliar la web realizada en la UD4 (HTML/CSS/Bootstrap/JS) para convertirla en una aplicación full-stack con Node.js + Express + MongoDB (Mongoose), usando MVC, API REST, AJAX y sesiones/cookies.
 
-En esta entrega no se debe utilizar CSS, JavaScript ni ningún otro tipo de diseño o programación adicional. El objetivo es evaluar la correcta estructuración del contenido, el uso de etiquetas HTML y el cumplimiento de las buenas prácticas vistas en la unidad didáctica.
+## 1) Objetivo UD6
 
-## UD2 Unidad didáctica 2. Estilos con CSS
-Añadido estilos CSS para maquetar el HTML actual pedido en la actividad y pasado el validador CSS https://jigsaw.w3.org/css-validator y de HTML https://validator.w3.org. También se comprueba que es responive
+Implementar una aplicacion web con:
 
-## UD4 Unidad didáctica 4. JSS y Bootstrap 
+- Persistencia en MongoDB.
+- Backend REST con arquitectura MVC.
+- Autenticacion por sesion/cookie y roles (`admin`, `alumno`).
+- Frontend dinamico consumiendo API con AJAX.
+- Manejo centralizado de errores.
+- Validacion/sanitizacion minima en entradas de usuario.
 
-Continuaremos con la web creada en las unidades anteriores para la plataforma Formación Global Online, pero ahora reorganizándola completamente con Bootstrap y añadiendo interactividad con JavaScript/jQuery.
+## 2) Estado de implementacion (resumen)
 
-En esta entrega se evaluará especialmente el uso de Bootstrap (grid, componentes y responsive) y la programación en JavaScript/jQuery (DOM, eventos, validación, arrays y asincronía
-
-Los cambios más importantes son:
-- Carousel Bootstrap en la parte superior en la pagina inicial
-- Añadidos a la página index bloques informativos tipo “blog” (noticias/actualizaciones de la plataforma) maquetados con Boostrap
-- El listado de cursos cargados a través de un fichero JSON y mostrados en formato CARDS con una busqueda como filtro
-- Tabla de listado de profesores con estilo bootstrap y ordenable
-- Menu bootstrap y generado dinamicamente
-- Footer con la hora de forma dinamica y paginas de adminsitrador, contenido legal y accesiblidad
-- Formulario de contacto
-
-Pasadas validaciones de https://validator.w3.org y https://jigsaw.w3.org/css-validator
-
-## UD6 Bloque 1. Persistencia de datos (MongoDB + Mongoose)
-
-Se ha añadido una base de backend con Node.js + Express + Mongoose para cubrir la persistencia del proyecto.
+### Persistencia
 
 Colecciones implementadas:
-- `cursos`: `titulo`, `categoria`, `nivel`, `duracion`, `descripcion`, `imagen`, `profesorId`, `temario`, `createdAt`, `updatedAt`.
+
+- `cursos`: `titulo`, `categoria`, `nivel`, `duracion`, `descripcion`, `imagen`, `profesorId`, `temario`, `requisitos`, `createdAt`, `updatedAt`.
 - `profesores`: `nombre`, `email`, `especialidad`, `foto`.
 - `usuarios`: `nombre`, `email`, `passwordHash`, `rol`.
 - `comentarios`: `usuarioId`, `cursoId`, `comentario`, `puntuacion`, `fecha`.
 
-Estructura añadida:
-- `src/config/database.js` conexión de MongoDB.
-- `src/models/` con los 4 modelos Mongoose.
-- `src/server.js` y `src/app.js` para arranque básico.
-- `scripts/seed.js` para poblar cursos y profesores desde `data/cursos.json`.
+### Backend (MVC + REST)
 
-### Puesta en marcha
+Estructura principal:
 
-1. Copiar variables de entorno:
+- `src/models/`
+- `src/controllers/`
+- `src/routes/`
+- `src/middlewares/`
+- `public/`
+
+### Autenticacion y roles
+
+- Registro y login con sesion HTTP (`express-session`).
+- Roles soportados: `admin` y `alumno`.
+- Proteccion de rutas por middleware:
+  - `requireAuth`
+  - `requireRole(['admin'])`
+
+### Frontend dinamico (UD6)
+
+- `index.html`:
+  - bloque **Nuevos cursos** cargado desde API.
+  - bloque **Categorias destacadas** cargado desde API.
+- `listado-cursos.html`: grid + buscador + filtros contra backend.
+- `detalle-curso.html`: detalle completo del curso, profesor, comentarios y publicacion de comentario si hay sesion.
+- `listado-profesores.html`: tabla de profesorado desde API.
+- `admin.html`:
+  - acceso unico y visibilidad por rol.
+  - CRUD de cursos (admin).
+  - CRUD minimo de profesores (admin).
+
+### Seguridad / calidad
+
+- Sanitizacion de comentarios para evitar HTML directo.
+- Manejo centralizado de errores (`notFoundHandler` + `errorHandler`).
+- Status codes HTTP en API.
+
+## 3) Requisitos previos
+
+- Node.js 18+ (recomendado 20+).
+- MongoDB en local o remoto.
+
+## 4) Configuracion y arranque
+
+### 4.1 Variables de entorno
+
+Copiar `.env.example` a `.env`:
+
 ```bash
 cp .env.example .env
 ```
 
-2. Instalar dependencias:
+Variables usadas:
+
+- `PORT` (ejemplo: `3000`)
+- `MONGODB_URI` (ejemplo: `mongodb://127.0.0.1:27017/ui1_app_srvweb`)
+- `SESSION_SECRET`
+
+### 4.2 Instalar dependencias
+
 ```bash
 npm install
 ```
 
-3. Lanzar backend:
-```bash
-npm run dev
-```
+### 4.3 Poblar base de datos (seed)
 
-4. Poblar base de datos:
 ```bash
 npm run seed
 ```
 
-## UD6 Bloque 2. Backend (Node.js + Express) y API REST
+### 4.4 Ejecutar aplicacion
 
-Se ha continuado la rama `ud6_node_mongodb` con una estructura MVC y API REST funcional:
+Modo desarrollo:
 
-- `src/controllers/`:
-  - `cursos.controller.js`: listado con filtros, detalle con profesor y comentarios, categorías y niveles.
-  - `profesores.controller.js`: listado y detalle de profesorado con número de cursos.
-- `src/routes/`:
-  - `cursos.routes.js`
-  - `profesores.routes.js`
-- `src/middlewares/`:
-  - `asyncHandler.js` para errores en controladores async.
-  - `errorHandler.js` para manejo centralizado de errores y 404.
+```bash
+npm run dev
+```
 
-### Endpoints disponibles
+Modo normal:
+
+```bash
+npm start
+```
+
+URL local por defecto:
+
+- `http://localhost:3000`
+
+## 5) Usuarios de prueba (seed)
+
+- `admin@globalonline.edu` / `Admin123!` (rol `admin`)
+- `lucia.torres@alumnos.globalonline.edu` / `Alumno123!` (rol `alumno`)
+- `miguel.santos@alumnos.globalonline.edu` / `Alumno123!` (rol `alumno`)
+- `elena.martin@alumnos.globalonline.edu` / `Alumno123!` (rol `alumno`)
+
+## 6) Endpoints principales
+
+### Health
 
 - `GET /health`
-- `GET /api/cursos`
-- `GET /api/cursos/:id`
-- `GET /api/cursos/categorias`
-- `GET /api/cursos/niveles`
-- `GET /api/profesores`
-- `GET /api/profesores/:id`
 
-También se adaptó el frontend para consumir backend real en:
-- `public/listado-profesores.html` + `public/js/listaProfesores.js`
-- `public/detalle-curso.html` + `public/js/detalle-curso.js`
-
-## UD6 Bloque 3. Autenticación, cookies y sesiones
-
-Se añadió autenticación basada en sesión con cookie HTTP:
-
-- Dependencias: `express-session` y `bcryptjs`.
-- Cookie de sesión: `sid` (`httpOnly`, `sameSite=lax`).
-- Control de acceso por rol con middleware:
-  - `requireAuth`
-  - `requireRole(['admin'])`
-
-### Endpoints de autenticación
+### Autenticacion
 
 - `POST /api/auth/registro`
 - `POST /api/auth/login`
 - `POST /api/auth/logout`
 - `GET /api/auth/me`
 
-`/api/auth/registro` crea usuarios con rol `alumno` por defecto. Solo un admin autenticado puede crear otro usuario con rol `admin`.
+Notas:
 
-### Endpoints protegidos por rol admin
+- El registro publico crea usuarios con rol `alumno`.
+- Solo un admin autenticado puede crear otro usuario con rol `admin`.
 
-- `POST /api/cursos`
-- `PUT /api/cursos/:id`
-- `DELETE /api/cursos/:id`
+### Cursos
 
-### Panel admin (frontend)
+- `GET /api/cursos`
+- `GET /api/cursos/categorias`
+- `GET /api/cursos/niveles`
+- `GET /api/cursos/:id`
+- `POST /api/cursos` (admin)
+- `PUT /api/cursos/:id` (admin)
+- `DELETE /api/cursos/:id` (admin)
+- `POST /api/cursos/:id/comentarios` (usuario autenticado)
 
-- URL: `http://localhost:3000/admin.html`
-- Permite login de admin y CRUD de cursos (crear, editar, eliminar).
-- Consume API REST usando sesion/cookie.
+### Profesores
 
-### Comentarios por curso (usuario autenticado)
+- `GET /api/profesores`
+- `GET /api/profesores/:id`
+- `POST /api/profesores` (admin)
+- `PUT /api/profesores/:id` (admin)
+- `DELETE /api/profesores/:id` (admin)
 
-- `POST /api/cursos/:id/comentarios`
-  - Requiere sesion iniciada.
-  - Valida puntuacion entre `1` y `5`.
-  - Sanitiza texto para evitar HTML directo en comentarios.
+Regla de borrado:
 
-### Usuarios de prueba cargados por seed
+- No se elimina un profesor si tiene cursos asignados.
 
-Tras ejecutar `npm run seed`:
+## 7) Scripts disponibles
 
-- `admin@globalonline.edu` / `Admin123!` (rol `admin`)
-- `lucia.torres@alumnos.globalonline.edu` / `Alumno123!` (rol `alumno`)
-- `miguel.santos@alumnos.globalonline.edu` / `Alumno123!` (rol `alumno`)
-- `elena.martin@alumnos.globalonline.edu` / `Alumno123!` (rol `alumno`)
+- `npm start` -> arranca servidor (`server.js`)
+- `npm run dev` -> arranque con nodemon
+- `npm run seed` -> reinicia datos y carga dataset inicial
+
+## 8) Estructura del proyecto
+
+```text
+ui1_app_srvweb/
+  data/
+  public/
+  scripts/
+  src/
+    config/
+    controllers/
+    middlewares/
+    models/
+    routes/
+  server.js
+```
+
+## 9) Evidencias de trabajo colaborativo
+
+Tablero GitHub Projects:
+
+- https://github.com/users/javierraneros-cell/projects/6
+
+## 10) Alcance y notas de entrega
+
+- Base de datos: configurada para ejecucion local/remota mediante `MONGODB_URI`.
+- Se ha priorizado cumplir los puntos obligatorios de UD6 (persistencia, MVC/REST, auth/roles, frontend dinamico y panel admin).
