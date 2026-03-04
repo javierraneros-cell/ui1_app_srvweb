@@ -208,27 +208,15 @@ Tablero GitHub Projects:
 
 - https://github.com/users/javierraneros-cell/projects/6
 
-## 10) Despliegue en Vercel (opcional)
+## 10) Despliegue en Vercel 
 
-- Se incluye configuracion para Vercel en `vercel.json` con entrypoint `api/index.js`.
-- Las sesiones usan `connect-mongo` (coleccion `sesiones`) para evitar `MemoryStore` en produccion.
+Se puede acceder a la página en línea:
 
-Variables recomendadas en Vercel:
-
-- `MONGODB_URI`
-- `SESSION_SECRET`
-- `NODE_ENV=production`
-
-Pasos rapidos:
-
-1. Importar el repositorio en Vercel.
-2. Configurar variables de entorno del proyecto.
-3. Desplegar la rama deseada (por ejemplo `ud6_vercel`).
-4. Probar login/logout y operaciones del panel admin.
+- https://ui1appsrvweb.vercel.app
 
 ## 11) Alcance y notas de entrega
 
 - Base de datos: configurada para ejecucion local/remota mediante `MONGODB_URI`.
 - Se ha priorizado cumplir los puntos obligatorios de UD6 (persistencia, MVC/REST, auth/roles, frontend dinamico y panel admin).
 - El detalle de curso devuelve profesor y comentarios; adicionalmente existe endpoint especifico para comentarios por curso.
-- Las tareas opcionales no imprescindibles se dejan para ampliaciones posteriores.
+
