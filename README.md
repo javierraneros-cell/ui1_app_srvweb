@@ -1,6 +1,6 @@
-# Caso Práctico – Unidad Didáctica 6 (Global Online: plataforma de cursos)
+# UI1 - UD6 - Formacion Global Online
 
-Ampliar la web realizada en la UD4 (HTML/CSS/Bootstrap/JS) para convertirla en una aplicación full-stack con Node.js + Express + MongoDB (Mongoose), usando MVC, API REST, AJAX y sesiones/cookies.
+Proyecto full-stack para la UD6 de UI1 basado en Node.js + Express + MongoDB (Mongoose), reutilizando el frontend de UD4.
 
 ## 1) Objetivo UD6
 
@@ -53,12 +53,16 @@ Estructura principal:
 - `admin.html`:
   - acceso unico y visibilidad por rol.
   - CRUD de cursos (admin).
-  - CRUD minimo de profesores (admin).
+  - CRUD de profesores (admin).
+  - CRUD de usuarios (admin).
 
 ### Seguridad / calidad
 
 - Sanitizacion de comentarios para evitar HTML directo.
+- Middleware de validacion reutilizable para `ObjectId`, campos obligatorios, email y password.
+- Logs basicos de peticiones (metodo, ruta, status y tiempo).
 - Manejo centralizado de errores (`notFoundHandler` + `errorHandler`).
+- Respuestas de error JSON homogeneas (incluyen `ok: false`).
 - Status codes HTTP en API.
 
 ## 3) Requisitos previos
@@ -143,6 +147,7 @@ Notas:
 - `GET /api/cursos/categorias`
 - `GET /api/cursos/niveles`
 - `GET /api/cursos/:id`
+- `GET /api/cursos/:id/comentarios`
 - `POST /api/cursos` (admin)
 - `PUT /api/cursos/:id` (admin)
 - `DELETE /api/cursos/:id` (admin)
@@ -159,6 +164,20 @@ Notas:
 Regla de borrado:
 
 - No se elimina un profesor si tiene cursos asignados.
+
+### Usuarios (admin)
+
+- `GET /api/usuarios`
+- `GET /api/usuarios/:id`
+- `POST /api/usuarios`
+- `PUT /api/usuarios/:id`
+- `DELETE /api/usuarios/:id`
+
+Notas:
+
+- Las rutas de usuarios requieren rol `admin`.
+- El API no expone `passwordHash`.
+- No se permite eliminar el propio usuario en sesion.
 
 ## 7) Scripts disponibles
 
@@ -192,3 +211,5 @@ Tablero GitHub Projects:
 
 - Base de datos: configurada para ejecucion local/remota mediante `MONGODB_URI`.
 - Se ha priorizado cumplir los puntos obligatorios de UD6 (persistencia, MVC/REST, auth/roles, frontend dinamico y panel admin).
+- El detalle de curso devuelve profesor y comentarios; adicionalmente existe endpoint especifico para comentarios por curso.
+- Las tareas opcionales no imprescindibles se dejan para ampliaciones posteriores.
