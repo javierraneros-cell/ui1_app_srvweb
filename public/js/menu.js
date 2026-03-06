@@ -20,18 +20,46 @@ function cargarCursosEnMenu() {
         .catch(err => console.error("Error cargando cursos:", err));
 }
 
+function cargarOpcionMenuAdministracion(loginActual){
+    const ilMenuAdmin = document.getElementById("menuAdmin");
+    var anclajeAdmin;
+    if (loginActual && loginActual.rol == 'admin'){
+        anclajeAdmin = `<a class="nav-link" href="admin.html">Administracion</a>`;
+    }else if(!loginActual){
+        anclajeAdmin = `<a class="nav-link" href="login.html">Acceder</a>`;
+    }else{
+        anclajeAdmin = "";
+    }
+    ilMenuAdmin.innerHTML = anclajeAdmin;
+}
+
 /**
  * Cargamos el menu.html que es comun a todas las paginas
  */
-document.addEventListener("DOMContentLoaded", () => {
-    fetch("menu.html")
-        .then(res => res.text())
-        .then(html => {
-            document.getElementById("contenedor-menu").innerHTML = html;
-            cargarCursosEnMenu();
-        });
+document.addEventListener("DOMContentLoaded", async() => {
+    const res = await fetch("menu.html");
+    const html = await res.text();
+    document.getElementById("contenedor-menu").innerHTML = html;
+    cargarCursosEnMenu();
+
+    //Comprobamos la sesión para mostrar o no el menú de Administración:
+    const loginActual = await obtenerUsuarioActual();
+    cargarOpcionMenuAdministracion(loginActual);
+    cargarOpcionLogoutFooter(loginActual);
 });
 
+//Obtener usuario y rol:
+async function obtenerUsuarioActual() {
+    try {
+        const res = await fetch('/api/auth/me');
+        if (!res.ok) return null;
+
+        const data = await res.json();
+        return data.usuario;
+    } catch (err) {
+        return null;
+    }
+}
 
 function aumentarTexto() {
     const contenido = getContenido();

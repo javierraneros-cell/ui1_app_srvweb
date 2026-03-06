@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" id="panel-admin">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - Formacion Global Online</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="css/estilos.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap">
+</head>
+<body>
+    <header>
+        <h1 class="visually-hidden">Login Acceso</h1>
+        <div>
+            <a href="index.html">
+                <img class="img-fluid" src="imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner">
+            </a>
+        </div>
+        <div id="contenedor-menu"></div>
+    </header>
+
+    <main id="contenedor-main">
+        <h2><span class="material-symbols-outlined">login</span> Login</h2>
+        <div id="sesion-feedback" class="d-none mb-3" role="alert"></div>
+
+        <section class="card mb-4" id="bloque-auth-admin">
+            <h3>Acceder</h3>
+            <form id="form-login-admin" class="row g-3">
+                <div class="col-12 col-md-5">
+                    <label for="admin-email" class="form-label">Email</label>
+                    <input id="admin-email" type="email" class="form-control" required>
+                </div>
+                <div class="col-12 col-md-5">
+                    <label for="admin-password" class="form-label">Password</label>
+                    <input id="admin-password" type="password" class="form-control" required>
+                </div>
+                <div class="col-12 col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-outline-primary w-100">Acceder</button>
+                </div>
+            </form>
+            <div class="mt-3 d-flex gap-2">
+                <button id="btn-logout-admin" type="button" class="btn btn-outline-secondary">Cerrar sesion</button>
+                <span id="admin-user-info" class="align-self-center"></span>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="contenedor-footer"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/login.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/footer.js"></script>
+</body>
+</html>

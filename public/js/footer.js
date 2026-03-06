@@ -25,3 +25,37 @@ function actualizarHora() {
     const segundos = String(ahora.getSeconds()).padStart(2, "0");
     document.getElementById("contenedor-hora").textContent = `${dia}/${mes}/${año} ${horas}:${minutos}:${segundos}`;
 }
+
+//Funcion que se llama desde el inicio de la pagina cuando se carga el menu:
+function cargarOpcionLogoutFooter(loginActual) {
+    const contenedorLogOut = document.getElementById("footer-logout");
+    const contenedorNombre = document.getElementById("footer-nombre");
+
+    if (!contenedorLogOut) return;
+
+    if (loginActual) {
+        contenedorLogOut.innerHTML = `
+            <a href="#" id="logout-link" class="text-white">Cerrar sesión</a>
+        `;
+        contenedorNombre.innerHTML = `
+            ${loginActual.nombre}
+            (${loginActual.rol}) |
+        `;
+
+        // Evento logout-link
+        document.getElementById("logout-link").addEventListener("click", async (e) => {
+            e.preventDefault();
+            const res = await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+            if (!res.ok){
+                sessionStorage.setItem("loginMensajeFeedback", "No se pudo cerrar sesion");
+                sessionStorage.setItem("loginEstadoFeedback", false);
+            }else{
+                sessionStorage.setItem("loginMensajeFeedback", "Sesión cerrada correctamente");
+                sessionStorage.setItem("loginEstadoFeedback", true);
+            }
+            window.location.href = "index.html";
+        });
+    } else {
+        contenedorLogOut.innerHTML = "";
+    }
+}

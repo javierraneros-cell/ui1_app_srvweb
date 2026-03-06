@@ -79,7 +79,7 @@ async function cargarCategoriasDestacadasHome() {
 }
 
 async function cargarBloquesDinamicosHome() {
-  await Promise.all([cargarCursosNuevosHome(), cargarCategoriasDestacadasHome()]);
+  await Promise.all([cargarCursosNuevosHome(), cargarCategoriasDestacadasHome(), cargarFeedbackLogin()]);
 }
 
 function prepararBotonesLeerMas() {
@@ -103,3 +103,21 @@ $(document).ready(function () {
   prepararBotonesLeerMas();
   cargarBloquesDinamicosHome();
 });
+
+function cargarFeedbackLogin() {
+    const feedbackDiv = document.getElementById("login-feedback");
+    const mensaje = sessionStorage.getItem("loginMensajeFeedback");
+    const estado = sessionStorage.getItem("loginEstadoFeedback") === "true";
+
+    if (mensaje) {
+        const box = document.getElementById('sesion-feedback');
+        box.className = 'mb-3 alert';
+        box.classList.add(estado ? 'alert-success' : 'alert-danger');
+        box.textContent = mensaje;
+
+        // Limpiar para que no vuelva a aparecer al refrescar
+        sessionStorage.removeItem("loginMensajeFeedback");
+        sessionStorage.removeItem("loginEstadoFeedback");
+    }
+}
+

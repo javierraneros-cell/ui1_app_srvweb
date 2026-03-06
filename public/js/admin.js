@@ -10,6 +10,18 @@ function setFeedback(mensaje, ok) {
   box.textContent = mensaje;
 }
 
+async function setFeedbackFromStorageSesion() {
+    const mensaje = sessionStorage.getItem("loginMensajeFeedback");
+    const estado = sessionStorage.getItem("loginEstadoFeedback") === "true";
+
+    if (mensaje) {
+        setFeedback(mensaje, estado);
+        // Limpiar para que no vuelva a aparecer al refrescar
+        sessionStorage.removeItem("loginMensajeFeedback");
+        sessionStorage.removeItem("loginEstadoFeedback");
+    }
+}
+
 function esEmailValido(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
 }
@@ -57,14 +69,12 @@ function validarPayloadUsuario(payload, esCreacion) {
 }
 
 function toggleAdminUI(isAdmin) {
-  document.getElementById('form-login-admin').style.display = adminSesion ? 'none' : 'flex';
   document.getElementById('bloque-curso-admin').style.display = isAdmin ? 'block' : 'none';
   document.getElementById('bloque-listado-admin').style.display = isAdmin ? 'block' : 'none';
   document.getElementById('bloque-profesor-admin').style.display = isAdmin ? 'block' : 'none';
   document.getElementById('bloque-listado-profesores-admin').style.display = isAdmin ? 'block' : 'none';
   document.getElementById('bloque-usuario-admin').style.display = isAdmin ? 'block' : 'none';
   document.getElementById('bloque-listado-usuarios-admin').style.display = isAdmin ? 'block' : 'none';
-  document.getElementById('btn-logout-admin').style.display = adminSesion ? 'inline-block' : 'none';
 
   const info = document.getElementById('admin-user-info');
   if (!adminSesion) {
@@ -72,7 +82,7 @@ function toggleAdminUI(isAdmin) {
     return;
   }
 
-  info.textContent = `Sesion iniciada como ${adminSesion.nombre} (${adminSesion.email}) - rol: ${adminSesion.rol}`;
+  info.textContent = `${adminSesion.nombre} (${adminSesion.email}) - Rol: ${adminSesion.rol}`;
 }
 
 function limpiarFormularioCurso() {
@@ -297,60 +307,6 @@ async function comprobarSesion() {
   await cargarDatosAdmin();
 }
 
-async function loginAdmin(event) {
-  event.preventDefault();
-  const email = document.getElementById('admin-email').value;
-  const password = document.getElementById('admin-password').value;
-  if (!esEmailValido(email)) {
-    setFeedback('Introduce un email valido.', false);
-    return;
-  }
-  if (String(password || '').length < 6) {
-    setFeedback('La password debe tener al menos 6 caracteres.', false);
-    return;
-  }
-
-  const res = await fetch('/api/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    credentials: 'include',
-    body: JSON.stringify({ email, password })
-  });
-
-  const payload = await res.json();
-
-  if (!res.ok) {
-    setFeedback(payload.mensaje || 'Login incorrecto', false);
-    return;
-  }
-
-  setFeedback('Sesion iniciada correctamente.', true);
-  await comprobarSesion();
-}
-
-async function logoutAdmin() {
-  const res = await fetch('/api/auth/logout', {
-    method: 'POST',
-    credentials: 'include'
-  });
-
-  if (!res.ok) {
-    setFeedback('No se pudo cerrar sesion.', false);
-    return;
-  }
-
-  adminSesion = null;
-  cursos = [];
-  profesores = [];
-  usuarios = [];
-  toggleAdminUI(false);
-  document.getElementById('form-login-admin').reset();
-  document.querySelector('#tabla-cursos-admin tbody').innerHTML = '';
-  document.querySelector('#tabla-profesores-admin tbody').innerHTML = '';
-  document.querySelector('#tabla-usuarios-admin tbody').innerHTML = '';
-  setFeedback('Sesion cerrada.', true);
-}
-
 function construirPayloadCurso() {
   const temario = document
     .getElementById('curso-temario')
@@ -569,8 +525,6 @@ async function eliminarUsuario(usuarioId) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  document.getElementById('form-login-admin').addEventListener('submit', loginAdmin);
-  document.getElementById('btn-logout-admin').addEventListener('click', logoutAdmin);
   document.getElementById('form-curso-admin').addEventListener('submit', guardarCurso);
   document.getElementById('btn-limpiar-form').addEventListener('click', limpiarFormularioCurso);
   document.getElementById('form-profesor-admin').addEventListener('submit', guardarProfesor);
@@ -578,6 +532,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('form-usuario-admin').addEventListener('submit', guardarUsuario);
   document.getElementById('btn-limpiar-usuario').addEventListener('click', limpiarFormularioUsuario);
 
+
+  
   toggleAdminUI(false);
+  await setFeedbackFromStorageSesion();
   await comprobarSesion();
+
 });
