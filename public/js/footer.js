@@ -2,7 +2,7 @@
  * Cargamos el footer.html que es comun a todas las paginas
  */
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("footer.html")
+    fetch("/footer.html")
         .then(res => res.text())
         .then(html => {
             document.getElementById("contenedor-footer").innerHTML = html;
@@ -53,7 +53,7 @@ function cargarOpcionLogoutFooter(loginActual) {
                 sessionStorage.setItem("loginMensajeFeedback", "Sesión cerrada correctamente");
                 sessionStorage.setItem("loginEstadoFeedback", true);
             }
-            window.location.href = "index.html";
+            window.location.href = "/index.html";
         });
     } else {
         contenedorLogOut.innerHTML = "";

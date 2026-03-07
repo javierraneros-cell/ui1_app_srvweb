@@ -1,8 +1,8 @@
 /**
- *  Funcion que lee los cursos del fichero JSON y crear dinamicamente el menu del listado de cursos
+ *  Funcion que lee los cursos desde la base de datos y crear dinamicamente el menu del listado de cursos
  */
 function cargarCursosEnMenu() {
-    fetch("api/cursos")
+    fetch("/api/cursos")
         .then(response => response.json())
         .then(listadoCursos => {
             const lista = document.getElementById("listaCursos");
@@ -24,7 +24,17 @@ function cargarOpcionMenuAdministracion(loginActual){
     const ilMenuAdmin = document.getElementById("menuAdmin");
     var anclajeAdmin;
     if (loginActual && loginActual.rol == 'admin'){
-        anclajeAdmin = `<a class="nav-link" href="admin.html">Administracion</a>`;
+        anclajeAdmin = `
+            <div class="btn-group">
+                <a class="nav-link" href="/admin/admin.html">Administración</a>
+                <button class="nav-link dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/admin/admin.html">Cursos</a></li>
+                    <li><a class="dropdown-item" href="/admin/profesores.html">Profesores</a></li>
+                    <li><a class="dropdown-item" href="/admin/usuarios.html">Usuarios</a></li>
+                </ul>
+            </div>
+            `;
     }else if(!loginActual){
         anclajeAdmin = `<a class="nav-link" href="login.html">Acceder</a>`;
     }else{
@@ -37,7 +47,7 @@ function cargarOpcionMenuAdministracion(loginActual){
  * Cargamos el menu.html que es comun a todas las paginas
  */
 document.addEventListener("DOMContentLoaded", async() => {
-    const res = await fetch("menu.html");
+    const res = await fetch("/menu.html");
     const html = await res.text();
     document.getElementById("contenedor-menu").innerHTML = html;
     cargarCursosEnMenu();

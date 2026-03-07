@@ -38,11 +38,11 @@ async function comprobarSesion() {
   if (esAdmin){
     sessionStorage.setItem("loginMensajeFeedback", "Sesion iniciada correctamente como Administrador");
     sessionStorage.setItem("loginEstadoFeedback", true);
-    window.location.href = "admin.html";
+    window.location.href = "/admin/admin.html";
   }else{
     sessionStorage.setItem("loginMensajeFeedback", "Tu sesion esta iniciada, pero no tienes permisos de administracion");
     sessionStorage.setItem("loginEstadoFeedback", false);
-    window.location.href = "index.html";
+    window.location.href = "/index.html";
   }
 }
 
