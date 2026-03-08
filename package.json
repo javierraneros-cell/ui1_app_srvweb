@@ -9,14 +9,15 @@
     "dev": "nodemon server.js",
     "seed": "node scripts/seed.js"
   },
-  "dependencies": {
-    "bcryptjs": "^3.0.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "express-session": "^1.19.0",
-    "mongoose": "^8.11.0"
-  },
+ "dependencies": {
+  "bcryptjs": "^3.0.3",
+  "cors": "^2.8.5",
+  "dotenv": "^16.4.7",
+  "express": "^4.21.2",
+  "express-session": "^1.19.0",
+  "mongoose": "^8.11.0",
+  "ejs": "^3.1.9"
+},
   "devDependencies": {
     "nodemon": "^3.1.9"
   }
