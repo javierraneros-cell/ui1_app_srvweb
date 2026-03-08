@@ -121,10 +121,27 @@ color: white;
 .nav-item button {
     background-color: #a71b29;
     color: white;
+
+}
+
+/*** Usuario autenticado ***/
+#contenedor-header-usuario {
+    background-color: whitesmoke;
+    color: #a71b29;
+    font-weight: normal;
+    font-size: small;
+    display: flex;
+    justify-content: flex-end; /* Mueve todo a la derecha */
+    gap: 10px; /* Espacio entre los spans */
+    padding-right: 10px;
 }
 
 
-
+#contenedor-header-usuario a {
+    color: #a71b29;
+    font-weight: bold;
+    text-decoration: none;
+}
 
 /***********************************
                 MAIN

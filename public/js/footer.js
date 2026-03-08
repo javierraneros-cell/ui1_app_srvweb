@@ -28,20 +28,30 @@ function actualizarHora() {
 
 //Funcion que se llama desde el inicio de la pagina cuando se carga el menu:
 function cargarOpcionLogoutFooter(loginActual) {
-    const contenedorLogOut = document.getElementById("footer-logout");
-    const contenedorNombre = document.getElementById("footer-nombre");
+    const contenedorFooterLogOut = document.getElementById("footer-logout");
+    const contenedorFooterNombre = document.getElementById("footer-nombre");
 
-    if (!contenedorLogOut) return;
+    const contenedorHedarLogOut = document.getElementById("header-logout");
+    const contenedorHeaderNombre = document.getElementById("header-nombre");
+
+    if (!contenedorFooterLogOut) return;
+    if (!contenedorHedarLogOut) return;
 
     if (loginActual) {
-        contenedorLogOut.innerHTML = `
-            <a href="#" id="logout-link" class="text-white">Cerrar sesión</a>
-        `;
-        contenedorNombre.innerHTML = `
+        contenedorFooterNombre.innerHTML = `
             ${loginActual.nombre}
             (${loginActual.rol}) |
         `;
-
+        contenedorHeaderNombre.innerHTML = `
+            ${loginActual.nombre}
+            (${loginActual.rol}) |
+        `;
+        contenedorFooterLogOut.innerHTML = `
+            <a href="#" id="logout-link" >Cerrar sesión</a>
+        `;
+        contenedorHedarLogOut.innerHTML = `
+            <a href="#" id="logout-link" >Cerrar sesión</a>
+        `;
         // Evento logout-link
         document.getElementById("logout-link").addEventListener("click", async (e) => {
             e.preventDefault();
@@ -56,6 +66,7 @@ function cargarOpcionLogoutFooter(loginActual) {
             window.location.href = "/index.html";
         });
     } else {
-        contenedorLogOut.innerHTML = "";
+        contenedorFooterLogOut.innerHTML = "";
+        contenedorHedarLogOut.innerHTML = "";
     }
 }
