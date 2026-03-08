@@ -47,26 +47,30 @@ function cargarOpcionUsuarioLogout(loginActual) {
             (${loginActual.rol}) |
         `;
         contenedorFooterLogOut.innerHTML = `
-            <a href="#" id="logout-link" >Cerrar sesión</a>
+            <a href="#" id="logout-footer-link" class="logout-link">Cerrar sesión</a>
         `;
         contenedorHedarLogOut.innerHTML = `
-            <a href="#" id="logout-link" >Cerrar sesión</a>
+            <a href="#" id="logout-header-link" class="logout-link">Cerrar sesión</a>
         `;
         // Evento logout-link
-        document.getElementById("logout-link").addEventListener("click", async (e) => {
-            e.preventDefault();
-            const res = await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
-            if (!res.ok){
-                sessionStorage.setItem("loginMensajeFeedback", "No se pudo cerrar sesion");
-                sessionStorage.setItem("loginEstadoFeedback", false);
-            }else{
-                sessionStorage.setItem("loginMensajeFeedback", "Sesión cerrada correctamente");
-                sessionStorage.setItem("loginEstadoFeedback", true);
-            }
-            window.location.href = "/index.html";
+        document.querySelectorAll(".logout-link").forEach(id => {
+            id.addEventListener("click", logout);
         });
     } else {
         contenedorFooterLogOut.innerHTML = "";
         contenedorHedarLogOut.innerHTML = "";
     }
+}
+
+async function logout(){
+    //e.preventDefault();
+    const res = await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+    if (!res.ok){
+        sessionStorage.setItem("loginMensajeFeedback", "No se pudo cerrar sesion");
+        sessionStorage.setItem("loginEstadoFeedback", false);
+    }else{
+        sessionStorage.setItem("loginMensajeFeedback", "Sesión cerrada correctamente");
+        sessionStorage.setItem("loginEstadoFeedback", true);
+    }
+    window.location.href = "/index.html";
 }
