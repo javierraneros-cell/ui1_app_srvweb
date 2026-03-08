@@ -22,10 +22,6 @@ async function setFeedbackFromStorageSesion() {
     }
 }
 
-function esEmailValido(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
-}
-
 function validarPayloadCurso(payload) {
   const obligatorios = ['titulo', 'categoria', 'nivel', 'duracion', 'imagen', 'descripcion', 'profesorId'];
   for (const campo of obligatorios) {
@@ -36,18 +32,6 @@ function validarPayloadCurso(payload) {
   return null;
 }
 
-function validarPayloadProfesor(payload) {
-  const obligatorios = ['nombre', 'email', 'especialidad', 'foto'];
-  for (const campo of obligatorios) {
-    if (!String(payload[campo] || '').trim()) {
-      return `El campo ${campo} es obligatorio.`;
-    }
-  }
-  if (!esEmailValido(payload.email)) {
-    return 'El email del profesor no es valido.';
-  }
-  return null;
-}
 function limpiarFormularioCurso() {
   document.getElementById('curso-id').value = '';
   document.getElementById('curso-titulo').value = '';
@@ -211,28 +195,36 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function comprobarSesion() {
-  const res = await fetch('/api/auth/me', { credentials: 'include' });
+  try{
+    const res = await fetch('/api/auth/me', { credentials: 'include' });
 
-  if (!res.ok) {
+    if (!res.ok) {
+      adminSesion = null;
+      toggleCursosAdminUI(false);
+      const error = await res.json();
+      setFeedback(error.mensaje || 'error.', false);
+      return;
+    }
+
+    const data = await res.json();
+    adminSesion = data.usuario;
+    const esAdmin = adminSesion.rol === 'admin';
+    toggleCursosAdminUI(esAdmin);
+
+    if (!esAdmin) {
+      setFeedback('Tu sesion esta iniciada, pero no tienes permisos de administracion.', false);
+      return;
+    }
+
+    await cargarDatosAdmin();
+  } catch (error) {
+    console.error('Error comprobando sesion:', error);
     adminSesion = null;
-    toggleAdminUI(false);
-    return;
+    toggleCursosAdminUI(false);
   }
-
-  const data = await res.json();
-  adminSesion = data.usuario;
-  const esAdmin = adminSesion.rol === 'admin';
-  toggleAdminUI(esAdmin);
-
-  if (!esAdmin) {
-    setFeedback('Tu sesion esta iniciada, pero no tienes permisos de administracion.', false);
-    return;
-  }
-
-  await cargarDatosAdmin();
 }
 
-function toggleAdminUI(isAdmin) {
+function toggleCursosAdminUI(isAdmin) {
   document.getElementById('bloque-curso-admin').style.display = isAdmin ? 'block' : 'none';
   document.getElementById('bloque-listado-admin').style.display = isAdmin ? 'block' : 'none';
 

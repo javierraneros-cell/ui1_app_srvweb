@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Admin PROFESORES - Formacion Global Online</title>
+    <title>Panel Admin USUARIOS - Formacion Global Online</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-        <h1 class="visually-hidden">Panel de administracion - PROFESORES</h1>
+        <h1 class="visually-hidden">Panel Admin - USUARIOS</h1>
         <div>
             <a href="/index.html">
                 <img class="img-fluid" src="/imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner">
@@ -22,50 +22,52 @@
     </header>
 
     <main id="contenedor-main">
-        <h2><span class="material-symbols-outlined">school</span> Panel Admin - PROFESORES</h2>
+        <h2><span class="material-symbols-outlined">manage_accounts</span> Panel Admin - USUARIOS</h2>
         <div id="admin-feedback" class="d-none mb-3" role="alert"></div>
         <div class="mb-3" role="alert">
             <span id="admin-user-info" class="align-self-center"></span>
         </div>
 
-        <section class="card mb-4 mt-4" id="bloque-profesor-admin">
-            <h3>Crear / Editar profesor</h3>
-            <form id="form-profesor-admin" class="row g-3">
-                <input type="hidden" id="profesor-id">
+        <section class="card mb-4 mt-4" id="bloque-usuario-admin">
+            <h3>Crear / Editar usuario</h3>
+            <form id="form-usuario-admin" class="row g-3">
+                <input type="hidden" id="usuario-id">
 
-                <div class="col-12 col-md-6">
-                    <label for="profesor-nombre" class="form-label">Nombre</label>
-                    <input id="profesor-nombre" type="text" class="form-control" required>
+                <div class="col-12 col-md-4">
+                    <label for="usuario-nombre" class="form-label">Nombre</label>
+                    <input id="usuario-nombre" type="text" class="form-control" required>
                 </div>
-                <div class="col-12 col-md-6">
-                    <label for="profesor-email" class="form-label">Email</label>
-                    <input id="profesor-email" type="email" class="form-control" required>
+                <div class="col-12 col-md-4">
+                    <label for="usuario-email" class="form-label">Email</label>
+                    <input id="usuario-email" type="email" class="form-control" required>
                 </div>
-                <div class="col-12 col-md-6">
-                    <label for="profesor-especialidad" class="form-label">Especialidad</label>
-                    <input id="profesor-especialidad" type="text" class="form-control" required>
+                <div class="col-12 col-md-2">
+                    <label for="usuario-rol" class="form-label">Rol</label>
+                    <select id="usuario-rol" class="form-select" required>
+                        <option value="alumno">alumno</option>
+                        <option value="admin">admin</option>
+                    </select>
                 </div>
-                <div class="col-12 col-md-6">
-                    <label for="profesor-foto" class="form-label">Ruta foto</label>
-                    <input id="profesor-foto" type="text" class="form-control" required>
+                <div class="col-12 col-md-2">
+                    <label for="usuario-password" class="form-label">Password</label>
+                    <input id="usuario-password" type="password" class="form-control">
                 </div>
                 <div class="col-12 d-flex gap-2">
-                    <button type="submit" class="btn btn-primary">Guardar profesor</button>
-                    <button id="btn-limpiar-profesor" type="button" class="btn btn-outline-secondary">Limpiar</button>
+                    <button type="submit" class="btn btn-primary">Guardar usuario</button>
+                    <button id="btn-limpiar-usuario" type="button" class="btn btn-outline-secondary">Limpiar</button>
                 </div>
             </form>
         </section>
 
-        <section class="card mt-4" id="bloque-listado-profesores-admin">
-            <h3>Profesores existentes</h3>
+        <section class="card mt-4" id="bloque-listado-usuarios-admin">
+            <h3>Usuarios existentes</h3>
             <div class="table-responsive">
-                <table class="table table-striped align-middle" id="tabla-profesores-admin">
+                <table class="table table-striped align-middle" id="tabla-usuarios-admin">
                     <thead>
                         <tr>
                             <th>Nombre</th>
                             <th>Email</th>
-                            <th>Especialidad</th>
-                            <th>Cursos</th>
+                            <th>Rol</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -73,7 +75,6 @@
                 </table>
             </div>
         </section>
-
     </main>
 
     <div id="contenedor-footer"></div>
@@ -81,7 +82,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../admin/js/profesores-admin.js"></script>
+    <script src="../admin/js/usuarios-admin.js"></script>
     <script src="../js/menu.js"></script>
     <script src="../js/footer.js"></script>
 </body>

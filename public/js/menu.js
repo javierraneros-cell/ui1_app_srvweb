@@ -31,7 +31,7 @@ function cargarOpcionMenuAdministracion(loginActual){
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/admin/cursos-admin.html">Cursos</a></li>
                     <li><a class="dropdown-item" href="/admin/profesores-admin.html">Profesores</a></li>
-                    <li><a class="dropdown-item" href="/admin/usuarios.html">Usuarios</a></li>
+                    <li><a class="dropdown-item" href="/admin/usuarios-admin.html">Usuarios</a></li>
                 </ul>
             </div>
             `;

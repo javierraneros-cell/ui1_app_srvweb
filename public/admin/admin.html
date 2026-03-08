@@ -24,169 +24,32 @@
     <main id="contenedor-main">
         <h2><span class="material-symbols-outlined">admin_panel_settings</span> Panel Admin</h2>
         <div id="admin-feedback" class="d-none mb-3" role="alert"></div>
+
         <div class="mb-3" role="alert">
             <span id="admin-user-info" class="align-self-center"></span>
         </div>
 
-        <section class="card mb-4" id="bloque-curso-admin">
-            <h3>Crear / Editar curso</h3>
-            <form id="form-curso-admin" class="row g-3">
-                <input type="hidden" id="curso-id">
-
-                <div class="col-12 col-md-6">
-                    <label for="curso-titulo" class="form-label">Titulo</label>
-                    <input id="curso-titulo" type="text" class="form-control" required>
-                </div>
-                <div class="col-12 col-md-3">
-                    <label for="curso-categoria" class="form-label">Categoria</label>
-                    <input id="curso-categoria" type="text" class="form-control" required>
-                </div>
-                <div class="col-12 col-md-3">
-                    <label for="curso-nivel" class="form-label">Nivel</label>
-                    <input id="curso-nivel" type="text" class="form-control" required>
-                </div>
-                <div class="col-12 col-md-4">
-                    <label for="curso-duracion" class="form-label">Duracion</label>
-                    <input id="curso-duracion" type="text" class="form-control" required>
-                </div>
-                <div class="col-12 col-md-8">
-                    <label for="curso-imagen" class="form-label">Ruta imagen</label>
-                    <input id="curso-imagen" type="text" class="form-control" required>
-                </div>
-                <div class="col-12">
-                    <label for="curso-descripcion" class="form-label">Descripcion</label>
-                    <textarea id="curso-descripcion" class="form-control" rows="3" required></textarea>
-                </div>
-                <div class="col-12 col-md-6">
-                    <label for="curso-profesor" class="form-label">Profesor</label>
-                    <select id="curso-profesor" class="form-select" required></select>
-                </div>
-                <div class="col-12 col-md-6">
-                    <label for="curso-temario" class="form-label">Temario (una linea por punto)</label>
-                    <textarea id="curso-temario" class="form-control" rows="3"></textarea>
-                </div>
-                <div class="col-12 col-md-6">
-                    <label for="curso-requisitos" class="form-label">Requisitos (una linea por punto)</label>
-                    <textarea id="curso-requisitos" class="form-control" rows="3"></textarea>
-                </div>
-                <div class="col-12 d-flex gap-2">
-                    <button type="submit" class="btn btn-primary">Guardar curso</button>
-                    <button id="btn-limpiar-form" type="button" class="btn btn-outline-secondary">Limpiar</button>
-                </div>
-            </form>
-        </section>
-
-        <section class="card" id="bloque-listado-admin">
-            <h3>Cursos existentes</h3>
-            <div class="table-responsive">
-                <table class="table table-striped align-middle" id="tabla-cursos-admin">
-                    <thead>
-                        <tr>
-                            <th>Titulo</th>
-                            <th>Categoria</th>
-                            <th>Nivel</th>
-                            <th>Profesor</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+        <div id="container-admin" class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="feature col">
+                <span class="material-symbols-outlined">design_services</span>  
+                <h2 >Cursos</h2>
+                <p>Gestión completa de Cursos: creación, edición y eliminación.</p>
+                <a href="cursos-admin.html" class="btn btn-outline-primary w-100 mt-auto">Ir a mantenimiento Cursos</a>
             </div>
-        </section>
-
-        <section class="card mb-4 mt-4" id="bloque-profesor-admin">
-            <h3>Crear / Editar profesor</h3>
-            <form id="form-profesor-admin" class="row g-3">
-                <input type="hidden" id="profesor-id">
-
-                <div class="col-12 col-md-6">
-                    <label for="profesor-nombre" class="form-label">Nombre</label>
-                    <input id="profesor-nombre" type="text" class="form-control" required>
-                </div>
-                <div class="col-12 col-md-6">
-                    <label for="profesor-email" class="form-label">Email</label>
-                    <input id="profesor-email" type="email" class="form-control" required>
-                </div>
-                <div class="col-12 col-md-6">
-                    <label for="profesor-especialidad" class="form-label">Especialidad</label>
-                    <input id="profesor-especialidad" type="text" class="form-control" required>
-                </div>
-                <div class="col-12 col-md-6">
-                    <label for="profesor-foto" class="form-label">Ruta foto</label>
-                    <input id="profesor-foto" type="text" class="form-control" required>
-                </div>
-                <div class="col-12 d-flex gap-2">
-                    <button type="submit" class="btn btn-primary">Guardar profesor</button>
-                    <button id="btn-limpiar-profesor" type="button" class="btn btn-outline-secondary">Limpiar</button>
-                </div>
-            </form>
-        </section>
-
-        <section class="card mt-4" id="bloque-listado-profesores-admin">
-            <h3>Profesores existentes</h3>
-            <div class="table-responsive">
-                <table class="table table-striped align-middle" id="tabla-profesores-admin">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Especialidad</th>
-                            <th>Cursos</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+            <div class="feature col">
+                <span class="material-symbols-outlined">school</span>  
+                <h2 >Profesores</h2>
+                <p>Gestión completa de Profesores: creación, edición y eliminación.</p>
+                <a href="profesores-admin.html" class="btn btn-outline-primary w-100 mt-auto">Ir a mantenimiento Profesores</a>
             </div>
-        </section>
-
-        <section class="card mb-4 mt-4" id="bloque-usuario-admin">
-            <h3>Crear / Editar usuario</h3>
-            <form id="form-usuario-admin" class="row g-3">
-                <input type="hidden" id="usuario-id">
-
-                <div class="col-12 col-md-4">
-                    <label for="usuario-nombre" class="form-label">Nombre</label>
-                    <input id="usuario-nombre" type="text" class="form-control" required>
-                </div>
-                <div class="col-12 col-md-4">
-                    <label for="usuario-email" class="form-label">Email</label>
-                    <input id="usuario-email" type="email" class="form-control" required>
-                </div>
-                <div class="col-12 col-md-2">
-                    <label for="usuario-rol" class="form-label">Rol</label>
-                    <select id="usuario-rol" class="form-select" required>
-                        <option value="alumno">alumno</option>
-                        <option value="admin">admin</option>
-                    </select>
-                </div>
-                <div class="col-12 col-md-2">
-                    <label for="usuario-password" class="form-label">Password</label>
-                    <input id="usuario-password" type="password" class="form-control">
-                </div>
-                <div class="col-12 d-flex gap-2">
-                    <button type="submit" class="btn btn-primary">Guardar usuario</button>
-                    <button id="btn-limpiar-usuario" type="button" class="btn btn-outline-secondary">Limpiar</button>
-                </div>
-            </form>
-        </section>
-
-        <section class="card mt-4" id="bloque-listado-usuarios-admin">
-            <h3>Usuarios existentes</h3>
-            <div class="table-responsive">
-                <table class="table table-striped align-middle" id="tabla-usuarios-admin">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Rol</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+            <div class="feature col">
+                <span class="material-symbols-outlined">manage_accounts</span>  
+                <h2 >Usuarios</h2>
+                <p>Gestión completa de Usuarios: creación, edición y eliminación.</p>
+                <a href="usuarios-admin.html" class="btn btn-outline-primary w-100 mt-auto">Ir a mantenimiento Usuarios</a>
             </div>
-        </section>
+        </div>
+                
     </main>
 
     <div id="contenedor-footer"></div>

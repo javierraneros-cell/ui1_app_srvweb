@@ -22,10 +22,6 @@ async function setFeedbackFromStorageSesion() {
     }
 }
 
-function esEmailValido(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
-}
-
 function validarPayloadProfesor(payload) {
   const obligatorios = ['nombre', 'email', 'especialidad', 'foto'];
   for (const campo of obligatorios) {
@@ -39,7 +35,8 @@ function validarPayloadProfesor(payload) {
   return null;
 }
 
-function toggleAdminUI(isAdmin) {
+function toggleProfesoresAdminUI(isAdmin) {
+
   document.getElementById('bloque-profesor-admin').style.display = isAdmin ? 'block' : 'none';
   document.getElementById('bloque-listado-profesores-admin').style.display = isAdmin ? 'block' : 'none';
 
@@ -124,25 +121,34 @@ async function cargarDatosAdmin() {
 }
 
 async function comprobarSesion() {
-  const res = await fetch('/api/auth/me', { credentials: 'include' });
+  try{
+    const res = await fetch('/api/auth/me', { credentials: 'include' });
 
-  if (!res.ok) {
+    if (!res.ok) {
+      adminSesion = null;
+      toggleProfesoresAdminUI(false);
+      const error = await res.json();
+      setFeedback(error.mensaje || 'error.', false);
+      return;
+    }
+
+    const data = await res.json();
+    adminSesion = data.usuario;
+    const esAdmin = adminSesion.rol === 'admin';
+    toggleProfesoresAdminUI(esAdmin);
+
+    if (!esAdmin) {
+      setFeedback('Tu sesion esta iniciada, pero no tienes permisos de administracion.', false);
+      return;
+    }
+
+    await cargarDatosAdmin();
+
+  } catch (error) {
+    console.error('Error comprobando sesion:', error);
     adminSesion = null;
-    toggleAdminUI(false);
-    return;
+    toggleProfesoresAdminUI(false);
   }
-
-  const data = await res.json();
-  adminSesion = data.usuario;
-  const esAdmin = adminSesion.rol === 'admin';
-  toggleAdminUI(esAdmin);
-
-  if (!esAdmin) {
-    setFeedback('Tu sesion esta iniciada, pero no tienes permisos de administracion.', false);
-    return;
-  }
-
-  await cargarDatosAdmin();
 }
 
 function construirPayloadProfesor() {
@@ -215,8 +221,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('form-profesor-admin').addEventListener('submit', guardarProfesor);
   document.getElementById('btn-limpiar-profesor').addEventListener('click', limpiarFormularioProfesor);
   
-  toggleAdminUI(false);
   await setFeedbackFromStorageSesion();
   await comprobarSesion();
-
 });

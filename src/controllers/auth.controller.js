@@ -93,15 +93,25 @@ exports.logout = async (req, res) => {
   });
 };
 
-exports.me = async (req, res) => {
-  if (!req.session.usuario?.id) {
-    return res.status(401).json({ mensaje: 'No autenticado' });
-  }
+exports.me = async (req, res, next) => {
+  try {
+    if (!req.session.usuario?.id) {
+      const error = new Error('No autenticado');
+      error.status = 401;
+      return next(error);
+    }
 
-  const usuario = await Usuario.findById(req.session.usuario.id);
-  if (!usuario) {
-    return res.status(401).json({ mensaje: 'Sesion no valida' });
-  }
+    const usuario = await Usuario.findById(req.session.usuario.id);
 
-  return res.status(200).json({ usuario: sanitizeUsuario(usuario) });
+    if (!usuario) {
+      const error = new Error('Sesión no válida');
+      error.status = 401;
+      return next(error);
+    }
+
+    return res.status(200).json({ usuario: sanitizeUsuario(usuario) });
+
+  } catch (err) {
+    next(err);
+  }
 };
