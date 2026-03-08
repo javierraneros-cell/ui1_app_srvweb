@@ -27,7 +27,7 @@ function actualizarHora() {
 }
 
 //Funcion que se llama desde el inicio de la pagina cuando se carga el menu:
-function cargarOpcionLogoutFooter(loginActual) {
+function cargarOpcionUsuarioLogout(loginActual) {
     const contenedorFooterLogOut = document.getElementById("footer-logout");
     const contenedorFooterNombre = document.getElementById("footer-nombre");
 

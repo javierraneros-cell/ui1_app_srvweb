@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async() => {
     //Comprobamos la sesión para mostrar o no el menú de Administración:
     const loginActual = await obtenerUsuarioActual();
     cargarOpcionMenuAdministracion(loginActual);
-    cargarOpcionLogoutFooter(loginActual);
+    cargarOpcionUsuarioLogout(loginActual);
 });
 
 //Obtener usuario y rol:
