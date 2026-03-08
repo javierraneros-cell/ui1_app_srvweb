@@ -29,8 +29,8 @@ function cargarOpcionMenuAdministracion(loginActual){
                 <a class="nav-link" href="/admin/admin.html">Administración</a>
                 <button class="nav-link dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/admin/admin.html">Cursos</a></li>
-                    <li><a class="dropdown-item" href="/admin/profesores.html">Profesores</a></li>
+                    <li><a class="dropdown-item" href="/admin/cursos-admin.html">Cursos</a></li>
+                    <li><a class="dropdown-item" href="/admin/profesores-admin.html">Profesores</a></li>
                     <li><a class="dropdown-item" href="/admin/usuarios.html">Usuarios</a></li>
                 </ul>
             </div>

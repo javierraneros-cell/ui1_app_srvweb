@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es" id="panel-admin">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin PROFESORES - Formacion Global Online</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="/css/estilos.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap">
+</head>
+<body>
+    <header>
+        <h1 class="visually-hidden">Panel de administracion</h1>
+        <div>
+            <a href="/index.html">
+                <img class="img-fluid" src="/imagenes/bannerFormacionGlobalOnline.png" alt="Formación Global Online banner">
+            </a>
+        </div>
+        <div id="contenedor-menu"></div>
+    </header>
+
+    <main id="contenedor-main">
+        <h2><span class="material-symbols-outlined">admin_panel_settings</span> Panel Admin - PROFESORES</h2>
+        <div id="admin-feedback" class="d-none mb-3" role="alert"></div>
+        <div class="mb-3" role="alert">
+            <span id="admin-user-info" class="align-self-center"></span>
+        </div>
+
+        <section class="card mb-4 mt-4" id="bloque-profesor-admin">
+            <h3>Crear / Editar profesor</h3>
+            <form id="form-profesor-admin" class="row g-3">
+                <input type="hidden" id="profesor-id">
+
+                <div class="col-12 col-md-6">
+                    <label for="profesor-nombre" class="form-label">Nombre</label>
+                    <input id="profesor-nombre" type="text" class="form-control" required>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label for="profesor-email" class="form-label">Email</label>
+                    <input id="profesor-email" type="email" class="form-control" required>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label for="profesor-especialidad" class="form-label">Especialidad</label>
+                    <input id="profesor-especialidad" type="text" class="form-control" required>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label for="profesor-foto" class="form-label">Ruta foto</label>
+                    <input id="profesor-foto" type="text" class="form-control" required>
+                </div>
+                <div class="col-12 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Guardar profesor</button>
+                    <button id="btn-limpiar-profesor" type="button" class="btn btn-outline-secondary">Limpiar</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="card mt-4" id="bloque-listado-profesores-admin">
+            <h3>Profesores existentes</h3>
+            <div class="table-responsive">
+                <table class="table table-striped align-middle" id="tabla-profesores-admin">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Especialidad</th>
+                            <th>Cursos</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="contenedor-footer"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../admin/js/profesores-admin.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/footer.js"></script>
+</body>
+</html>
