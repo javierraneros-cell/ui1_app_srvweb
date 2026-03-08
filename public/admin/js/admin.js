@@ -19,10 +19,6 @@ async function setFeedbackFromStorageSesion() {
     }
 }
 
-function esEmailValido(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
-}
-
 async function comprobarSesion() {
   try {
       const res = await fetch('/api/auth/me', { credentials: 'include' });

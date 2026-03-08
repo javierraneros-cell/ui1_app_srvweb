@@ -3,6 +3,10 @@ let profesores = [];
 let cursos = [];
 let usuarios = [];
 
+function esEmailValido(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
+}
+
 function setFeedback(mensaje, ok) {
   const box = document.getElementById('admin-feedback');
   box.className = 'mb-3 alert';
