@@ -64,7 +64,7 @@ function cargarCursos(tituloFiltro = "", categoriaFiltro = "", nivelFiltro = "")
                                     <li><strong>Categoría: </strong>${curso.categoria}</li>
                                     <li><strong>Nivel: </strong>${curso.nivel}</li>
                                 </ul>
-                                <a href="detalle-curso.html?id=${curso._id}" class="btn btn-outline-primary w-100 mt-auto">
+                                <a href="detalle-curso?id=${curso._id}" class="btn btn-outline-primary w-100 mt-auto">
                                     Ver detalles
                                 </a>
                             </div>

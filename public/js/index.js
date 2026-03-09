@@ -35,7 +35,7 @@ async function cargarCursosNuevosHome() {
         ${cursosNuevos
           .map(
             (curso) =>
-              `<li><a href="detalle-curso.html?id=${curso._id}">${escapeHtml(curso.titulo)}</a> (${escapeHtml(
+              `<li><a href="detalle-curso?id=${curso._id}">${escapeHtml(curso.titulo)}</a> (${escapeHtml(
                 curso.nivel
               )})</li>`
           )

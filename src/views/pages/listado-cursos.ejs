@@ -1,0 +1,20 @@
+<!-- MAIN -->
+<main id="contenedor-main">
+    <h2><span class="material-symbols-outlined">list</span> Listado de cursos formativos impartidos en Formación Global Online</h2> 
+    <div id="contenedor-filtro-cursos">
+            <input type="text" id="filtro-titulo" class="form-control" placeholder="Buscar curso...">
+            <select id="filtro-categoria" class="form-select">
+                <option value="">Todas las categorías</option>
+            </select>
+            <select id="filtro-nivel" class="form-select">
+                <option value="">Todas los niveles</option>
+            </select>
+            <button id="boton-limpiar-filtros" class="btn btn-outline-primary">Limpiar filtros</button>    
+    </div>
+    <div id="contenedor-cursos" class="listado-cursos row g-4"  >
+        <!-- Aqui la funcion JavaScript cargarCursos() pintara todos los cursos -->
+    </div>
+    <div id="contenedor-resultado-cursos" class="text-center mt-4" style="display: none;" >
+        <!-- Aqui la funcion JavaScript cargarCursos() pintara el resultado de la busqueda -->
+    </div>
+</main>

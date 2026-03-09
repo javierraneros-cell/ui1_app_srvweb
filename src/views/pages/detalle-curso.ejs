@@ -1,0 +1,68 @@
+<main class="curso" id="contenedor-main">
+
+    <!-- Columna izquierda: imagen -->
+    <header>
+        <figure class="detalle-imagen-curso no-imprimir">
+            <img id="imagen-curso" src="" alt="">
+        </figure>
+    </header>
+    <!-- Columna derecha -->
+    <div class="detalle-curso">
+        <h2 id="titulo-curso" class="mb-3"></h2>
+
+        <!-- Detalle respuesta curso -->
+        <div id="contenedor-respuesta-detalle-curso" class="d-none" role="alert"></div>
+        
+        <!-- DESCRIPCIÓN -->
+        <div class="descripcion-curso mb-4 card">
+            <div class="card-body">
+                <h3 class="card-title">DESCRIPCIÓN GENERAL DEL CURSO</h3>
+                <p id="descripcion-curso" class="card-text"></p>
+            </div>
+        </div>
+
+        <!-- INFORMACIÓN DEL CURSO -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3><span class="material-symbols-outlined">info</span> Información detallada del curso</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Categoría: </strong><span id="categoria-curso"></span></li>
+                    <li class="list-group-item"><strong>Nivel: </strong><span id="nivel-curso"></span></li>
+                    <li class="list-group-item"><strong>Duración estimada: </strong><span id="duracion-curso"></span></li>
+                    <li class="list-group-item"><strong>Profesor: </strong><span id="profesor-curso"></span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CONTENIDOS -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3><span class="material-symbols-outlined">list</span> Contenidos del curso:</h3>
+                <ul id="lista-contenidos" class="list-group list-group-flush"></ul>
+            </div>
+        </div>
+
+        <!-- REQUISITOS -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3><span class="material-symbols-outlined">conditions</span> Requisitos del curso:</h3>
+                <ul id="lista-requisitos" class="list-group list-group-flush"></ul>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3><span class="material-symbols-outlined">chat</span> Comentarios del curso</h3>
+                <div id="respuesta-comentario" class="d-none mb-3" role="alert"></div>
+                <div id="contenedor-form-comentario" class="mb-3"></div>
+                <ul id="lista-comentarios" class="list-group list-group-flush"></ul>
+            </div>
+        </div>
+        
+        <!-- Botón IMPRIMIR -->
+        <div>
+            <a id="btn-imprimir" href="#" class="btn btn-outline-primary w-100 mt-auto no-imprimir" >Imprimir curso</a>
+        </div>
+
+    </div>
+</main>

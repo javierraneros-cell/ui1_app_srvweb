@@ -10,7 +10,7 @@ function cargarCursosEnMenu() {
             listadoCursos.forEach(curso => {
                 const li = document.createElement("li");
                 li.innerHTML = `
-                    <a class="dropdown-item" href="detalle-curso.html?id=${curso._id}">
+                    <a class="dropdown-item" href="detalle-curso?id=${curso._id}">
                         ${curso.titulo}
                     </a>
                 `;
@@ -26,17 +26,17 @@ function cargarOpcionMenuAdministracion(loginActual){
     if (loginActual && loginActual.rol == 'admin'){
         anclajeAdmin = `
             <div class="btn-group">
-                <a class="nav-link" href="/admin/admin.html">Administración</a>
+                <a class="nav-link" href="/admin">Administración</a>
                 <button class="nav-link dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/admin/cursos-admin.html">Cursos</a></li>
-                    <li><a class="dropdown-item" href="/admin/profesores-admin.html">Profesores</a></li>
-                    <li><a class="dropdown-item" href="/admin/usuarios-admin.html">Usuarios</a></li>
+                    <li><a class="dropdown-item" href="/cursos-admin">Cursos</a></li>
+                    <li><a class="dropdown-item" href="/profesores-admin">Profesores</a></li>
+                    <li><a class="dropdown-item" href="/usuarios-admin">Usuarios</a></li>
                 </ul>
             </div>
             `;
     }else if(!loginActual){
-        anclajeAdmin = `<a class="nav-link" href="login.html">Acceder</a>`;
+        anclajeAdmin = `<a class="nav-link" href="login">Acceder</a>`;
     }else{
         anclajeAdmin = "";
     }
@@ -44,12 +44,9 @@ function cargarOpcionMenuAdministracion(loginActual){
 }
 
 /**
- * Cargamos el menu.html que es comun a todas las paginas
+ * Cargamos los cursos del menu entre otras cosas que es comun a todas las paginas
  */
 document.addEventListener("DOMContentLoaded", async() => {
-    const res = await fetch("/menu.html");
-    const html = await res.text();
-    document.getElementById("contenedor-menu").innerHTML = html;
     cargarCursosEnMenu();
 
     //Comprobamos la sesión para mostrar o no el menú de Administración:

@@ -1,0 +1,74 @@
+<main id="contenedor-main">
+    <h2><span class="material-symbols-outlined">design_services</span> Panel Admin - CURSOS</h2>
+    <div id="admin-feedback" class="d-none mb-3" role="alert"></div>
+    <div class="mb-3" role="alert">
+        <span id="admin-user-info" class="align-self-center"></span>
+    </div>
+
+    <section class="card mb-4" id="bloque-curso-admin">
+        <h3>Crear / Editar curso</h3>
+        <form id="form-curso-admin" class="row g-3">
+            <input type="hidden" id="curso-id">
+
+            <div class="col-12 col-md-6">
+                <label for="curso-titulo" class="form-label">Titulo</label>
+                <input id="curso-titulo" type="text" class="form-control" required>
+            </div>
+            <div class="col-12 col-md-3">
+                <label for="curso-categoria" class="form-label">Categoria</label>
+                <input id="curso-categoria" type="text" class="form-control" required>
+            </div>
+            <div class="col-12 col-md-3">
+                <label for="curso-nivel" class="form-label">Nivel</label>
+                <input id="curso-nivel" type="text" class="form-control" required>
+            </div>
+            <div class="col-12 col-md-4">
+                <label for="curso-duracion" class="form-label">Duracion</label>
+                <input id="curso-duracion" type="text" class="form-control" required>
+            </div>
+            <div class="col-12 col-md-8">
+                <label for="curso-imagen" class="form-label">Ruta imagen</label>
+                <input id="curso-imagen" type="text" class="form-control" required>
+            </div>
+            <div class="col-12">
+                <label for="curso-descripcion" class="form-label">Descripcion</label>
+                <textarea id="curso-descripcion" class="form-control" rows="3" required></textarea>
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="curso-profesor" class="form-label">Profesor</label>
+                <select id="curso-profesor" class="form-select" required></select>
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="curso-temario" class="form-label">Temario (una linea por punto)</label>
+                <textarea id="curso-temario" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="curso-requisitos" class="form-label">Requisitos (una linea por punto)</label>
+                <textarea id="curso-requisitos" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="col-12 d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Guardar curso</button>
+                <button id="btn-limpiar-form" type="button" class="btn btn-outline-secondary">Limpiar</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="card" id="bloque-listado-admin">
+        <h3>Cursos existentes</h3>
+        <div class="table-responsive">
+            <table class="table table-striped align-middle" id="tabla-cursos-admin">
+                <thead>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Categoria</th>
+                        <th>Nivel</th>
+                        <th>Profesor</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </section>
+
+</main>

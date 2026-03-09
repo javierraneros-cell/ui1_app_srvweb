@@ -1,0 +1,19 @@
+<!-- DIV Lisatado profesores en modo tabla -->
+<main id="contenedor-main">
+    <h2><span class="material-symbols-outlined">school</span> Listado de profesores que imparten cursos formativos en Formación Global Online</h2> 
+    <div id="respuesta-profesores" class="d-none mb-3" role="alert"></div>
+    <div class="listado-profesores table-responsive" >  
+        <table id="tabla-profesores" class="table table-striped align-middle table-sm" >
+            <caption>Listado de profesorado recuperado desde MongoDB</caption>
+            <thead class="table-light">
+                <tr > 
+                    <th data-sort="true" id="cabecera-orden-nombre-0" >Nombre del profesor/a</th> 
+                    <th data-sort="true" id="cabecera-orden-especialidad-1" >Área de especialización</th> 
+                    <th>Email de contacto</th> 
+                    <th data-sort="true" id="cabecera-orden-numcursos-3" >Número de cursos que imparte en la plataforma</th> 
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</main>

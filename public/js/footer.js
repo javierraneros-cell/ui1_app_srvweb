@@ -1,17 +1,10 @@
 /**
- * Cargamos el footer.html que es comun a todas las paginas
+ * Cargamos el script que actualiza la hora que es comun a todas las paginas
  */
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("/footer.html")
-        .then(res => res.text())
-        .then(html => {
-            document.getElementById("contenedor-footer").innerHTML = html;
-        });
-
     //Actualización automática cada 1 segundo y muestra de la hora:
     setInterval(actualizarHora, 1000);
 });
-
 
 function actualizarHora() {
     const ahora = new Date();
@@ -72,5 +65,5 @@ async function logout(){
         sessionStorage.setItem("loginMensajeFeedback", "Sesión cerrada correctamente");
         sessionStorage.setItem("loginEstadoFeedback", true);
     }
-    window.location.href = "/index.html";
+    window.location.href = "/";
 }
