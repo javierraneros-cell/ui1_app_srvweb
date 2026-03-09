@@ -50,7 +50,8 @@ Estructura principal:
 - `listado-cursos.html`: grid + buscador + filtros contra backend.
 - `detalle-curso.html`: detalle completo del curso, profesor, comentarios y publicacion de comentario si hay sesion.
 - `listado-profesores.html`: tabla de profesorado desde API.
-- `admin.html`:
+- `admin.html`: 
+  - Permite acceder a los mantenimientos de forma individualizada de cada uno de los CRUDs.
   - acceso unico y visibilidad por rol.
   - CRUD de cursos (admin).
   - CRUD de profesores (admin).
@@ -185,12 +186,22 @@ Notas:
 - `npm run dev` -> arranque con nodemon
 - `npm run seed` -> reinicia datos y carga dataset inicial
 
-## 8) Estructura del proyecto
+## 8) Motor de plantillas EJS
+
+Se ha implementado EJS como motor de plantillas, permitiendo separar y reutilizar componentes comunes (header, footer, menú) y renderizar cada página a partir de una plantilla base. Esto mejora la organización y el mantenimiento del código, permitiendo tener el cierre de sesión centralizado y mostrar el usuario conectado en caso de haber hecho un login. 
+
+
+## 9) Estructura del proyecto
 
 ```text
 ui1_app_srvweb/
   data/
   public/
+    admin/
+      js/
+    css/
+    imagenes/
+    js/
   scripts/
   src/
     config/
@@ -198,16 +209,22 @@ ui1_app_srvweb/
     middlewares/
     models/
     routes/
+    utils/
+    views/
+      admin/
+      pages/
+      partials/
+    app.js
   server.js
 ```
 
-## 9) Evidencias de trabajo colaborativo
+## 10) Evidencias de trabajo colaborativo
 
 Tablero GitHub Projects:
 
 - https://github.com/users/javierraneros-cell/projects/6
 
-## 10) Alcance y notas de entrega
+## 11) Alcance y notas de entrega
 
 - Base de datos: configurada para ejecucion local/remota mediante `MONGODB_URI`.
 - Se ha priorizado cumplir los puntos obligatorios de UD6 (persistencia, MVC/REST, auth/roles, frontend dinamico y panel admin).
