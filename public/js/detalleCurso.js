@@ -85,7 +85,7 @@ function renderFormularioComentario(autenticado) {
           <option value="1">1</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">Publicar comentario</button>
+      <button type="submit" class="btn btn-outline-primary w-100 mt-auto">Publicar comentario</button>
     </form>
   `;
 
