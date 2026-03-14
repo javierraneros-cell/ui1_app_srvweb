@@ -71,6 +71,20 @@ exports.actualizarUsuario = async (req, res) => {
     }
   }
 
+  if (req.session?.usuario?.id === id && rol !== undefined) {
+    const usuarioActual = await Usuario.findById(id);
+
+    if (!usuarioActual) {
+      return res.status(404).json({ mensaje: 'Usuario no encontrado' });
+    }
+
+    const rolNormalizado = rol === 'admin' ? 'admin' : 'alumno';
+
+    if (usuarioActual.rol !== rolNormalizado) {
+      return res.status(409).json({ mensaje: 'No puedes cambiar tu propio rol en sesion' });
+    }
+  }
+
   if (password !== undefined && String(password).length < 6) {
     return res.status(400).json({ mensaje: 'La password debe tener al menos 6 caracteres' });
   }

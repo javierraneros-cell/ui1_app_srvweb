@@ -63,6 +63,8 @@ function limpiarFormularioUsuario() {
   document.getElementById('usuario-nombre').value = '';
   document.getElementById('usuario-email').value = '';
   document.getElementById('usuario-rol').value = 'alumno';
+  document.getElementById('usuario-rol').disabled = false;
+  document.getElementById('usuario-rol').title = '';
   document.getElementById('usuario-password').value = '';
 }
 
@@ -104,6 +106,12 @@ function cargarUsuarioEnFormulario(usuarioId) {
   document.getElementById('usuario-email').value = usuario.email;
   document.getElementById('usuario-rol').value = usuario.rol;
   document.getElementById('usuario-password').value = '';
+
+  const esMiSesion = adminSesion && adminSesion._id === usuario._id;
+  const selectRol = document.getElementById('usuario-rol');
+
+  selectRol.disabled = Boolean(esMiSesion);
+  selectRol.title = esMiSesion ? 'No puedes cambiar tu propio rol en sesion' : '';
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
