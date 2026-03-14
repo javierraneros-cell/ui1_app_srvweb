@@ -53,6 +53,42 @@ function cargarSelectProfesores() {
     .join('');
 }
 
+function rellenarSelect(select, opciones, placeholder) {
+  select.innerHTML = '';
+
+  const opcionInicial = document.createElement('option');
+  opcionInicial.value = '';
+  opcionInicial.textContent = placeholder;
+  select.appendChild(opcionInicial);
+
+  opciones.forEach((opcion) => {
+    const option = document.createElement('option');
+    option.value = opcion;
+    option.textContent = opcion;
+    select.appendChild(option);
+  });
+}
+
+async function cargarSelectCategoriasYNiveles() {
+  const [resCategorias, resNiveles] = await Promise.all([
+    fetch('/api/cursos/categorias', { credentials: 'include' }),
+    fetch('/api/cursos/niveles', { credentials: 'include' })
+  ]);
+
+  if (!resCategorias.ok || !resNiveles.ok) {
+    throw new Error('No se pudieron cargar categorias y niveles');
+  }
+
+  const categorias = await resCategorias.json();
+  const niveles = await resNiveles.json();
+
+  const selectCategoria = document.getElementById('curso-categoria');
+  const selectNivel = document.getElementById('curso-nivel');
+
+  rellenarSelect(selectCategoria, categorias, 'Selecciona una categoria');
+  rellenarSelect(selectNivel, niveles, 'Selecciona un nivel');
+}
+
 function renderCursosAdmin() {
   const tbody = document.querySelector('#tabla-cursos-admin tbody');
 
@@ -254,7 +290,7 @@ async function cargarDatosAdmin() {
   usuarios = await resUsuarios.json();
 
   cargarSelectProfesores();
+  await cargarSelectCategoriasYNiveles();
   limpiarFormularioCurso();
   renderCursosAdmin();
-
 }
