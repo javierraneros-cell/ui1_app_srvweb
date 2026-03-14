@@ -53,23 +53,19 @@ function cargarSelectProfesores() {
     .join('');
 }
 
-function rellenarSelect(select, opciones, placeholder) {
-  select.innerHTML = '';
+function rellenarDatalist(datalist, opciones) {
+  datalist.innerHTML = '';
 
-  const opcionInicial = document.createElement('option');
-  opcionInicial.value = '';
-  opcionInicial.textContent = placeholder;
-  select.appendChild(opcionInicial);
+  const valoresUnicos = [...new Set((opciones || []).filter(Boolean))];
 
-  opciones.forEach((opcion) => {
+  valoresUnicos.forEach((opcion) => {
     const option = document.createElement('option');
     option.value = opcion;
-    option.textContent = opcion;
-    select.appendChild(option);
+    datalist.appendChild(option);
   });
 }
 
-async function cargarSelectCategoriasYNiveles() {
+async function cargarSugerenciasCategoriasYNiveles() {
   const [resCategorias, resNiveles] = await Promise.all([
     fetch('/api/cursos/categorias', { credentials: 'include' }),
     fetch('/api/cursos/niveles', { credentials: 'include' })
@@ -82,11 +78,11 @@ async function cargarSelectCategoriasYNiveles() {
   const categorias = await resCategorias.json();
   const niveles = await resNiveles.json();
 
-  const selectCategoria = document.getElementById('curso-categoria');
-  const selectNivel = document.getElementById('curso-nivel');
+  const datalistCategorias = document.getElementById('curso-categorias');
+  const datalistNiveles = document.getElementById('curso-niveles');
 
-  rellenarSelect(selectCategoria, categorias, 'Selecciona una categoria');
-  rellenarSelect(selectNivel, niveles, 'Selecciona un nivel');
+  rellenarDatalist(datalistCategorias, categorias);
+  rellenarDatalist(datalistNiveles, niveles);
 }
 
 function renderCursosAdmin() {
@@ -290,7 +286,7 @@ async function cargarDatosAdmin() {
   usuarios = await resUsuarios.json();
 
   cargarSelectProfesores();
-  await cargarSelectCategoriasYNiveles();
+  await cargarSugerenciasCategoriasYNiveles();
   limpiarFormularioCurso();
   renderCursosAdmin();
 }
