@@ -230,3 +230,16 @@ Tablero GitHub Projects:
 - Se ha priorizado cumplir los puntos obligatorios de UD6 (persistencia, MVC/REST, auth/roles, frontend dinamico y panel admin).
 - El detalle de curso devuelve profesor y comentarios; adicionalmente existe endpoint especifico para comentarios por curso.
 - Las tareas opcionales no imprescindibles se dejan para ampliaciones posteriores.
+
+## 12) Despligue rama Main en AWS
+
+Además del despliegue realizado en Vercel de una rama intermedia del desarrollo, se ha desplegado en AWS el proyecto final la rama main. Finalmente se ha optado por desplegar en un EC2 descartando la intención inicial de usar Elastic BeanStalk. 
+
+Se encuentra publibado en:
+- DNS público AWS con dirección abierta: https://ec2-3-229-106-113.compute-1.amazonaws.com/
+- Con resolución privada: https://ui1-grupo4-app.duckdns.org
+- Se ha optado por usar MongoDB Atlas en cloud 
+
+Tiene el inconveniente
+
+
