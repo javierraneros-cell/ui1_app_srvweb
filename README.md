@@ -231,13 +231,19 @@ Tablero GitHub Projects:
 - El detalle de curso devuelve profesor y comentarios; adicionalmente existe endpoint especifico para comentarios por curso.
 - Las tareas opcionales no imprescindibles se dejan para ampliaciones posteriores.
 
-## 12) Despligue rama Main en AWS
+## 12) Despligues rama Main en AWS
+
+### Rama final main en AWS
 
 Además del despliegue realizado en Vercel de una rama intermedia del desarrollo, se ha desplegado en AWS el proyecto final la rama main. Finalmente se ha optado por desplegar en un EC2 descartando la intención inicial de usar Elastic BeanStalk. 
 
-Se encuentra publibado en:
+Se encuentra publicado en:
 - DNS público AWS con dirección abierta: https://ec2-3-229-106-113.compute-1.amazonaws.com/
 - Con resolución privada: https://ui1-grupo4-app.duckdns.org
 - Se ha optado por usar MongoDB Atlas en cloud 
 
+### Despliegue rama previa en Vercel 
 
+Se puede acceder a la página en línea donde se desplegó una rama previa del proyecto
+
+- https://ui1appsrvweb.vercel.app
