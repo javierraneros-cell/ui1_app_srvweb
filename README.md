@@ -240,6 +240,4 @@ Se encuentra publibado en:
 - Con resolución privada: https://ui1-grupo4-app.duckdns.org
 - Se ha optado por usar MongoDB Atlas en cloud 
 
-Tiene el inconveniente
-
 
