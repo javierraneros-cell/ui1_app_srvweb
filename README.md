@@ -231,7 +231,7 @@ Tablero GitHub Projects:
 - El detalle de curso devuelve profesor y comentarios; adicionalmente existe endpoint especifico para comentarios por curso.
 - Las tareas opcionales no imprescindibles se dejan para ampliaciones posteriores.
 
-## 12) Despligues rama Main en AWS
+## 12) Despligues
 
 ### Rama final main en AWS
 
