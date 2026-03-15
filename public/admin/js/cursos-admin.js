@@ -53,6 +53,38 @@ function cargarSelectProfesores() {
     .join('');
 }
 
+function rellenarDatalist(datalist, opciones) {
+  datalist.innerHTML = '';
+
+  const valoresUnicos = [...new Set((opciones || []).filter(Boolean))];
+
+  valoresUnicos.forEach((opcion) => {
+    const option = document.createElement('option');
+    option.value = opcion;
+    datalist.appendChild(option);
+  });
+}
+
+async function cargarSugerenciasCategoriasYNiveles() {
+  const [resCategorias, resNiveles] = await Promise.all([
+    fetch('/api/cursos/categorias', { credentials: 'include' }),
+    fetch('/api/cursos/niveles', { credentials: 'include' })
+  ]);
+
+  if (!resCategorias.ok || !resNiveles.ok) {
+    throw new Error('No se pudieron cargar categorias y niveles');
+  }
+
+  const categorias = await resCategorias.json();
+  const niveles = await resNiveles.json();
+
+  const datalistCategorias = document.getElementById('curso-categorias');
+  const datalistNiveles = document.getElementById('curso-niveles');
+
+  rellenarDatalist(datalistCategorias, categorias);
+  rellenarDatalist(datalistNiveles, niveles);
+}
+
 function renderCursosAdmin() {
   const tbody = document.querySelector('#tabla-cursos-admin tbody');
 
@@ -254,7 +286,7 @@ async function cargarDatosAdmin() {
   usuarios = await resUsuarios.json();
 
   cargarSelectProfesores();
+  await cargarSugerenciasCategoriasYNiveles();
   limpiarFormularioCurso();
   renderCursosAdmin();
-
 }
