@@ -247,3 +247,8 @@ Se encuentra publicado en:
 Se puede acceder a la página en línea donde se desplegó una rama previa del proyecto
 
 - https://ui1appsrvweb.vercel.app
+
+## 13) Vídeo explicativo
+
+Se puede consultar en https://drive.google.com/file/d/1uOp-52TNO5PfbicHqHZlQMv2mtnhzaA2/view?usp=sharing
+
